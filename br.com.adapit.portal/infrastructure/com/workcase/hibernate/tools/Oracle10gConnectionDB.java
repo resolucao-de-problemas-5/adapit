@@ -13,8 +13,8 @@ public class Oracle10gConnectionDB implements HibernateConnectionDB{
       cfg.setProperty( "hibernate.dialect", "org.hibernate.dialect.Oracle9Dialect" );
       cfg.setProperty( "hibernate.connection.driver_class", "oracle.jdbc.driver.OracleDriver" );
       cfg.setProperty( "hibernate.connection.url", "jdbc:oracle:thin:@localhost:1521/worckcase" );
-      cfg.setProperty( "hibernate.connection.username", "workcase" );
-      cfg.setProperty( "hibernate.connection.password", "5c0fnGG" );
+      cfg.setProperty( "hibernate.connection.username", "postgres" );
+      cfg.setProperty( "hibernate.connection.password", "200110" );
       cfg.setProperty( "hibernate.connection.autocommit", "false" );
       cfg.setProperty( "hibernate .connection.show_sql", "true");
       cfg.setProperty( "hibernate.connection.release_mode", "after_statement" );

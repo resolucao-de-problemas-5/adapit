@@ -8,8 +8,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
        <property name="driverClassName" value="org.postgresql.Driver"/>  
        <property name="url" value="jdbc:postgresql://localhost:5432/adapitdb"/>  
-       <property name="username" value="adapit_user"/>  
-       <property name="password" value="4W5F03J"/>   
+       <property name="username" value="postgres"/>  
+       <property name="password" value="200110"/>   
     </bean>  
     <!-- depends-on="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -94,7 +94,7 @@
    				com.adapit.projmanager.entidades.DeactivationReason,
    				com.adapit.projmanager.entidades.Access,
  	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
- 	Define que será usado a classe HibernateTransactionManager do Spring para fazer controle de transação -->
+ 	Define que serï¿½ usado a classe HibernateTransactionManager do Spring para fazer controle de transaï¿½ï¿½o -->
  	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
  		<property name="sessionFactory"><ref local="sessionFactory"/></property>
  	</bean>
