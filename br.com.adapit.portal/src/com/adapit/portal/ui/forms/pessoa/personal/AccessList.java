@@ -20,7 +20,7 @@ public class AccessList extends JXTable {
 	protected ResourceMessage messages = SpringResourceMessage.getInstance();
 	protected DateHourChooser tempDateFieldChooser = new DateHourChooser(messages.getCurrentLocale(), true, true, false);
 	
-	private List<Access> elements = new ArrayList<Access>();
+	private List<Access> elements = new ArrayList();
 	@SuppressWarnings("deprecation")
 	public AccessList() {
 		super();
@@ -87,7 +87,7 @@ public class AccessList extends JXTable {
 	private class AccessModel extends DefaultTableModel {
 		
 
-		Class<?> types[] = new java.lang.Class[] { String.class,String.class };
+		Class types[] = new java.lang.Class[] { String.class,String.class };
 
 		boolean canEdit[] = new boolean[] {false, false };
 

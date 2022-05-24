@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Date;
-import java.util.TreeSet; 
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +30,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.Base64;
+import sun.misc.BASE64Encoder;
+
 
 
 @NamedQueries(
@@ -234,17 +235,12 @@ public class Usuario implements Serializable {
 	}
 	
 	@Transient
-	public static String encrypt(String senha) {
-		String encryptedPassword;
+	public static String encript(String senha) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("MD5");
 			digest.update(senha.getBytes());
-			encryptedPassword = Base64.getEncoder().encodeToString(digest.digest());
-			return encryptedPassword;
-			
-			//BASE64Encoder encoder = new BASE64Encoder();
-			//return encoder.encode(digest.digest());
-
+			BASE64Encoder encoder = new BASE64Encoder();
+			return encoder.encode(digest.digest());
 		} catch (NoSuchAlgorithmException ns) {
 			ns.printStackTrace();
 			return senha;

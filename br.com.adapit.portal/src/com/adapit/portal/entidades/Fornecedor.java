@@ -28,7 +28,7 @@ import javax.swing.ImageIcon;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="SupplierPerson")
-public class Fornecedor extends Pessoa {
+public class Fornecedor extends Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1235213325627L;
 
@@ -125,7 +125,7 @@ public class Fornecedor extends Pessoa {
 						return bigIcon;
 					}
 					else{
-						System.err.println("Imagem da categoria ï¿½ nula");
+						System.err.println("Imagem da categoria é nula");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -173,8 +173,9 @@ public class Fornecedor extends Pessoa {
 					if (imageIcon != null) {
 						bigIcon = new javax.swing.ImageIcon(img);
 						return bigIcon;
-					}else{
-						System.err.println("Imagem da categoria ï¿½ nula");
+					}
+					else{
+						System.err.println("Imagem da categoria é nula");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -207,7 +208,7 @@ public class Fornecedor extends Pessoa {
 						return smallIcon;
 					}
 					else{
-						System.err.println("Imagem da categoria ï¿½ nula");
+						System.err.println("Imagem da categoria é nula");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -230,7 +231,6 @@ public class Fornecedor extends Pessoa {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(file);
 			fileInputStream.read(b);
-			fileInputStream.close();
 			/*for (int i = 0; i < b.length; i++) {
 				System.out.print((char)b[i]);
 			}*/

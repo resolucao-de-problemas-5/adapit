@@ -107,7 +107,7 @@ public class AdminEnderecoCadastreForm extends JPanel{
 
 		if(enderecoPanel == null){
 			enderecoPanel = new JPanel();
-			//enderecoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Endereï¿½o")));
+			//enderecoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Endereço")));
 			enderecoPanel.setSize(new java.awt.Dimension(320,195));
 			enderecoPanel.setLocation(new java.awt.Point(0,0));
 			enderecoPanel.setLayout(null);
@@ -471,7 +471,7 @@ public class AdminEnderecoCadastreForm extends JPanel{
 	
 	protected JLabel getNumeroTextFieldLabel(){
 		if(numeroTextFieldLabel == null){
-			numeroTextFieldLabel = new JLabel("* " +messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.AdminEnderecoCadastreForm.Numero"));
+			numeroTextFieldLabel = new JLabel("* " +messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.AdminEnderecoCadastreForm.Número"));
 			numeroTextFieldLabel.setSize(new java.awt.Dimension(72,20));
 			numeroTextFieldLabel.setLocation(new java.awt.Point(172,0));
 			numeroTextFieldLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -561,7 +561,7 @@ public class AdminEnderecoCadastreForm extends JPanel{
 			
 			//refreshEnderecoButton.setBounds(new Rectangle(292, 60, 33, 10));
 			refreshEnderecoButton.setBounds(new Rectangle(120, 159, 22, 22));
-			refreshEnderecoButton.setToolTipText("Buscar endereï¿½o por parï¿½metros");
+			refreshEnderecoButton.setToolTipText("Buscar endereço por parâmetros");
 			refreshEnderecoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/action_refresh_blue.gif")));
 			refreshEnderecoButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {

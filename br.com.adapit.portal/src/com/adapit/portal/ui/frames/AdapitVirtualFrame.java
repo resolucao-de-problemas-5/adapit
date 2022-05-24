@@ -96,6 +96,7 @@ import com.workcase.gui.utils.SwingWorker;
 import com.workcase.gui.utils.UIUtil;
 import com.workcase.utils.DatePropertyEditor;
 
+
 public class AdapitVirtualFrame extends JFrame {
 
 	private static final long serialVersionUID = 32461432436L;
@@ -115,19 +116,20 @@ public class AdapitVirtualFrame extends JFrame {
 	private BottomToolBar bottomPanel = null;
 
 	private ResourceMessage messages = ResourceMessage.getInstance();
+	
 
-	// private JButton manutencaoUsuarioButton = null;
+	//private JButton manutencaoUsuarioButton = null;
 
 	private static AdapitVirtualFrame instance;
-
-	// private Pessoa pessoa=null;
-
+	
+	//private Pessoa pessoa=null;
+	
 	/**
 	 * This is the default constructor
 	 */
 	public AdapitVirtualFrame() {
-		super();
-		instance = this;
+		super();	
+		instance=this;
 		initialize();
 	}
 
@@ -137,16 +139,16 @@ public class AdapitVirtualFrame extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		TelaLoginUsuario login = TelaLoginUsuario.getInstance();
+		TelaLoginUsuario login = TelaLoginUsuario.getInstance();		
 		login.setVisible(true);
-
-		this.setSize(827, 666);
+		
+		this.setSize(827, 666);		
 		this.setJMenuBar(getMainMenuBar());
 		this.setContentPane(getJContentPane());
 		this.setTitle("Sistema Adapit .: Administrador :. ");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 	}
 
 	/**
@@ -158,7 +160,7 @@ public class AdapitVirtualFrame extends JFrame {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new BorderLayout());
-			// jContentPane.add(getMainToolBar(), BorderLayout.NORTH);
+			//jContentPane.add(getMainToolBar(), BorderLayout.NORTH);
 			jContentPane.add(getMainSplitPane(), BorderLayout.CENTER);
 			jContentPane.add(getBottomPanel(), BorderLayout.SOUTH);
 		}
@@ -185,7 +187,7 @@ public class AdapitVirtualFrame extends JFrame {
 	private TopToolBar getMainToolBar() {
 		if (mainToolBar == null) {
 			mainToolBar = new TopToolBar();
-
+			
 		}
 		return mainToolBar;
 	}
@@ -207,7 +209,7 @@ public class AdapitVirtualFrame extends JFrame {
 		}
 		return mainSplitPane;
 	}
-
+	
 	/**
 	 * This method initializes mainDesktopPane
 	 * 
@@ -216,9 +218,8 @@ public class AdapitVirtualFrame extends JFrame {
 	public JDesktopPane getMainDesktopPane() {
 		if (mainDesktopPane == null) {
 			mainDesktopPane = new WelcomeDesktopPane(TelaLoginUsuario.getInstance().getUsuarioDTO());
-			// WelcomePanel welcome = new
-			// WelcomePanel(mainDesktopPane,TelaLoginUsuario.getInstance().getUsuarioDTO());
-
+			//WelcomePanel welcome = new WelcomePanel(mainDesktopPane,TelaLoginUsuario.getInstance().getUsuarioDTO());
+			
 		}
 		return mainDesktopPane;
 	}
@@ -235,6 +236,10 @@ public class AdapitVirtualFrame extends JFrame {
 		return bottomPanel;
 	}
 
+	
+
+
+
 	public static void main(String args[]) {
 		new java.lang.Thread(new Runnable() {
 			public void run() {
@@ -242,9 +247,9 @@ public class AdapitVirtualFrame extends JFrame {
 					UIManager.setLookAndFeel(UIManager
 							.getSystemLookAndFeelClassName());
 					UIManager.put("OptionPane.cancelButtonText", "Cancelar");
-					UIManager.put("OptionPane.noButtonText", "Nao");
-					UIManager.put("OptionPane.okButtonText", "Ok");
-					UIManager.put("OptionPane.yesButtonText", "Sim");
+				    UIManager.put("OptionPane.noButtonText", "Não");
+				    UIManager.put("OptionPane.okButtonText", "Ok");
+				    UIManager.put("OptionPane.yesButtonText", "Sim");
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (InstantiationException e) {
@@ -280,48 +285,45 @@ public class AdapitVirtualFrame extends JFrame {
 			e.printStackTrace();
 		} catch (java.lang.Exception e) {
 			e.printStackTrace();
-		} // end of catch block
+		}// end of catch block
 		return null;
 	}
 
 	public static AdapitVirtualFrame getInstance() {
-		/*
-		 * if (instance == null){
-		 * 
-		 * try {
-		 * UIManager.setLookAndFeel(UIManager
-		 * .getSystemLookAndFeelClassName());
-		 * UIManager.put("OptionPane.cancelButtonText", "Cancelar");
-		 * UIManager.put("OptionPane.noButtonText", "Nao");
-		 * UIManager.put("OptionPane.okButtonText", "Ok");
-		 * UIManager.put("OptionPane.yesButtonText", "Sim");
-		 * } catch (ClassNotFoundException e) {
-		 * e.printStackTrace();
-		 * } catch (InstantiationException e) {
-		 * e.printStackTrace();
-		 * } catch (IllegalAccessException e) {
-		 * e.printStackTrace();
-		 * } catch (UnsupportedLookAndFeelException e) {
-		 * e.printStackTrace();
-		 * }
-		 * 
-		 * instance = new LeilaoVirtualFrame();
-		 * instance.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-		 * instance.setVisible(true);
-		 * 
-		 * }
-		 */
+		/*if (instance == null){
+			
+					try {
+						UIManager.setLookAndFeel(UIManager
+								.getSystemLookAndFeelClassName());
+						UIManager.put("OptionPane.cancelButtonText", "Cancelar");
+					    UIManager.put("OptionPane.noButtonText", "Não");
+					    UIManager.put("OptionPane.okButtonText", "Ok");
+					    UIManager.put("OptionPane.yesButtonText", "Sim");
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (UnsupportedLookAndFeelException e) {
+						e.printStackTrace();
+					}
+
+					instance = new LeilaoVirtualFrame();
+					instance.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+					instance.setVisible(true);
+				
+		}*/
 		return instance;
 	}
 
-	public void beginStatusBar(String msg) {
-		getBottomPanel().beginStatusBar(msg);
-	}
 
-	public void endStatusBar(String msg) {
+	public void beginStatusBar(String msg){
+		getBottomPanel().beginStatusBar(msg);		
+	}
+	public void endStatusBar(String msg){
 		getBottomPanel().endStatusBar(msg);
 	}
-
 	public void showProgressBar() {
 		getBottomPanel().showProgressBar();
 	}
@@ -333,113 +335,108 @@ public class AdapitVirtualFrame extends JFrame {
 	 */
 	public OutlookMenuPanel getMainMenuExpandPanel() {
 		if (mainMenuExpandPanel == null) {
-			mainMenuExpandPanel = new OutlookMenuPanel();
+			mainMenuExpandPanel = new OutlookMenuPanel();			
 		}
 		return mainMenuExpandPanel;
 	}
-
+	
 	private ListaImagemInternalFrame listaImagensFrame;
-
-	public void listImagens() {
+	
+	public void listImagens(){		
 		beginStatusBar("Listar Imagens");
-		if (listaImagensFrame != null) {
+		if (listaImagensFrame != null){
 			listaImagensFrame.postInDesktopPane();
-		} else {
+		}else{
 			ListaImagemInternalFrame gui = new ListaImagemInternalFrame();
 			gui.postInDesktopPane();
 			listaImagensFrame = gui;
-			if (mainDesktopPane.getComponentCount() > 0) {
-				gui.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 		}
 		endStatusBar("Listar Imagens");
 	}
-
-	public ImageListForm listarImagens(JButton selecionarButton) {
+	
+	public ImageListForm listarImagens(JButton selecionarButton){
 		ListaImagemInternalFrame gui = new ListaImagemInternalFrame();
-		if (mainDesktopPane.getComponentCount() > 0) {
-			gui.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+		if (mainDesktopPane.getComponentCount()>0){
+			gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 		}
 		JPanel jp = new JPanel(new FlowLayout());
 		jp.add(selecionarButton);
-		gui.add(jp, BorderLayout.SOUTH);
+		gui.add(jp,BorderLayout.SOUTH);
 		gui.postInDesktopPane();
 		return gui.getImageListForm();
 	}
-
+	
 	private InternalFrameWithConsole console;
-
-	public void showConsole() {
+	public void showConsole(){		
 		console = new InternalFrameWithConsole();
 		mainDesktopPane.add(console);
 		console.setVisible(true);
 	}
 
 	private JInternalFrame listaComercialSolutionsFrame;
-
-	public void listCommercialSolutions() {
+	
+	public void listCommercialSolutions(){
 		//
-		if (listaComercialSolutionsFrame == null) {
-			listaComercialSolutionsFrame = new ListaComercialSolutionsFrame();
+		if (listaComercialSolutionsFrame == null){
+			listaComercialSolutionsFrame = new ListaComercialSolutionsFrame();			
 			mainDesktopPane.add(listaComercialSolutionsFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaComercialSolutionsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaComercialSolutionsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			listaComercialSolutionsFrame.setVisible(true);
-		} else {
+		}else{
 			listaComercialSolutionsFrame.toFront();
-		}
+		}		
 	}
-
+	
 	private JInternalFrame listaTrainingSolutionsFrame;
-
-	public void listTrainingSolutions() {
+	
+	public void listTrainingSolutions(){
 		//
-		if (listaTrainingSolutionsFrame == null) {
-			listaTrainingSolutionsFrame = new ListaTrainingSolutionsFrame();
+		if (listaTrainingSolutionsFrame == null){
+			listaTrainingSolutionsFrame = new ListaTrainingSolutionsFrame();			
 			mainDesktopPane.add(listaTrainingSolutionsFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaTrainingSolutionsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaTrainingSolutionsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			listaTrainingSolutionsFrame.setVisible(true);
-		} else {
+		}else{
 			listaTrainingSolutionsFrame.toFront();
-		}
+		}		
 	}
-
+	
 	private JInternalFrame listaSistemaSolutionsFrame;
-
-	public void listSystemSolutions() {
-		if (listaSistemaSolutionsFrame == null) {
-			listaSistemaSolutionsFrame = new ListaSistemaSolutionsFrame();
+	
+	public void listSystemSolutions(){
+		if (listaSistemaSolutionsFrame == null){
+			listaSistemaSolutionsFrame = new ListaSistemaSolutionsFrame();			
 			mainDesktopPane.add(listaSistemaSolutionsFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaSistemaSolutionsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaSistemaSolutionsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			listaSistemaSolutionsFrame.setVisible(true);
-		} else {
+		}else{
 			listaSistemaSolutionsFrame.toFront();
-		}
+		}		
 	}
-
+	
 	private CadastrarImagemInternalFrame cadastrarImagemFrame;
-
+	
 	public void novaImagem() {
-
+		
 		beginStatusBar("Cadastrar imagem");
-		if (cadastrarImagemFrame == null) {
+		if (cadastrarImagemFrame == null){
 			cadastrarImagemFrame = new CadastrarImagemInternalFrame();
-			mainDesktopPane.add(cadastrarImagemFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarImagemFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarImagemFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarImagemFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarImagemFrame.getImagemCadastreForm().newRegister();
 			cadastrarImagemFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarImagemFrame.getImagemCadastreForm().newRegister();
 			cadastrarImagemFrame.toFront();
 		}
@@ -447,27 +444,27 @@ public class AdapitVirtualFrame extends JFrame {
 	}
 
 	public void editarImagem(final Imagem im) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-
+					
 					beginStatusBar("Editar imagem");
 					try {
-						if (cadastrarImagemFrame == null) {
+						if (cadastrarImagemFrame == null){
 							cadastrarImagemFrame = new CadastrarImagemInternalFrame();
-							mainDesktopPane.add(cadastrarImagemFrame);
-							if (mainDesktopPane.getComponentCount() > 0) {
-								cadastrarImagemFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-										mainDesktopPane.getComponentCount() * 10);
+							mainDesktopPane.add(cadastrarImagemFrame);			
+							if (mainDesktopPane.getComponentCount()>0){
+								cadastrarImagemFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 							}
-
+							
 							cadastrarImagemFrame.getImagemCadastreForm().editRegister(im);
 							cadastrarImagemFrame.setVisible(true);
-						} else {
+						}
+						else{
 							cadastrarImagemFrame.getImagemCadastreForm().editRegister(im);
 							cadastrarImagemFrame.toFront();
 						}
@@ -475,185 +472,177 @@ public class AdapitVirtualFrame extends JFrame {
 						e.printStackTrace();
 					}
 					endStatusBar("Editar imagem");
-
+					
+					
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	private CadastrarComercialSolutionInternalFrame cadastrarComercialSolutionFrame;
-
+	
 	public void newComercialSolution() {
-		beginStatusBar("Cadastrar Solucoes");
-		if (cadastrarComercialSolutionFrame == null) {
+		beginStatusBar("Cadastrar Soluções");
+		if (cadastrarComercialSolutionFrame == null){
 			cadastrarComercialSolutionFrame = new CadastrarComercialSolutionInternalFrame();
-			mainDesktopPane.add(cadastrarComercialSolutionFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarComercialSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarComercialSolutionFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarComercialSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarComercialSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarComercialSolutionFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarComercialSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarComercialSolutionFrame.toFront();
 		}
-		endStatusBar("Cadastrar Solucoes");
+		endStatusBar("Cadastrar Soluções");
 	}
 
 	public void editComercialSolution(final ComercialSolution p) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
-					jd.setVisible(true);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
+					jd.setVisible(true);					
 
-					beginStatusBar("Editar Soluï¿½ï¿½o");
+					beginStatusBar("Editar Solução");
 					try {
-						if (cadastrarComercialSolutionFrame == null) {
+						if (cadastrarComercialSolutionFrame == null){
 							cadastrarComercialSolutionFrame = new CadastrarComercialSolutionInternalFrame();
-							mainDesktopPane.add(cadastrarComercialSolutionFrame);
-							if (mainDesktopPane.getComponentCount() > 0) {
-								cadastrarComercialSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-										mainDesktopPane.getComponentCount() * 10);
+							mainDesktopPane.add(cadastrarComercialSolutionFrame);			
+							if (mainDesktopPane.getComponentCount()>0){
+								cadastrarComercialSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 							}
-
+							
 							cadastrarComercialSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
 							cadastrarComercialSolutionFrame.setVisible(true);
-						} else {
+						}
+						else{
 							cadastrarComercialSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
 							cadastrarComercialSolutionFrame.toFront();
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
-					endStatusBar("Editar Soluï¿½ï¿½o");
-
+					
+					endStatusBar("Editar Solução");
+					
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	private CadastrarSoftwareSolutionInternalFrame cadastrarSoftwareSolutionFrame;
-
+	
 	public void newSoftwareSolution() {
 		beginStatusBar("Cadastrar Software");
-		if (cadastrarSoftwareSolutionFrame == null) {
+		if (cadastrarSoftwareSolutionFrame == null){
 			cadastrarSoftwareSolutionFrame = new CadastrarSoftwareSolutionInternalFrame();
-			mainDesktopPane.add(cadastrarSoftwareSolutionFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarSoftwareSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarSoftwareSolutionFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarSoftwareSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarSoftwareSolutionFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarSoftwareSolutionFrame.toFront();
 		}
 		endStatusBar("Cadastrar Software");
 	}
-
+	
 	private CadastroDomainInterestInternalFrame dominioFrame;
-
 	public void newSoftwareDomain() {
-		beginStatusBar("Cadastrar Domï¿½nios de Software");
-		// if (dominioFrame == null){
-		dominioFrame = new CadastroDomainInterestInternalFrame();
-		mainDesktopPane.add(dominioFrame);
-		if (mainDesktopPane.getComponentCount() > 0) {
-			dominioFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-					mainDesktopPane.getComponentCount() * 10);
-		}
-		dominioFrame.newRegister();
-		dominioFrame.setVisible(true);
-		/*
-		 * }else{
-		 * dominioFrame.newRegister();
-		 * dominioFrame.toFront();
-		 * }
-		 */
-		endStatusBar("Cadastrar Domï¿½nios de Software");
+		beginStatusBar("Cadastrar Domínios de Software");
+		//if (dominioFrame == null){
+			dominioFrame = new CadastroDomainInterestInternalFrame();
+			mainDesktopPane.add(dominioFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				dominioFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+			}
+			dominioFrame.newRegister();
+			dominioFrame.setVisible(true);
+		/*}else{
+			dominioFrame.newRegister();
+			dominioFrame.toFront();
+		}*/
+		endStatusBar("Cadastrar Domínios de Software");
 	}
 
 	public void editSoftwareSolution(final SoftwareSolution p) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-
+					
+					
 					beginStatusBar("Editar Software");
 					try {
-						// if (cadastrarSoftwareSolutionFrame == null){
-						cadastrarSoftwareSolutionFrame = new CadastrarSoftwareSolutionInternalFrame();
-						mainDesktopPane.add(cadastrarSoftwareSolutionFrame);
-						if (mainDesktopPane.getComponentCount() > 0) {
-							cadastrarSoftwareSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-									mainDesktopPane.getComponentCount() * 10);
-						}
-						cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
-						cadastrarSoftwareSolutionFrame.setTitle("Editando o Software .:" + p.getNome() + ":.");
-						cadastrarSoftwareSolutionFrame.setVisible(true);
-						/*
-						 * }
-						 * else{
-						 * cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().
-						 * editRegister(p);
-						 * cadastrarSoftwareSolutionFrame.toFront();
-						 * }
-						 */
+						//if (cadastrarSoftwareSolutionFrame == null){
+							cadastrarSoftwareSolutionFrame = new CadastrarSoftwareSolutionInternalFrame();
+							mainDesktopPane.add(cadastrarSoftwareSolutionFrame);			
+							if (mainDesktopPane.getComponentCount()>0){
+								cadastrarSoftwareSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+							}
+							cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
+							cadastrarSoftwareSolutionFrame.setTitle("Editando o Software .:" + p.getNome()+":.");
+							cadastrarSoftwareSolutionFrame.setVisible(true);
+						/*}
+						else{
+							cadastrarSoftwareSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
+							cadastrarSoftwareSolutionFrame.toFront();
+						}*/
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
-					endStatusBar("Editar Software");
-
+					
+					endStatusBar("Editar Software");		
+				
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
+		
 		};
-
+		
 		sw.start();
 	}
-
+	
+	
 	private CadastrarTrainingSolutionInternalFrame cadastrarTrainingSolutionFrame;
-
+	
 	public void newTrainingSolution() {
 		beginStatusBar("Cadastrar Treinamentos");
-		if (cadastrarTrainingSolutionFrame == null) {
+		if (cadastrarTrainingSolutionFrame == null){
 			cadastrarTrainingSolutionFrame = new CadastrarTrainingSolutionInternalFrame();
-			mainDesktopPane.add(cadastrarTrainingSolutionFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarTrainingSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarTrainingSolutionFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarTrainingSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarTrainingSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarTrainingSolutionFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarTrainingSolutionFrame.getComercialSolutionCadastreForm().newRegister();
 			cadastrarTrainingSolutionFrame.toFront();
 		}
@@ -661,157 +650,156 @@ public class AdapitVirtualFrame extends JFrame {
 	}
 
 	public void editTrainingSolution(final TrainingSolution p) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-
+					
 					beginStatusBar("Editar Treinamento");
 					try {
-						if (cadastrarTrainingSolutionFrame == null) {
+						if (cadastrarTrainingSolutionFrame == null){
 							cadastrarTrainingSolutionFrame = new CadastrarTrainingSolutionInternalFrame();
-							mainDesktopPane.add(cadastrarTrainingSolutionFrame);
-							if (mainDesktopPane.getComponentCount() > 0) {
-								cadastrarTrainingSolutionFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-										mainDesktopPane.getComponentCount() * 10);
+							mainDesktopPane.add(cadastrarTrainingSolutionFrame);			
+							if (mainDesktopPane.getComponentCount()>0){
+								cadastrarTrainingSolutionFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 							}
 							cadastrarTrainingSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
 							cadastrarTrainingSolutionFrame.setVisible(true);
-						} else {
+						}
+						else{
 							cadastrarTrainingSolutionFrame.getComercialSolutionCadastreForm().editRegister(p);
 							cadastrarTrainingSolutionFrame.toFront();
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
+					
 					endStatusBar("Editar Treinamento");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public CadastroTreinamentoInternalFrame lastCadastroTreinamentoInternalFrame;
-
-	public void novoTreinamento() {
+	
+	public void novoTreinamento(){
 		beginStatusBar("Cadastrar treinamentos");
-		if (lastCadastroTreinamentoInternalFrame != null) {
+		if (lastCadastroTreinamentoInternalFrame != null){
 			lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().newRegister();
 			lastCadastroTreinamentoInternalFrame.postInDesktopPane();
-		} else {
+		}else{
 			CadastroTreinamentoInternalFrame gui = new CadastroTreinamentoInternalFrame();
-			// gui.getLoteCadastreForm().newRegister();
+			//gui.getLoteCadastreForm().newRegister();
 			gui.postInDesktopPane();
 			lastCadastroTreinamentoInternalFrame = gui;
-			if (mainDesktopPane.getComponentCount() > 0) {
-				// gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+			if (mainDesktopPane.getComponentCount()>0){
+				//gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 		}
 		endStatusBar("Cadastrar treinamentos");
 	}
-
+	
 	public void cadastrarContato() {
 		beginStatusBar("Cadastrar contatos");
-		if (lastCadastroContatoInternalFrame != null) {
+		if (lastCadastroContatoInternalFrame != null){
 			lastCadastroContatoInternalFrame.newRegister();
 			lastCadastroContatoInternalFrame.postInDesktopPane();
-		} else {
+		}else{
 			CadastroContatoInternalFrame gui = new CadastroContatoInternalFrame();
 			gui.postInDesktopPane();
 			lastCadastroContatoInternalFrame = gui;
-			if (mainDesktopPane.getComponentCount() > 0) {
-				gui.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 		}
 		endStatusBar("Cadastrar contatos");
 	}
-
+	
 	public void editarContatos(final ContatoTreinamento c) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-
+					
 					beginStatusBar("Editar contatos");
-					if (lastCadastroContatoInternalFrame != null) {
+					if (lastCadastroContatoInternalFrame != null){
 						lastCadastroContatoInternalFrame.editRegister(c);
 						lastCadastroContatoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						CadastroContatoInternalFrame gui = new CadastroContatoInternalFrame();
 						gui.editRegister(c);
 						gui.postInDesktopPane();
 						lastCadastroContatoInternalFrame = gui;
-						if (mainDesktopPane.getComponentCount() > 0) {
-							gui.setLocation(mainDesktopPane.getComponentCount() * 10,
-									mainDesktopPane.getComponentCount() * 10);
+						if (mainDesktopPane.getComponentCount()>0){
+							gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 						}
 					}
 					endStatusBar("Editar contatos");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public CadastroContatoInternalFrame lastCadastroContatoInternalFrame;
-
+	
 	public void listarContatos() {
 		beginStatusBar("Listar contatos");
-		if (lastListaComarcasInternalFrame != null) {
+		if (lastListaComarcasInternalFrame != null){
 			lastListaComarcasInternalFrame.postInDesktopPane();
-		} else {
+		}else{
 			ListaContatosInternalFrame gui = new ListaContatosInternalFrame();
 			gui.postInDesktopPane();
 			lastListaComarcasInternalFrame = gui;
-			if (mainDesktopPane.getComponentCount() > 0) {
-				gui.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 		}
 		endStatusBar("Listar contatos");
 	}
 
 	public ListaContatosInternalFrame lastListaComarcasInternalFrame;
-
+	
 	public void editarTreinamento(final Treinamento t) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-
+					
 					beginStatusBar("Editar treinamento");
-					if (lastCadastroTreinamentoInternalFrame != null) {
+					if (lastCadastroTreinamentoInternalFrame != null){
 						lastCadastroTreinamentoInternalFrame.editRegister(t);
 						lastCadastroTreinamentoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						CadastroTreinamentoInternalFrame gui = new CadastroTreinamentoInternalFrame();
 						gui.getTreinamentoCadastreForm().editRegister(t);
 						gui.postInDesktopPane();
 						lastCadastroTreinamentoInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar treinamento");
 
 					jd.stop();
@@ -820,168 +808,169 @@ public class AdapitVirtualFrame extends JFrame {
 				}
 				return null;
 			}
-
+		
 		};
-
+		
 		sw.start();
 	}
-
+	
 	public void editarTreinamento(final Treinamento t, final String dates) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
-					jd.setVisible(true);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
+					jd.setVisible(true);					
 					beginStatusBar("Editar treinamento");
-					if (lastCadastroTreinamentoInternalFrame != null) {
-						lastCadastroTreinamentoInternalFrame.editRegister(t, dates);
+					if (lastCadastroTreinamentoInternalFrame != null){
+						lastCadastroTreinamentoInternalFrame.editRegister(t,dates);
 						lastCadastroTreinamentoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						CadastroTreinamentoInternalFrame gui = new CadastroTreinamentoInternalFrame();
-						gui.editRegister(t, dates);
+						gui.editRegister(t,dates);
 						gui.postInDesktopPane();
 						lastCadastroTreinamentoInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar treinamento");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public FechamentoTreinamentoInternalFrame fechamentoTreinamentoInternalFrame;
-
+	
 	public void editarFechamentoTreinamento() {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
-					jd.setVisible(true);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
+					jd.setVisible(true);		
 					beginStatusBar("Fechamento de treinamento");
-					if (fechamentoTreinamentoInternalFrame != null) {
+					if (fechamentoTreinamentoInternalFrame != null){
 						fechamentoTreinamentoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						FechamentoTreinamentoInternalFrame gui = new FechamentoTreinamentoInternalFrame();
 						gui.postInDesktopPane();
 						fechamentoTreinamentoInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Fechamento de treinamento");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
+	
 	public void editarFechamentoTreinamento(final Treinamento t) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
-					jd.setVisible(true);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
+					jd.setVisible(true);			
 					beginStatusBar("Editar fechamento de treinamento");
-					if (fechamentoTreinamentoInternalFrame != null) {
+					if (fechamentoTreinamentoInternalFrame != null){
 						fechamentoTreinamentoInternalFrame.editRegister(t);
 						fechamentoTreinamentoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						FechamentoTreinamentoInternalFrame gui = new FechamentoTreinamentoInternalFrame();
 						gui.getFechamentoTreinamentoForm().editRegister(t);
 						gui.postInDesktopPane();
 						fechamentoTreinamentoInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar fechamento de treinamento");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void editarFechamentoTreinamento(final Treinamento t, final String dates) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar fechamento de treinamento");
-					if (fechamentoTreinamentoInternalFrame != null) {
-						fechamentoTreinamentoInternalFrame.editRegister(t, dates);
+					if (fechamentoTreinamentoInternalFrame != null){
+						fechamentoTreinamentoInternalFrame.editRegister(t,dates);
 						fechamentoTreinamentoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						FechamentoTreinamentoInternalFrame gui = new FechamentoTreinamentoInternalFrame();
-						gui.getFechamentoTreinamentoForm().editRegister(t, dates);
+						gui.getFechamentoTreinamentoForm().editRegister(t,dates);
 						gui.postInDesktopPane();
 						fechamentoTreinamentoInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar fechamento de treinamento");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public RelatorioTreinamentosInternalFrame lastRelatorioTreinamentos;
-
-	public void relatorioTreinamentos() {
-		beginStatusBar("Relatorio de treinamentos");
-		if (lastRelatorioTreinamentos != null) {
+	
+	public void relatorioTreinamentos(){
+		beginStatusBar("Relatório de treinamentos");
+		if (lastRelatorioTreinamentos != null){
 			lastRelatorioTreinamentos.postInDesktopPane();
-		} else {
+		}else{
 			RelatorioTreinamentosInternalFrame gui = new RelatorioTreinamentosInternalFrame();
 			gui.postInDesktopPane();
 			lastRelatorioTreinamentos = gui;
 		}
-		endStatusBar("Relatorio de treinamentos");
+		endStatusBar("Relatório de treinamentos");
 	}
-
+	
 	public RelatorioTurmasInternalFrame lastRelatorioTurmas;
-
-	public void relatorioTurmas() {
-		beginStatusBar("Relatorio de turmas");
-		if (lastRelatorioTurmas != null) {
+	
+	public void relatorioTurmas(){
+		beginStatusBar("Relatório de turmas");
+		if (lastRelatorioTurmas != null){
 			lastRelatorioTurmas.postInDesktopPane();
-		} else {
+		}else{
 			RelatorioTurmasInternalFrame gui = new RelatorioTurmasInternalFrame();
 			gui.postInDesktopPane();
 			lastRelatorioTurmas = gui;
 		}
-		endStatusBar("Relatorio de turmas");
+		endStatusBar("Relatório de turmas");
 	}
-
+	
 	public void comercialSolutionsList() {
 		listCommercialSolutions();
 	}
@@ -989,408 +978,392 @@ public class AdapitVirtualFrame extends JFrame {
 	public void comercialSolutionCadastre() {
 		newComercialSolution();
 	}
-
+	
 	private CategoriaInternalFrame categoriaInternalFrame;
-
 	public void cadastrarCategorias() {
 		beginStatusBar("Cadastrar Categoria");
-		if (categoriaInternalFrame == null) {
-			categoriaInternalFrame = CategoriaInternalFrame.getInstance();// new CategoriaInternalFrame();
-			if (mainDesktopPane.getComponentCount() > 0) {
-				categoriaInternalFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+		if (categoriaInternalFrame == null){
+			categoriaInternalFrame = CategoriaInternalFrame.getInstance();//new CategoriaInternalFrame();		
+			if (mainDesktopPane.getComponentCount()>0){
+				categoriaInternalFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
-			mainDesktopPane.add(categoriaInternalFrame);
+			mainDesktopPane.add(categoriaInternalFrame);			
 		}
-		if (!categoriaInternalFrame.isVisible())
-			categoriaInternalFrame.setVisible(true);
+		if (!categoriaInternalFrame.isVisible()) categoriaInternalFrame.setVisible(true);
 		categoriaInternalFrame.toFront();
 		endStatusBar("Cadastrar Categoria");
 	}
-
+	
 	public void editarCategorias() {
 		cadastrarCategorias();
 	}
-
+	
 	private FuncionarioCadastreInternalFrame funcionarioCadastreFrame;
-
-	public void cadastrarFuncionario() {
-		beginStatusBar("Cadastrar Funcionï¿½rio");
-		if (funcionarioCadastreFrame == null) {
+	public void cadastrarFuncionario(){
+		beginStatusBar("Cadastrar Funcionário");
+		if (funcionarioCadastreFrame == null){
 			funcionarioCadastreFrame = new FuncionarioCadastreInternalFrame();
 			funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().newRegister();
-			if (mainDesktopPane.getComponentCount() > 0) {
-				funcionarioCadastreFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				funcionarioCadastreFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			funcionarioCadastreFrame.postInDesktopPane();
-
-		} else {
+			
+		}else{
 			funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().newRegister();
 			funcionarioCadastreFrame.postInDesktopPane();
 		}
-		endStatusBar("Cadastrar Funcionario");
+		endStatusBar("Cadastrar Funcionário");
 	}
-
+	
+	
+	
 	public void editarFuncionario(final Usuario u) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					if (funcionarioCadastreFrame == null) {
 						cadastrarFuncionario();
 						funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().setUsuario(u);
 						funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().editRegister();
-					} else {
-						beginStatusBar("Editar Funcionï¿½rio");
+					}else{
+						beginStatusBar("Editar Funcionário");
 						funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().setUsuario(u);
 						funcionarioCadastreFrame.getCadastrarUsuarioFuncionario().editRegister();
 						funcionarioCadastreFrame.postInDesktopPane();
-						endStatusBar("Editar Funcionï¿½rio");
+						endStatusBar("Editar Funcionário");
 					}
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
-
+			
+			};
+			
+			sw.start();
+		
 	}
-
+	
+	
 	private RepresentanteLegalCadastreDialog representanteCadastreFrame;
-
-	public void cadastrarRepresentante() {
-		// beginStatusBar("Cadastrar Representante Legal");
-		if (representanteCadastreFrame == null) {
+	public void cadastrarRepresentante(){
+		//beginStatusBar("Cadastrar Representante Legal");
+		if (representanteCadastreFrame == null){
 			representanteCadastreFrame = new RepresentanteLegalCadastreDialog();
 			representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().newRegister();
 			representanteCadastreFrame.setVisible(true);
-			/*
-			 * if (mainDesktopPane.getComponentCount()>0){
-			 * representanteCadastreFrame.setLocation(mainDesktopPane.getComponentCount()*10
-			 * ,mainDesktopPane.getComponentCount()*10);
-			 * }
-			 * representanteCadastreFrame.postInDesktopPane();
-			 */
-
-		} else {
+			/*if (mainDesktopPane.getComponentCount()>0){
+				representanteCadastreFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+			}
+			representanteCadastreFrame.postInDesktopPane();*/
+			
+		}else{
 			representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().newRegister();
 			representanteCadastreFrame.setVisible(true);
-			// representanteCadastreFrame.postInDesktopPane();
+			//representanteCadastreFrame.postInDesktopPane();
 		}
-		// endStatusBar("Cadastrar Representante Legal");
+		//endStatusBar("Cadastrar Representante Legal");
 	}
-
+	
 	public void editarRepresentante(final RepresentanteLegal u) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-					try {
-						RepresentanteLegal rl = (RepresentanteLegal) RemoteServicesUtility.getInstance()
-								.load(RepresentanteLegal.class, u.getId());
+					try{
+						RepresentanteLegal rl = (RepresentanteLegal) RemoteServicesUtility.getInstance().load(RepresentanteLegal.class, u.getId());
 						Endereco ender = RemotePessoaService.getInstance().getEnderecoByPessoaId(rl.getId());
 						rl.setEndereco(ender);
-					} catch (Exception ex) {
+					}catch(Exception ex){
 						ex.printStackTrace();
-					}
+					}		
 					if (representanteCadastreFrame == null) {
 						cadastrarRepresentante();
 						representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().setRepresentante(u);
 						representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().editRegister();
-					} else {
+					}else{
 						beginStatusBar("Editar Representante Legal");
 						representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().setRepresentante(u);
 						representanteCadastreFrame.getCadastrarUsuarioRepresentanteLegal().editRegister();
-						representanteCadastreFrame.setVisible(true);
+						representanteCadastreFrame.setVisible(true);			
 					}
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
 
-	public void cadastrarInstrutor() {
+	
+	public void cadastrarInstrutor(){
 		try {
 			InstrutorCadastreDialog gui = new InstrutorCadastreDialog();
 			gui.getCadastroInstrutorForm().newRegister();
-			gui.setVisible(true);
+			gui.setVisible(true);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	
 	public void editarInstrutor(final Usuario u) {
-
-		SwingWorker sw = new SwingWorker() {
+		
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					InstrutorCadastreDialog gui = new InstrutorCadastreDialog();
 					gui.getCadastroInstrutorForm().setUsuario(u);
 					gui.getCadastroInstrutorForm().editRegister();
 					jd.stop();
-					gui.setVisible(true);
+					gui.setVisible(true);				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void editarInstrutor(final Instrutor l) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					InstrutorCadastreDialog gui = new InstrutorCadastreDialog();
 					gui.getCadastroInstrutorForm().setInstrutor(l);
 					gui.getCadastroInstrutorForm().editRegister();
 					jd.stop();
-					gui.setVisible(true);
-
+					gui.setVisible(true);	
+			
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
-	public void cadastrarComitente(final PersonType pt) {
-		SwingWorker sw = new SwingWorker() {
+	
+	public void cadastrarComitente(final PersonType pt){
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					ComitenteCadastreDialog gui = new ComitenteCadastreDialog(pt);
 					gui.getCadastrarComitenteForm().newRegister();
 					gui.setVisible(true);
-					/*
-					 * gui.postInDesktopPane();
-					 * if (mainDesktopPane.getComponentCount()>0){
-					 * gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.
-					 * getComponentCount()*10);
-					 * }
-					 */
-
+					/*gui.postInDesktopPane();
+					if (mainDesktopPane.getComponentCount()>0){
+						gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+					}*/
+					
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void editarComitente(final PessoaEmDivulgacao u, final PersonType pt) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					ComitenteCadastreDialog gui = new ComitenteCadastreDialog(pt);
 					gui.getCadastrarComitenteForm().setComitente(u);
 					gui.getCadastrarComitenteForm().editRegister(u);
-					// gui.postInDesktopPane();
+					//gui.postInDesktopPane();
 					gui.setVisible(true);
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
+	
 
-	public void cadastrarComitenteParticipante(PersonType pt) {
+	public void cadastrarComitenteParticipante(PersonType pt){
 		ParticipanteCadastreDialog gui = new ParticipanteCadastreDialog(pt);
 		gui.getCadastrarComitenteForm().newRegister();
 		gui.setVisible(true);
-		/*
-		 * gui.postInDesktopPane();
-		 * if (mainDesktopPane.getComponentCount()>0){
-		 * gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.
-		 * getComponentCount()*10);
-		 * }
-		 */
+		/*gui.postInDesktopPane();
+		if (mainDesktopPane.getComponentCount()>0){
+			gui.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+		}*/
 	}
-
+	
 	public void editarParticipante(final Usuario u, final PersonType pt) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					ParticipanteCadastreDialog gui = new ParticipanteCadastreDialog(pt);
 					gui.getCadastrarComitenteForm().setUsuario(u);
 					gui.getCadastrarComitenteForm().editRegister();
-					// gui.postInDesktopPane();
+					//gui.postInDesktopPane();
 					jd.stop();
 					gui.setVisible(true);
-
-					// jd.stop();
+			
+					//jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void listarUsuarios() {
-		beginStatusBar("Listar Usuarios");
-		javax.swing.JInternalFrame gui = new javax.swing.JInternalFrame("Listar Usuarios");
-
+		beginStatusBar("Listar Usuários");
+		javax.swing.JInternalFrame gui = new javax.swing.JInternalFrame("Listar Usuários");
+		
 		gui.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
 		gui.setLayout(new java.awt.BorderLayout());
-		gui.setSize(new java.awt.Dimension(633, 503));
+		gui.setSize(new java.awt.Dimension(633,503));
 		UsuarioListForm u = new UsuarioListForm();
-		// u.pesquisar();
-		gui.add(u, java.awt.BorderLayout.CENTER);
+		//u.pesquisar();
+		gui.add(u,java.awt.BorderLayout.CENTER);
 		gui.setIconifiable(true);
 		gui.setResizable(true);
 		gui.setClosable(true);
-
+		
 		mainDesktopPane.add(gui);
 		gui.setVisible(true);
 		gui.toFront();
-		endStatusBar("Listar Usuarios");
+		endStatusBar("Listar Usuários");
 	}
-
+	
 	TurmaCadastreInternalFrame turmaCadastreFrame;
-
-	public void cadastrarTurma() {
-		if (turmaCadastreFrame == null) {
+	public void cadastrarTurma(){
+		if (turmaCadastreFrame == null){
 			turmaCadastreFrame = new TurmaCadastreInternalFrame();
 		}
 		turmaCadastreFrame.postInDesktopPane();
 	}
-
-	public void editarTurma(final TurmaTreinamento l) {
-		SwingWorker sw = new SwingWorker() {
+	
+	public void editarTurma(final TurmaTreinamento l){
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-					if (turmaCadastreFrame == null) {
+					if (turmaCadastreFrame == null){
 						turmaCadastreFrame = new TurmaCadastreInternalFrame();
-						turmaCadastreFrame.editRegister(l);
+						turmaCadastreFrame.editRegister(l);			
 					}
 					turmaCadastreFrame.postInDesktopPane();
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
 
 	public void displayErrorMsg(String message) {
 		getBottomPanel().displayErrorMsg(message);
 	}
-
-	public void appendErrorMsg(String message) {
+	
+	public void appendErrorMsg(String message){
 		getBottomPanel().appendErrorMsg(message);
 	}
-
-	public void cleanErrorMsg() {
+	
+	public void cleanErrorMsg(){
 		getBottomPanel().cleanErrorMsg();
 	}
 
 	public void setOperationMessage(String string) {
 		getBottomPanel().setOperationMessage(string);
 	}
-
-	public void showOperationSucess() {
-		JOptionPane.showMessageDialog(this, "A operacao foi realizada com sucesso!", "Operacao realizada com sucesso",
-				JOptionPane.INFORMATION_MESSAGE);
+	
+	public void showOperationSucess(){
+		JOptionPane.showMessageDialog(this,"A operação foi realizada com sucesso!", "Operação realizada com sucesso", JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public void showOperationSucess(String title) {
-		JOptionPane.showMessageDialog(this, "A operacao foi realizada com sucesso!", title,
-				JOptionPane.INFORMATION_MESSAGE);
+	
+	public void showOperationSucess(String title){
+		JOptionPane.showMessageDialog(this,"A operação foi realizada com sucesso!", title, JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public void showOperationSucess(String title, String msg) {
-		JOptionPane.showMessageDialog(this, msg, title, JOptionPane.INFORMATION_MESSAGE);
+	
+	public void showOperationSucess(String title, String msg){
+		JOptionPane.showMessageDialog(this,msg, title, JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public void showErrorCamposInvalidos() {
-		JOptionPane.showMessageDialog(this, "O formulario nao foi preenchido corretamente!", "Dados incorretos",
-				JOptionPane.ERROR_MESSAGE);
+	
+	public void showErrorCamposInvalidos(){
+		JOptionPane.showMessageDialog(this,"O formulário não foi preenchido corretamente!", "Dados incorretos", JOptionPane.ERROR_MESSAGE);
 	}
-
-	public void showErrorCamposInvalidosWithinTabs() {
-		JOptionPane.showMessageDialog(this, "O formulario nao foi preenchido corretamente!",
-				"Dados incorretos nas abas em destaque", JOptionPane.ERROR_MESSAGE);
+	
+	public void showErrorCamposInvalidosWithinTabs(){
+		JOptionPane.showMessageDialog(this,"O formulário não foi preenchido corretamente!", "Dados incorretos nas abas em destaque", JOptionPane.ERROR_MESSAGE);
 	}
-
-	public void showErrorCamposInvalidos(String title) {
-		JOptionPane.showMessageDialog(this, "O formulario nao foi preenchido corretamente!", title,
-				JOptionPane.ERROR_MESSAGE);
+	
+	public void showErrorCamposInvalidos(String title){
+		JOptionPane.showMessageDialog(this,"O formulário não foi preenchido corretamente!", title, JOptionPane.ERROR_MESSAGE);
 	}
-
-	public void showErrorDialog(String title, String msg) {
-		JOptionPane.showMessageDialog(this, msg, title, JOptionPane.ERROR_MESSAGE);
+	
+	public void showErrorDialog(String title, String msg){
+		JOptionPane.showMessageDialog(this,msg, title, JOptionPane.ERROR_MESSAGE);
 	}
-
-	public void showWarningDialog(String title, String msg) {
-		JOptionPane.showMessageDialog(this, msg, title, JOptionPane.WARNING_MESSAGE);
+	
+	public void showWarningDialog(String title, String msg){
+		JOptionPane.showMessageDialog(this,msg, title, JOptionPane.WARNING_MESSAGE);
 	}
 
 	public void reportWarning(String string) {
@@ -1398,52 +1371,52 @@ public class AdapitVirtualFrame extends JFrame {
 	}
 
 	public CadastroFormacaoInternalFrame lastCadastroFormacaoInternalFrame;
-
-	public void novaFormacao() {
-		beginStatusBar("Cadastrar formaï¿½oes");
-		if (lastCadastroFormacaoInternalFrame != null) {
+	
+	public void novaFormacao(){
+		beginStatusBar("Cadastrar formações");
+		if (lastCadastroFormacaoInternalFrame != null){
 			lastCadastroFormacaoInternalFrame.getFormacaoCadastreForm().newRegister();
 			lastCadastroFormacaoInternalFrame.postInDesktopPane();
-		} else {
+		}else{
 			CadastroFormacaoInternalFrame gui = new CadastroFormacaoInternalFrame();
 			gui.postInDesktopPane();
-			lastCadastroFormacaoInternalFrame = gui;
+			lastCadastroFormacaoInternalFrame = gui;			
 		}
-		endStatusBar("Cadastrar formaï¿½oes");
+		endStatusBar("Cadastrar formações");
 	}
-
-	public void editarFormacao(final FormacaoTreinamento f) {
-		SwingWorker sw = new SwingWorker() {
+	
+	public void editarFormacao(final FormacaoTreinamento f){
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-					beginStatusBar("Editar formacoes");
-					if (lastCadastroFormacaoInternalFrame != null) {
+					beginStatusBar("Editar formações");
+					if (lastCadastroFormacaoInternalFrame != null){
 						lastCadastroFormacaoInternalFrame.getFormacaoCadastreForm().editRegister(f);
 						lastCadastroFormacaoInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						CadastroFormacaoInternalFrame gui = new CadastroFormacaoInternalFrame();
 						gui.getFormacaoCadastreForm().editRegister(f);
 						gui.postInDesktopPane();
-						lastCadastroFormacaoInternalFrame = gui;
+						lastCadastroFormacaoInternalFrame = gui;			
 					}
-					endStatusBar("Editar formacoes");
-
+					endStatusBar("Editar formações");
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public JInternalFrame getListComercialSolutionsFrame() {
 		return listaComercialSolutionsFrame;
 	}
@@ -1451,11 +1424,11 @@ public class AdapitVirtualFrame extends JFrame {
 	public void setListComercialSolutionFrame(JInternalFrame listaProdutosFrame) {
 		this.listaComercialSolutionsFrame = listaProdutosFrame;
 	}
-
+	
 	public void setListTrainingSolutionFrame(JInternalFrame listaProdutosFrame) {
 		this.listaTrainingSolutionsFrame = listaProdutosFrame;
 	}
-
+	
 	public void setListSistemaSolutionFrame(JInternalFrame listaProdutosFrame) {
 		this.listaSistemaSolutionsFrame = listaProdutosFrame;
 	}
@@ -1468,12 +1441,12 @@ public class AdapitVirtualFrame extends JFrame {
 			CadastrarComercialSolutionInternalFrame cadastrarProdutoFrame) {
 		this.cadastrarComercialSolutionFrame = cadastrarProdutoFrame;
 	}
-
+	
 	public void setCadastrarTrainingSolutionFrame(
 			CadastrarTrainingSolutionInternalFrame cadastrarProdutoFrame) {
 		this.cadastrarTrainingSolutionFrame = cadastrarProdutoFrame;
 	}
-
+	
 	public void setCadastrarSoftwareSolutionFrame(
 			CadastrarSoftwareSolutionInternalFrame cadastrarProdutoFrame) {
 		this.cadastrarSoftwareSolutionFrame = cadastrarProdutoFrame;
@@ -1487,7 +1460,7 @@ public class AdapitVirtualFrame extends JFrame {
 			CadastroTreinamentoInternalFrame lastCadastroInternalFrame) {
 		this.lastCadastroTreinamentoInternalFrame = lastCadastroInternalFrame;
 	}
-
+	
 	public void setLastCadastroFormacaoInternalFrame(
 			CadastroFormacaoInternalFrame lastCadastroInternalFrame) {
 		this.lastCadastroFormacaoInternalFrame = lastCadastroInternalFrame;
@@ -1518,7 +1491,7 @@ public class AdapitVirtualFrame extends JFrame {
 			FuncionarioCadastreInternalFrame funcionarioCadastreFrame) {
 		this.funcionarioCadastreFrame = funcionarioCadastreFrame;
 	}
-
+	
 	public void setRepresentanteLegalCadastreFrame(
 			RepresentanteLegalCadastreDialog funcionarioCadastreFrame) {
 		this.representanteCadastreFrame = funcionarioCadastreFrame;
@@ -1536,13 +1509,13 @@ public class AdapitVirtualFrame extends JFrame {
 	public Date format(String date) {
 		try {
 			DatePropertyEditor dt = new DatePropertyEditor();
-
+			
 			dt.setFormat(messages.getMessage("formats.date"));
-			dt.setAsText(date);
-			return ((Date) dt.getValue());
+			dt.setAsText(date);			
+			return ((Date)dt.getValue());
 		} catch (RuntimeException e1) {
 			e1.printStackTrace();
-
+			
 		}
 		return null;
 	}
@@ -1555,11 +1528,11 @@ public class AdapitVirtualFrame extends JFrame {
 			return dt.getAsText();
 		} catch (RuntimeException e1) {
 			e1.printStackTrace();
-
+			
 		}
 		return null;
 	}
-
+	
 	public static String formatDateTime(Date date) {
 		try {
 			DatePropertyEditor dt = new DatePropertyEditor();
@@ -1568,25 +1541,25 @@ public class AdapitVirtualFrame extends JFrame {
 			return dt.getAsText();
 		} catch (RuntimeException e1) {
 			e1.printStackTrace();
-
+			
 		}
 		return null;
 	}
-
+	
 	public static String formatDateTime(Date date, String lang) {
 		try {
 			DatePropertyEditor dt = new DatePropertyEditor();
-			if (lang.equalsIgnoreCase("EN-US")) {
+			if (lang.equalsIgnoreCase("EN-US")){
 				dt.setFormat("MM/dd/yyyy");
 				dt.setValue(date);
 				return dt.getAsText().trim();
-			} else
-				dt.setFormat(ResourceMessage.getInstance().getMessage("formats.date"));
+			}
+			else dt.setFormat(ResourceMessage.getInstance().getMessage("formats.date"));
 			dt.setValue(date);
 			return dt.getAsText();
 		} catch (RuntimeException e1) {
 			e1.printStackTrace();
-
+			
 		}
 		return null;
 	}
@@ -1596,367 +1569,343 @@ public class AdapitVirtualFrame extends JFrame {
 	}
 
 	private Instrutor leiloeiro;
-
 	public Instrutor getLeiloeiro() {
-		if (leiloeiro == null) {
-			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operacao permitida somente para leiloeiros", true,
-					false);
-			if (login.getUsuarioDTO() == null)
-				login.setVisible(true);
-			else
-				try {
-					leiloeiro = login.getLeiloeiro();
-					if (leiloeiro == null) {
-						login.setVisible(true);
-						try {
-							leiloeiro = login.getLeiloeiro();
-						} catch (Exception ex) {
-							ex.printStackTrace();
-
-						}
-					}
-				} catch (Exception e) {
+		if (leiloeiro == null){
+			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operação permitida somente para leiloeiros",true,false);			
+			if (login.getUsuarioDTO() == null) login.setVisible(true);
+			else try {
+				leiloeiro = login.getLeiloeiro();
+				if (leiloeiro == null){
 					login.setVisible(true);
 					try {
 						leiloeiro = login.getLeiloeiro();
 					} catch (Exception ex) {
 						ex.printStackTrace();
-
+						
 					}
 				}
+			} catch (Exception e) {
+				login.setVisible(true);
+				try {
+					leiloeiro = login.getLeiloeiro();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					
+				}
+			}
 		}
 		return leiloeiro;
 	}
-
+	
 	private Participante participante;
-
 	public Participante getParticipante() {
-		if (participante == null) {
-			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operacao permitida somente para participantes", true,
-					false);
-			if (login.getUsuarioDTO() == null)
-				login.setVisible(true);
-			else
-				try {
-					participante = login.getParticipante();
-					if (participante == null) {
-						login.setVisible(true);
-						try {
-							participante = login.getParticipante();
-						} catch (Exception ex) {
-							ex.printStackTrace();
-
-						}
-					}
-				} catch (Exception e) {
+		if (participante == null){
+			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operação permitida somente para participantes",true,false);			
+			if (login.getUsuarioDTO() == null) login.setVisible(true);
+			else try {
+				participante = login.getParticipante();
+				if (participante == null){
 					login.setVisible(true);
 					try {
 						participante = login.getParticipante();
 					} catch (Exception ex) {
 						ex.printStackTrace();
-
+						
 					}
 				}
+			} catch (Exception e) {
+				login.setVisible(true);
+				try {
+					participante = login.getParticipante();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					
+				}
+			}
 		}
 		return participante;
 	}
-
+	
+	
+	
 	private Funcionario funcionario;
-
 	public Funcionario getFuncionario() {
-		if (funcionario == null) {
-			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operacao permitida somente para funcionarios", true,
-					false);
-			if (login.getUsuarioDTO() == null)
-				login.setVisible(true);
-			else
-				try {
-					funcionario = login.getFuncionario();
-					if (funcionario == null) {
-						login.setVisible(true);
-						try {
-							funcionario = login.getFuncionario();
-						} catch (Exception ex) {
-							ex.printStackTrace();
-
-						}
-					}
-				} catch (Exception e) {
+		if (funcionario == null){
+			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operação permitida somente para funcionários",true,false);			
+			if (login.getUsuarioDTO() == null) login.setVisible(true);
+			else try {
+				funcionario = login.getFuncionario();
+				if (funcionario == null){
 					login.setVisible(true);
 					try {
 						funcionario = login.getFuncionario();
 					} catch (Exception ex) {
 						ex.printStackTrace();
-
+						
 					}
 				}
+			} catch (Exception e) {
+				login.setVisible(true);
+				try {
+					funcionario = login.getFuncionario();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					
+				}
+			}
 		}
 		return funcionario;
 	}
-
+	
 	private PessoaEmDivulgacao pessoaEmDivulgacao;
-
 	public PessoaEmDivulgacao getComitente() {
-		if (pessoaEmDivulgacao == null) {
-			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operacao permitida somente para comitentes", true,
-					false);
-			if (login.getUsuarioDTO() == null)
-				login.setVisible(true);
-			else
-				try {
-					pessoaEmDivulgacao = login.getComitente();
-					if (pessoaEmDivulgacao == null) {
-						login.setVisible(true);
-						try {
-							pessoaEmDivulgacao = login.getComitente();
-						} catch (Exception ex) {
-							ex.printStackTrace();
-
-						}
-					}
-				} catch (Exception e) {
+		if (pessoaEmDivulgacao == null){
+			TelaLoginUsuario login = TelaLoginUsuario.getInstance("Operação permitida somente para comitentes",true,false);			
+			if (login.getUsuarioDTO() == null) login.setVisible(true);
+			else try {
+				pessoaEmDivulgacao = login.getComitente();
+				if (pessoaEmDivulgacao == null){
 					login.setVisible(true);
 					try {
 						pessoaEmDivulgacao = login.getComitente();
 					} catch (Exception ex) {
 						ex.printStackTrace();
-
+						
 					}
 				}
+			} catch (Exception e) {
+				login.setVisible(true);
+				try {
+					pessoaEmDivulgacao = login.getComitente();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					
+				}
+			}
 		}
 		return pessoaEmDivulgacao;
 	}
-
-	public void editarDadosPessoais() {
-		SwingWorker sw = new SwingWorker() {
+	
+	public void editarDadosPessoais(){
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-					TelaLoginUsuario login = TelaLoginUsuario.getInstance();
+					TelaLoginUsuario login = TelaLoginUsuario.getInstance();			
 					UsuarioDTO udto = login.getUsuarioDTO();
 					Usuario u = new Usuario();
 					u.setLogin(udto.getId());
 					u.setUserCadastreType(udto.getUserRole());
 					u.setAutenticado(udto.isAuthenticated());
 					u.setActive(udto.isActive());
-
-					if (udto.getTipoPessoa() == PersonType.Fisica) {
+					
+					if (udto.getTipoPessoa() == PersonType.Fisica){
 						if (u.getUserCadastreType().equals(UserCadastreType.Administrador_do_sistema)
-								|| u.getUserCadastreType().equals(UserCadastreType.Funcionario)) {
+							|| u.getUserCadastreType().equals(UserCadastreType.Funcionário)){
 							u.setDadosPessoais(getFuncionario());
 							AdapitVirtualFrame.getInstance().editarFuncionario(u);
-						} else if (u.getUserCadastreType().equals(UserCadastreType.Instrutor)) {
+						}else if (u.getUserCadastreType().equals(UserCadastreType.Instrutor)){
 							u.setDadosPessoais(getLeiloeiro());
 							AdapitVirtualFrame.getInstance().editarInstrutor(u);
-						} else if (u.getUserCadastreType().equals(UserCadastreType.Cliente)) {
+						}else if  (u.getUserCadastreType().equals(UserCadastreType.Cliente)){
 							try {
 								u.setDadosPessoais(getParticipante());
-								AdapitVirtualFrame.getInstance().editarParticipante(u, PersonType.Fisica);
-
+								AdapitVirtualFrame.getInstance().editarParticipante(u,PersonType.Fisica);
+								
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						} else if (u.getUserCadastreType().equals(UserCadastreType.Comitente)) {
-						} else if (u.getUserCadastreType().equals(UserCadastreType.Representante_legal)) {
-
-						} else {
-							u.setDadosPessoais(getParticipante());
-							AdapitVirtualFrame.getInstance().editarParticipante(u, PersonType.Fisica);
 						}
-					} else {
-						if (u.getUserCadastreType().equals(UserCadastreType.Cliente)) {
-							try {
-								u.setDadosPessoais(getParticipante());
-								AdapitVirtualFrame.getInstance().editarParticipante(u, PersonType.Juridica);
-
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						} else {
+						else if (u.getUserCadastreType().equals(UserCadastreType.Comitente)){
+						}
+						else if (u.getUserCadastreType().equals(UserCadastreType.Representante_legal)){
+							
+						}
+						else {
 							u.setDadosPessoais(getParticipante());
-							AdapitVirtualFrame.getInstance().editarParticipante(u, PersonType.Juridica);
+							AdapitVirtualFrame.getInstance().editarParticipante(u,PersonType.Fisica);
 						}
 					}
-
+					else{
+							if  (u.getUserCadastreType().equals(UserCadastreType.Cliente)){
+								try {
+									u.setDadosPessoais(getParticipante());
+									AdapitVirtualFrame.getInstance().editarParticipante(u,PersonType.Juridica);
+									
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}else{
+								u.setDadosPessoais(getParticipante());
+								AdapitVirtualFrame.getInstance().editarParticipante(u,PersonType.Juridica);
+							}
+					}
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
-	/*
-	 * public void editarDadosPessoais(){
-	 * TelaLoginUsuario login = TelaLoginUsuario.getInstance();
-	 * UsuarioDTO udto = login.getUsuarioDTO();
-	 * Usuario u = new Usuario();
-	 * u.setLogin(udto.getId());
-	 * u.setRule(udto.getUserRule());
-	 * u.setAutenticado(udto.isAuthenticated());
-	 * u.setActive(udto.isActive());
-	 * 
-	 * if (udto.getTipoPessoa() == PersonType.Fisica){
-	 * if (u.getRule().equals(UserCadastreType.Administrador_do_sistema)
-	 * || u.getRule().equals(UserCadastreType.Funcionï¿½rio)){
-	 * u.setDadosPessoais(getFuncionario());
-	 * LeilaoVirtualFrame.getInstance().editarFuncionario(u);
-	 * }else if (u.getRule().equals(UserCadastreType.Leiloeiro)){
-	 * u.setDadosPessoais(getLeiloeiro());
-	 * LeilaoVirtualFrame.getInstance().editarLeiloeiro(u);
-	 * }else if
-	 * (u.getRule().equals(UserCadastreType.Participante_que_efetua_lances)){
-	 * Session s = LocalServicesUtility.getInstance().openSession();
-	 * Object obj = s.
-	 * createQuery("select es.id from ParticipanteEstrangeiro es where es.user.login=:login"
-	 * )
-	 * .setParameter("login", u.getLogin()).uniqueResult();
-	 * if (obj == null){
-	 * u.setDadosPessoais(getParticipante());
-	 * LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.
-	 * Fisica);
-	 * }
-	 * else {
-	 * u.setDadosPessoais(getParticipanteEstrangeiro());
-	 * LeilaoVirtualFrame.getInstance().editarEstrangeiro(u,PersonType.Fisica);
-	 * }
-	 * }
-	 * else if (u.getRule().equals(UserCadastreType.Comitente)){
-	 * //LeilaoVirtualFrame.getInstance().editarComitente(u,PersonType.Fisica);
-	 * }
-	 * else if (u.getRule().equals(UserCadastreType.Representante_legal)){
-	 * 
-	 * }
-	 * else {
-	 * u.setDadosPessoais(getParticipante());
-	 * LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.
-	 * Fisica);
-	 * }
-	 * }
-	 * else{
-	 * if (u.getRule().equals(UserCadastreType.Participante_que_efetua_lances)){
-	 * Session s = LocalServicesUtility.getInstance().openSession();
-	 * Object obj = s.
-	 * createQuery("select es.id from ParticipanteEstrangeiro es where es.user.login=:login"
-	 * )
-	 * .setParameter("login", u.getLogin()).uniqueResult();
-	 * if (obj == null){
-	 * u.setDadosPessoais(getParticipante());
-	 * LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.
-	 * Juridica);
-	 * }
-	 * else{
-	 * u.setDadosPessoais(getParticipanteEstrangeiro());
-	 * LeilaoVirtualFrame.getInstance().editarEstrangeiro(u,PersonType.Juridica);
-	 * }
-	 * }else{
-	 * u.setDadosPessoais(getParticipante());
-	 * LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.
-	 * Juridica);
-	 * }
-	 * }
-	 * }
-	 */
+	
+/*	public void editarDadosPessoais(){
+		TelaLoginUsuario login = TelaLoginUsuario.getInstance();			
+		UsuarioDTO udto = login.getUsuarioDTO();
+		Usuario u = new Usuario();
+		u.setLogin(udto.getId());
+		u.setRule(udto.getUserRule());
+		u.setAutenticado(udto.isAuthenticated());
+		u.setActive(udto.isActive());
+		
+		if (udto.getTipoPessoa() == PersonType.Fisica){
+			if (u.getRule().equals(UserCadastreType.Administrador_do_sistema)
+				|| u.getRule().equals(UserCadastreType.Funcionário)){
+				u.setDadosPessoais(getFuncionario());
+				LeilaoVirtualFrame.getInstance().editarFuncionario(u);
+			}else if (u.getRule().equals(UserCadastreType.Leiloeiro)){
+				u.setDadosPessoais(getLeiloeiro());
+				LeilaoVirtualFrame.getInstance().editarLeiloeiro(u);
+			}else if  (u.getRule().equals(UserCadastreType.Participante_que_efetua_lances)){
+				Session s = LocalServicesUtility.getInstance().openSession();
+				Object obj = s.createQuery("select es.id from ParticipanteEstrangeiro es where es.user.login=:login")
+				.setParameter("login", u.getLogin()).uniqueResult();
+				if (obj == null){
+					u.setDadosPessoais(getParticipante());
+					LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.Fisica);
+				}
+				else {
+					u.setDadosPessoais(getParticipanteEstrangeiro());
+					LeilaoVirtualFrame.getInstance().editarEstrangeiro(u,PersonType.Fisica);
+				}
+			}
+			else if (u.getRule().equals(UserCadastreType.Comitente)){
+				//LeilaoVirtualFrame.getInstance().editarComitente(u,PersonType.Fisica);
+			}
+			else if (u.getRule().equals(UserCadastreType.Representante_legal)){
+				
+			}
+			else {
+				u.setDadosPessoais(getParticipante());
+				LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.Fisica);
+			}
+		}
+		else{
+				if  (u.getRule().equals(UserCadastreType.Participante_que_efetua_lances)){
+					Session s = LocalServicesUtility.getInstance().openSession();
+					Object obj = s.createQuery("select es.id from ParticipanteEstrangeiro es where es.user.login=:login")
+					.setParameter("login", u.getLogin()).uniqueResult();
+					if (obj == null){
+						u.setDadosPessoais(getParticipante());
+						LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.Juridica);
+					}
+					else{
+						u.setDadosPessoais(getParticipanteEstrangeiro());
+						LeilaoVirtualFrame.getInstance().editarEstrangeiro(u,PersonType.Juridica);
+					}
+				}else{
+					u.setDadosPessoais(getParticipante());
+					LeilaoVirtualFrame.getInstance().editarComitenteParticipante(u,PersonType.Juridica);
+				}
+		}
+	}*/
 
 	private CategoriaSelectableTreeController treeController;
-	/*
-	 * public CategoriaSelectableTreeController getTreeController() {
-	 * if (treeController == null){
-	 * treeController = new CategoriaSelectableTreeController(this);
-	 * }
-	 * return treeController;
-	 * }
-	 */
-
+	/*public CategoriaSelectableTreeController getTreeController() {
+		if (treeController == null){
+			treeController = new CategoriaSelectableTreeController(this);
+		}
+		return treeController;
+	}*/
+	
 	public CategoriaSelectableTreeController getTreeController(CategoriaSelectable selectable) {
-		if (treeController == null) {
+		if (treeController == null){
 			treeController = new CategoriaSelectableTreeController(selectable);
 			return treeController;
-		} else
-			return new CategoriaSelectableTreeController(selectable, treeController);
+		}
+		else return new CategoriaSelectableTreeController(selectable,treeController);		
 	}
 
 	private JInternalFrame listaNewsFrame;
-
-	public void listNews() {
-		if (listaNewsFrame == null) {
-			listaNewsFrame = new ListaNewsFrame();
+	
+	public void listNews(){
+		if (listaNewsFrame == null){
+			listaNewsFrame = new ListaNewsFrame();			
 			mainDesktopPane.add(listaNewsFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaNewsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaNewsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			listaNewsFrame.setVisible(true);
-		} else {
+		}else{
 			listaNewsFrame.toFront();
-		}
+		}		
 	}
 
+	
 	private CadastrarNewsInternalFrame cadastrarNewsFrame;
-
+	
 	public void novoNews() {
 		beginStatusBar("Cadastrar news");
-		if (cadastrarNewsFrame == null) {
+		if (cadastrarNewsFrame == null){
 			cadastrarNewsFrame = new CadastrarNewsInternalFrame();
-			mainDesktopPane.add(cadastrarNewsFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarNewsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarNewsFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarNewsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarNewsFrame.getNewsCadastreForm().newRegister();
 			cadastrarNewsFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarNewsFrame.getNewsCadastreForm().newRegister();
 			cadastrarNewsFrame.toFront();
 		}
 		endStatusBar("Cadastrar news");
 	}
-
+	
 	public void editarNews(final News p) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar news");
-					if (cadastrarNewsFrame == null) {
+					if (cadastrarNewsFrame == null){
 						cadastrarNewsFrame = new CadastrarNewsInternalFrame();
-						mainDesktopPane.add(cadastrarNewsFrame);
-						if (mainDesktopPane.getComponentCount() > 0) {
-							cadastrarNewsFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-									mainDesktopPane.getComponentCount() * 10);
+						mainDesktopPane.add(cadastrarNewsFrame);			
+						if (mainDesktopPane.getComponentCount()>0){
+							cadastrarNewsFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 						}
-
+						
 						cadastrarNewsFrame.getNewsCadastreForm().editRegister(p);
 						cadastrarNewsFrame.setVisible(true);
-					} else {
+					}
+					else{
 						cadastrarNewsFrame.getNewsCadastreForm().editRegister(p);
 						cadastrarNewsFrame.toFront();
 					}
-
+			
 					endStatusBar("Editar news");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void listarNews() {
 		listNews();
 	}
@@ -1964,7 +1913,7 @@ public class AdapitVirtualFrame extends JFrame {
 	public void cadastrarNews() {
 		novoNews();
 	}
-
+	
 	public JInternalFrame getListaNewsFrame() {
 		return listaNewsFrame;
 	}
@@ -1972,7 +1921,7 @@ public class AdapitVirtualFrame extends JFrame {
 	public void setListaNewsFrame(JInternalFrame listaNewsFrame) {
 		this.listaNewsFrame = listaNewsFrame;
 	}
-
+	
 	public void setCadastrarNewsFrame(
 			CadastrarNewsInternalFrame cadastrarNewsFrame) {
 		this.cadastrarNewsFrame = cadastrarNewsFrame;
@@ -1982,193 +1931,193 @@ public class AdapitVirtualFrame extends JFrame {
 		this.fechamentoTreinamentoInternalFrame = object;
 	}
 
+	
+	
 	public ContaPagarLoteInternalFrame contaPagarLoteInternalFrame;
-
+	
 	public void editarContaPagarLote() {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar Conta a Pagar Por Lote");
-					if (contaPagarLoteInternalFrame != null) {
+					if (contaPagarLoteInternalFrame != null){
 						contaPagarLoteInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						ContaPagarLoteInternalFrame gui = new ContaPagarLoteInternalFrame();
 						gui.postInDesktopPane();
 						contaPagarLoteInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar Conta a Pagar Por Lote");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
+	
 	public void editarContaPagarLote(final Treinamento lote) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar Conta a Pagar Por Lote");
-					if (contaPagarLoteInternalFrame != null) {
+					if (contaPagarLoteInternalFrame != null){
 						contaPagarLoteInternalFrame.editRegister(lote);
 						contaPagarLoteInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						ContaPagarLoteInternalFrame gui = new ContaPagarLoteInternalFrame();
 						gui.getParticipanteContaPagarLoteForm().editRegister(lote);
 						gui.postInDesktopPane();
 						contaPagarLoteInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar Conta a Pagar Por Lote");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void editarContaPagarLote(final Treinamento lote, final String leilaoDates) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar Conta a Pagar Por Lote");
-					if (contaPagarLoteInternalFrame != null) {
-						contaPagarLoteInternalFrame.editRegister(lote, leilaoDates);
+					if (contaPagarLoteInternalFrame != null){
+						contaPagarLoteInternalFrame.editRegister(lote,leilaoDates);
 						contaPagarLoteInternalFrame.postInDesktopPane();
-					} else {
+					}else{
 						ContaPagarLoteInternalFrame gui = new ContaPagarLoteInternalFrame();
-						gui.getParticipanteContaPagarLoteForm().editRegister(lote, leilaoDates);
+						gui.getParticipanteContaPagarLoteForm().editRegister(lote,leilaoDates);
 						gui.postInDesktopPane();
 						contaPagarLoteInternalFrame = gui;
-					}
+					}		
 					endStatusBar("Editar Conta a Pagar Por Lote");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void setLastContaPagarLoteInternalFrame(ContaPagarLoteInternalFrame object) {
 		this.contaPagarLoteInternalFrame = object;
 	}
-
-	/*
-	 * public Categoria getSelectedElement() {
-	 * return selectedElement;
-	 * }
-	 * 
-	 * public void setSelectedElement(Categoria selectedElement) {
-	 * this.selectedElement = selectedElement;
-	 * }
-	 * 
-	 * 
-	 * private Categoria selectedElement;
-	 */
-
-	private JInternalFrame listaPublicationFrame;
-
-	public void listPublication() {
-		if (listaPublicationFrame == null) {
-			listaPublicationFrame = new ListaPublicationFrame();
-			mainDesktopPane.add(listaPublicationFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaPublicationFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
-			}
-			listaPublicationFrame.setVisible(true);
-		} else {
-			listaPublicationFrame.toFront();
-		}
+	
+	/*public Categoria getSelectedElement() {
+		return selectedElement;
 	}
 
-	private CadastrarPublicationInternalFrame cadastrarPublicationFrame;
+	public void setSelectedElement(Categoria selectedElement) {
+		this.selectedElement = selectedElement;
+	}
 
+	
+	private Categoria selectedElement;*/
+
+	private JInternalFrame listaPublicationFrame;
+	
+	public void listPublication(){
+		if (listaPublicationFrame == null){
+			listaPublicationFrame = new ListaPublicationFrame();			
+			mainDesktopPane.add(listaPublicationFrame);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaPublicationFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
+			}
+			listaPublicationFrame.setVisible(true);
+		}else{
+			listaPublicationFrame.toFront();
+		}		
+	}
+
+	
+	private CadastrarPublicationInternalFrame cadastrarPublicationFrame;
+	
 	public void novoPublication() {
 		beginStatusBar("Cadastrar Artigo");
-		if (cadastrarPublicationFrame == null) {
+		if (cadastrarPublicationFrame == null){
 			cadastrarPublicationFrame = new CadastrarPublicationInternalFrame();
-			mainDesktopPane.add(cadastrarPublicationFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarPublicationFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarPublicationFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarPublicationFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarPublicationFrame.getPublicationCadastreForm().newRegister();
 			cadastrarPublicationFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarPublicationFrame.getPublicationCadastreForm().newRegister();
 			cadastrarPublicationFrame.toFront();
 		}
 		endStatusBar("Cadastrar Artigo");
 	}
-
+	
 	public void editarPublication(final Publication p) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
 					beginStatusBar("Editar Artigo");
-					if (cadastrarPublicationFrame == null) {
+					if (cadastrarPublicationFrame == null){
 						cadastrarPublicationFrame = new CadastrarPublicationInternalFrame();
-						mainDesktopPane.add(cadastrarPublicationFrame);
-						if (mainDesktopPane.getComponentCount() > 0) {
-							cadastrarPublicationFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-									mainDesktopPane.getComponentCount() * 10);
+						mainDesktopPane.add(cadastrarPublicationFrame);			
+						if (mainDesktopPane.getComponentCount()>0){
+							cadastrarPublicationFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 						}
-
+						
 						cadastrarPublicationFrame.getPublicationCadastreForm().editRegister(p);
 						cadastrarPublicationFrame.setVisible(true);
-					} else {
+					}
+					else{
 						cadastrarPublicationFrame.getPublicationCadastreForm().editRegister(p);
 						cadastrarPublicationFrame.toFront();
 					}
-
+			
 					endStatusBar("Editar Artigo");
-
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void listarPublication() {
 		listPublication();
 	}
@@ -2176,7 +2125,7 @@ public class AdapitVirtualFrame extends JFrame {
 	public void cadastrarPublication() {
 		novoPublication();
 	}
-
+	
 	public JInternalFrame getListaPublicationFrame() {
 		return listaPublicationFrame;
 	}
@@ -2184,7 +2133,7 @@ public class AdapitVirtualFrame extends JFrame {
 	public void setListaPublicationFrame(JInternalFrame listaPublicationFrame) {
 		this.listaPublicationFrame = listaPublicationFrame;
 	}
-
+	
 	public void setCadastrarPublicationFrame(
 			CadastrarPublicationInternalFrame cadastrarPublicationFrame) {
 		this.cadastrarPublicationFrame = cadastrarPublicationFrame;
@@ -2194,21 +2143,21 @@ public class AdapitVirtualFrame extends JFrame {
 		final JInternalFrame jif = new JInternalFrame();
 		jif.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		jif.setClosable(true);
-		jif.setTitle("Destaques da Pï¿½gina");
+		jif.setTitle("Destaques da Página");
 		DestaqueForm df = new DestaqueForm();
-		jif.add(df, BorderLayout.CENTER);
+		jif.add(df,BorderLayout.CENTER);
 		df.editRegister();
-		df.getFecharButton().addActionListener(new ActionListener() {
+		df.getFecharButton().addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
 				jif.dispose();
 			}
-
+			
 		});
 		jif.setSize(df.getSize());
-		mainDesktopPane.add(jif);
-		if (mainDesktopPane.getComponentCount() > 0) {
-			jif.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+		mainDesktopPane.add(jif);			
+		if (mainDesktopPane.getComponentCount()>0){
+			jif.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 		}
 		jif.setVisible(true);
 	}
@@ -2217,133 +2166,129 @@ public class AdapitVirtualFrame extends JFrame {
 		final JInternalFrame jif = new JInternalFrame();
 		jif.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		jif.setClosable(true);
-		jif.setTitle("Manutencao de Arquivos do Servidor");
+		jif.setTitle("Manutenção de Arquivos do Servidor");
 		FileFilterPanel df = new FileFilterPanel();
-		jif.add(df, BorderLayout.CENTER);
-
+		jif.add(df,BorderLayout.CENTER);
+		
 		jif.setSize(df.getSize());
-		mainDesktopPane.add(jif);
-		if (mainDesktopPane.getComponentCount() > 0) {
-			jif.setLocation(mainDesktopPane.getComponentCount() * 10, mainDesktopPane.getComponentCount() * 10);
+		mainDesktopPane.add(jif);			
+		if (mainDesktopPane.getComponentCount()>0){
+			jif.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 		}
 		jif.setVisible(true);
 	}
-
 	private Imagem selectedImage = null;
-
-	public Imagem selectImagem() {
+	public Imagem selectImagem(){		
 		final JDialog jif = new JDialog(this);
 		jif.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		jif.setTitle("Buscar Imagem");
 		final ImageListForm df = new ImageListForm();
-		jif.add(df, BorderLayout.CENTER);
+		jif.add(df,BorderLayout.CENTER);
 		JPanel jp = new JPanel();
 		jp.setLayout(new FlowLayout());
 		JButton jb = new JButton("Selecionar");
 		jp.add(jb);
-		jb.addActionListener(new ActionListener() {
+		jb.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt) {
 				selectedImage = df.getSelectedImage();
 				jif.dispose();
-			}
+			}			
 		});
-		jif.add(jp, BorderLayout.SOUTH);
+		jif.add(jp,BorderLayout.SOUTH);
 		jif.setSize(df.getSize());
 		jif.setLocation(UIUtil.getScreenCenter(jif));
 		jif.setModal(true);
-
+		
 		jif.setVisible(true);
-
+		
 		return selectedImage;
 	}
-
+	
 	private Arquivo selectedArquivo = null;
-
-	public Arquivo selectArquivo() {
-
+	public Arquivo selectArquivo(){
+		
 		final JDialog jif = new JDialog(this);
 		jif.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		jif.setTitle("Buscar Arquivo");
 		final FileFilterPanel df = new FileFilterPanel();
-		jif.add(df, BorderLayout.CENTER);
+		jif.add(df,BorderLayout.CENTER);
 		JPanel jp = new JPanel();
 		jp.setLayout(new FlowLayout());
 		JButton jb = new JButton("Selecionar");
 		jp.add(jb);
-		jb.addActionListener(new ActionListener() {
+		jb.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt) {
 				selectedArquivo = df.getSelectedFile();
 				jif.dispose();
-			}
+			}			
 		});
-		jif.add(jp, BorderLayout.SOUTH);
+		jif.add(jp,BorderLayout.SOUTH);
 		jif.setSize(df.getSize());
 		jif.setLocation(UIUtil.getScreenCenter(jif));
 		jif.setModal(true);
-
+		
 		jif.setVisible(true);
-
+		
 		return selectedArquivo;
 	}
-
+	
 	private CadastrarUpdateInternalFrame cadastrarUpdateFrame;
-
+	
 	public void novoUpdate(final ComercialSolution c) {
-		beginStatusBar("Cadastrar versao");
-		if (cadastrarUpdateFrame == null) {
+		beginStatusBar("Cadastrar versão");
+		if (cadastrarUpdateFrame == null){
 			cadastrarUpdateFrame = new CadastrarUpdateInternalFrame(c);
-			mainDesktopPane.add(cadastrarUpdateFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				cadastrarUpdateFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			mainDesktopPane.add(cadastrarUpdateFrame);			
+			if (mainDesktopPane.getComponentCount()>0){
+				cadastrarUpdateFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			cadastrarUpdateFrame.getUpdateCadastreForm().newRegister();
 			cadastrarUpdateFrame.setVisible(true);
-		} else {
+		}else{
 			cadastrarUpdateFrame.getUpdateCadastreForm().newRegister();
 			cadastrarUpdateFrame.toFront();
 		}
-		endStatusBar("Cadastrar versao");
+		endStatusBar("Cadastrar versão");
 	}
-
+	
 	public void editarUpdate(final Update p, final ComercialSolution c) {
-		SwingWorker sw = new SwingWorker() {
+		SwingWorker sw = new SwingWorker(){
 			@Override
 			public Object construct() {
 				try {
-					TimerMessageFrame jd = new TimerMessageFrame("Carregando informacoes ... por favor aguarde");
-					jd.setSize(310, 80);
+					TimerMessageFrame jd = new TimerMessageFrame("Carregando informações ... por favor aguarde");
+					jd.setSize(310,80);					
 					jd.setVisible(true);
-					beginStatusBar("Editar versao");
-					if (cadastrarUpdateFrame == null) {
+					beginStatusBar("Editar versão");
+					if (cadastrarUpdateFrame == null){
 						cadastrarUpdateFrame = new CadastrarUpdateInternalFrame(c);
-						mainDesktopPane.add(cadastrarUpdateFrame);
-						if (mainDesktopPane.getComponentCount() > 0) {
-							cadastrarUpdateFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-									mainDesktopPane.getComponentCount() * 10);
+						mainDesktopPane.add(cadastrarUpdateFrame);			
+						if (mainDesktopPane.getComponentCount()>0){
+							cadastrarUpdateFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 						}
-
+						
 						cadastrarUpdateFrame.getUpdateCadastreForm().editRegister(p);
 						cadastrarUpdateFrame.setVisible(true);
-					} else {
+					}
+					else{
 						cadastrarUpdateFrame.getUpdateCadastreForm().editRegister(p);
 						cadastrarUpdateFrame.toFront();
 					}
-
-					endStatusBar("Editar versao");
-
+			
+					endStatusBar("Editar versão");
+			
 					jd.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
 			}
-
-		};
-
-		sw.start();
+			
+			};
+			
+			sw.start();
 	}
-
+	
 	public void listarUpdate(final ComercialSolution c) {
 		listUpdate(c);
 	}
@@ -2351,7 +2296,7 @@ public class AdapitVirtualFrame extends JFrame {
 	public void cadastrarUpdate(final ComercialSolution c) {
 		novoUpdate(c);
 	}
-
+	
 	public JInternalFrame getListaUpdateFrame() {
 		return listaUpdateFrame;
 	}
@@ -2359,196 +2304,187 @@ public class AdapitVirtualFrame extends JFrame {
 	public void setListaUpdateFrame(JInternalFrame listaUpdateFrame) {
 		this.listaUpdateFrame = listaUpdateFrame;
 	}
-
+	
 	public void setCadastrarUpdateFrame(
 			CadastrarUpdateInternalFrame cadastrarUpdateFrame) {
 		this.cadastrarUpdateFrame = cadastrarUpdateFrame;
 	}
 
 	private JInternalFrame listaUpdateFrame;
-
-	public void listUpdate(final ComercialSolution c) {
-		if (listaUpdateFrame == null) {
-			listaUpdateFrame = new ListaUpdateFrame(c);
+	
+	public void listUpdate(final ComercialSolution c){
+		if (listaUpdateFrame == null){
+			listaUpdateFrame = new ListaUpdateFrame(c);			
 			mainDesktopPane.add(listaUpdateFrame);
-			if (mainDesktopPane.getComponentCount() > 0) {
-				listaUpdateFrame.setLocation(mainDesktopPane.getComponentCount() * 10,
-						mainDesktopPane.getComponentCount() * 10);
+			if (mainDesktopPane.getComponentCount()>0){
+				listaUpdateFrame.setLocation(mainDesktopPane.getComponentCount()*10,mainDesktopPane.getComponentCount()*10);
 			}
 			listaUpdateFrame.setVisible(true);
-		} else {
+		}else{
 			listaUpdateFrame.toFront();
-		}
+		}		
 	}
-
-	private String css = null;
-
-	public String getCss() {
-		if (css == null) {
+	
+	private String css=null;
+	
+	public String getCss(){
+		if(css == null){
 			try {
-				List<CssDefinition> list = RemoteComercialSolutionService.getInstance().listCssDefinitions("default");
-				if (list != null && list.size() > 0) {
-					CssDefinition def = (CssDefinition) list.get(0);
-					if (def != null)
+				List<CssDefinition> list =  RemoteComercialSolutionService.getInstance().listCssDefinitions("default");
+				if(list != null && list.size()>0){
+					CssDefinition def=(CssDefinition) list.get(0);
+					if(def != null)
 						css = def.getStyle();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		if (css == null)
+		if(css == null)
 			return "";
 		return css;
 	}
 
 	/**
-	 * Cria um diï¿½logo padrï¿½o
-	 * 
-	 * @param title     o tï¿½tulo do diï¿½logo
-	 * @param content   o painel de conteudo
-	 * @param buttons   a lista dos botoes
-	 * @param listeners a lista dos listeners dos botoes
-	 * @param icons     os ï¿½cones dos botoes
-	 * @param w         width
-	 * @param h         heigth
-	 * @param modal     ï¿½ modal
-	 * @param center    true ï¿½ colocado no centro e false ï¿½ maximizado
+	 * Cria um diálogo padrão
+	 * @param title o título do diálogo
+	 * @param content o painel de conteúdo
+	 * @param buttons a lista dos botões
+	 * @param listeners a lista dos listeners dos botões
+	 * @param icons os ícones dos botões
+	 * @param w width
+	 * @param h heigth
+	 * @param modal é modal
+	 * @param center true é colocado no centro e false é maximizado
 	 * @return
 	 */
-	public JDialog createDialog(String title, JComponent content, String buttons[], ActionListener listeners[],
-			Icon icons[], int w, int h, boolean modal, boolean center) {
+	public JDialog createDialog(String title, JComponent content, String buttons[], ActionListener listeners[], Icon icons[], int w, int h, boolean modal, boolean center) {
 		JDialog jd = new JDialog(AdapitVirtualFrame.getInstance());
 		try {
 			jd.setTitle(title);
 			jd.setModal(modal);
-			jd.add(content, BorderLayout.CENTER);
+			jd.add(content,BorderLayout.CENTER);
 			jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			if (buttons != null && buttons.length > 0) {
+			if(buttons != null && buttons.length>0){
 				JPanel jp = new JPanel(new FlowLayout());
-				int i = 0;
-				for (String str : buttons) {
+				int i=0;
+				for(String str: buttons){
 					JButton jb = new JButton(str);
 					jp.add(jb);
-					if (listeners != null && listeners.length >= i) {
+					if(listeners != null && listeners.length>= i){
 						ActionListener al = listeners[i];
-						if (al != null)
+						if(al != null)
 							jb.addActionListener(al);
 					}
-					if (icons != null && icons.length >= i) {
+					if(icons != null && icons.length>= i){
 						Icon icon = icons[i];
-						if (icon != null)
+						if(icon != null)
 							jb.setIcon(icon);
 					}
 					i++;
 				}
-				jd.add(jp, BorderLayout.SOUTH);
+				jd.add(jp,BorderLayout.SOUTH);
 			}
-			jd.setSize(w, h);
-			if (!center)
+			jd.setSize(w,h);
+			if(!center)
 				UIUtil.setFullScreen(jd);
-			else
-				jd.setLocation(UIUtil.getScreenCenter(jd));
+			else jd.setLocation(UIUtil.getScreenCenter(jd));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return jd;
 	}
-
+	
 	/**
-	 * Cria um diï¿½logo padrï¿½o
-	 * 
-	 * @param title     o tï¿½tulo do diï¿½logo
-	 * @param content   o painel de conteudo
-	 * @param buttons   a lista dos botoes
-	 * @param listeners a lista dos listeners dos botoes
-	 * @param icons     os ï¿½cones dos botoes
-	 * @param w         width
-	 * @param h         heigth
-	 * @param modal     ï¿½ modal
-	 * @param center    true ï¿½ colocado no centro e false ï¿½ maximizado
+	 * Cria um diálogo padrão
+	 * @param title o título do diálogo
+	 * @param content o painel de conteúdo
+	 * @param buttons a lista dos botões
+	 * @param listeners a lista dos listeners dos botões
+	 * @param icons os ícones dos botões
+	 * @param w width
+	 * @param h heigth
+	 * @param modal é modal
+	 * @param center true é colocado no centro e false é maximizado
 	 * @return
 	 */
-	public JDialog createDialog(String title, JComponent content, String buttons[], ActionListener listeners[],
-			Icon icons[], int w, int h, boolean modal, boolean center, boolean resizable) {
+	public JDialog createDialog(String title, JComponent content, String buttons[], ActionListener listeners[], Icon icons[], int w, int h, boolean modal, boolean center, boolean resizable) {
 		JDialog jd = new JDialog(AdapitVirtualFrame.getInstance());
 		try {
 			jd.setTitle(title);
 			jd.setModal(modal);
-			jd.add(content, BorderLayout.CENTER);
+			jd.add(content,BorderLayout.CENTER);
 			jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			if (buttons != null && buttons.length > 0) {
+			if(buttons != null && buttons.length>0){
 				JPanel jp = new JPanel(new FlowLayout());
-				int i = 0;
-				for (String str : buttons) {
+				int i=0;
+				for(String str: buttons){
 					JButton jb = new JButton(str);
 					jp.add(jb);
-					if (listeners != null && listeners.length >= i) {
+					if(listeners != null && listeners.length>= i){
 						ActionListener al = listeners[i];
-						if (al != null)
+						if(al != null)
 							jb.addActionListener(al);
 					}
-					if (icons != null && icons.length >= i) {
+					if(icons != null && icons.length>= i){
 						Icon icon = icons[i];
-						if (icon != null)
+						if(icon != null)
 							jb.setIcon(icon);
 					}
 					i++;
 				}
-				jd.add(jp, BorderLayout.SOUTH);
+				jd.add(jp,BorderLayout.SOUTH);
 			}
 			jd.setResizable(resizable);
-			jd.setSize(w, h);
-			if (!center)
+			jd.setSize(w,h);
+			if(!center)
 				UIUtil.setFullScreen(jd);
-			else
-				jd.setLocation(UIUtil.getScreenCenter(jd));
+			else jd.setLocation(UIUtil.getScreenCenter(jd));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return jd;
 	}
-
+	
 	/**
-	 * Cria um internal frame padrï¿½o
-	 * 
-	 * @param title     o tï¿½tulo do frame
-	 * @param content   o painel de conteudo
-	 * @param buttons   a lista dos botoes
-	 * @param listeners a lista dos listeners dos botoes
-	 * @param icons     os ï¿½cones dos botoes
-	 * @param w         width
-	 * @param h         heigth
+	 * Cria um internal frame padrão
+	 * @param title o título do frame
+	 * @param content o painel de conteúdo
+	 * @param buttons a lista dos botões
+	 * @param listeners a lista dos listeners dos botões
+	 * @param icons os ícones dos botões
+	 * @param w width
+	 * @param h heigth
 	 * @return
 	 */
-	public JInternalFrame createInternalFrame(String title, JComponent content, String buttons[],
-			ActionListener listeners[], Icon icons[], int w, int h) {
+	public JInternalFrame createInternalFrame(String title, JComponent content, String buttons[], ActionListener listeners[], Icon icons[], int w, int h) {
 		JInternalFrame jd = new JInternalFrame();
 		try {
 			jd.setTitle(title);
-			jd.add(content, BorderLayout.CENTER);
+			jd.add(content,BorderLayout.CENTER);
 			jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			if (buttons != null && buttons.length > 0) {
+			if(buttons != null && buttons.length>0){
 				JPanel jp = new JPanel(new FlowLayout());
-				int i = 0;
-				for (String str : buttons) {
+				int i=0;
+				for(String str: buttons){
 					JButton jb = new JButton(str);
 					jp.add(jb);
-					if (listeners != null && listeners.length >= i) {
+					if(listeners != null && listeners.length>= i){
 						ActionListener al = listeners[i];
-						if (al != null)
+						if(al != null)
 							jb.addActionListener(al);
 					}
-					if (icons != null && icons.length >= i) {
+					if(icons != null && icons.length>= i){
 						Icon icon = icons[i];
-						if (icon != null)
+						if(icon != null)
 							jb.setIcon(icon);
 					}
 					i++;
 				}
-				jd.add(jp, BorderLayout.SOUTH);
+				jd.add(jp,BorderLayout.SOUTH);
 			}
-			jd.setSize(w, h);
-
+			jd.setSize(w,h);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

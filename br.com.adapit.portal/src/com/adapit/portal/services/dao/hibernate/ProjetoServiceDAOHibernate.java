@@ -11,6 +11,7 @@ import com.adapit.portal.entidades.Cliente;
 import com.adapit.portal.entidades.Projeto;
 import com.adapit.portal.entidades.ScheduledTrainingStatus;
 import com.adapit.portal.services.ProjetoService;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 /**
@@ -19,7 +20,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  */
 
 public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
-		ProjetoService {
+		ProjetoService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -31,7 +32,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os lotes que tiverem no cï¿½digo do lote o valor passado como
+	 * Retorna todos os lotes que tiverem no código do lote o valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -54,7 +55,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os lotes em que o cï¿½digo termina com o valor passado como
+	 * Retorna todos os lotes em que o código termina com o valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -77,7 +78,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os lotes em que o cï¿½digo inicia com o valor passado como
+	 * Retorna todos os lotes em que o código inicia com o valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -100,7 +101,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os lotes ou retirados ou nï¿½o retirados
+	 * Retorna todos os lotes ou retirados ou não retirados
 	 */
 	@SuppressWarnings("unchecked")
 	public List listByRetirado(boolean retirado) {
@@ -122,7 +123,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os lotes em que o status ï¿½ igual ao valor passado como
+	 * Retorna todos os lotes em que o status é igual ao valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -146,7 +147,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 
 	/**
 	 * Retorna todos os lotes de um comprador que possui no nome um valor igual
-	 * ao do argumento passado como parï¿½metro
+	 * ao do argumento passado como parâmetro
 	 */
 	@SuppressWarnings("unchecked")
 	public List listLikeNomeComprador(Cliente joincompraComprador) {
@@ -169,7 +170,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 
 	/**
 	 * Retorna todos os lotes de um comprador que possui o id igual ao do
-	 * argumenta passado como parï¿½metro
+	 * argumenta passado como parâmetro
 	 */
 	@SuppressWarnings("unchecked")
 	public List listByIdComprador(int joinPessoaId) {
@@ -287,7 +288,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * apaga o lote que possui o cï¿½digo igual ao valor passado como argumento
+	 * apaga o lote que possui o código igual ao valor passado como argumento
 	 */
 	@SuppressWarnings("unchecked")
 	public Projeto deleteByCodLote(String codLote) throws Exception {
@@ -311,7 +312,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Apaga todos os lotes que forem de um pessoaEmDivulgacao. O pessoaEmDivulgacao ï¿½ informado de
+	 * Apaga todos os lotes que forem de um pessoaEmDivulgacao. O pessoaEmDivulgacao é informado de
 	 * acordo com o identificador
 	 */
 	@SuppressWarnings("unchecked")
@@ -338,7 +339,7 @@ public class ProjetoServiceDAOHibernate extends GenericDAOHibernate implements
 
 	/**
 	 * apaga todos os lotes que foram comprados por uma determinada pessoa. Esta
-	 * pessoa ï¿½ idetificado pelo parametro id.
+	 * pessoa é idetificado pelo parametro id.
 	 */
 	@SuppressWarnings("unchecked")
 	public Projeto deleteByIdParticipante(Cliente joincompraComprador)

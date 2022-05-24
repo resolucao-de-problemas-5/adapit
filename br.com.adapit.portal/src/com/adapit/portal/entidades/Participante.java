@@ -1,7 +1,7 @@
 package com.adapit.portal.entidades;
 
 
-// import java.io.Serializable;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @OnDelete(action=OnDeleteAction.CASCADE)
 @NamedQuery(name="participante.preferencias",query="select p.preferencias from Participante p where p.id=:id")
 @Table(name="ParticipantPerson")
-public class Participante extends PessoaEmDivulgacao{
+public class Participante extends PessoaEmDivulgacao implements Serializable{
 	
 	private static final long serialVersionUID = 82873749629372L;
 
@@ -80,7 +80,7 @@ public class Participante extends PessoaEmDivulgacao{
 	@OneToMany(mappedBy="inscrito",fetch=FetchType.LAZY)
 	private Collection<ComercialSolutionItem> itensTreinamentos = new ArrayList<ComercialSolutionItem>();
 	
-	private PrimeiroContatoIniciado primeiroContato = PrimeiroContatoIniciado.Recomendacao;
+	private PrimeiroContatoIniciado primeiroContato = PrimeiroContatoIniciado.Recomendação;
 
 	
 	public PrimeiroContatoIniciado getPrimeiroContato() {

@@ -19,32 +19,32 @@ import com.adapit.portal.entidades.Treinamento;
 
 public interface ComercialSolutionService {
 
-	// @SuppressWarnings("unchecked")
-	public List<String> listCommercialSolutionsByWithName(String descricao);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByWithName(String descricao);
 
-	// @SuppressWarnings("unchecked")
-	public List<String> listCommercialSolutionsByNameBeginingWith(String descricao);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByNameBeginingWith(String descricao);
 
-	// @SuppressWarnings("unchecked")
-	public List<String> listCommercialSolutionsByNameEndingWith(String descricao);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByNameEndingWith(String descricao);
 
-	// @SuppressWarnings("unchecked")
-	public List<String> listCommercialSolutionsByDescription(String descricao);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByDescription(String descricao);
 
-	// @SuppressWarnings("unchecked")
-	public List<Integer> listCommercialSolutionsByIdCategory(int id);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByIdCategory(int id);
 
-	// @SuppressWarnings("unchecked")
-	public List<?> listCommercialSolutionsByValueRange(float valorA, float valorB);
+	@SuppressWarnings("unchecked")
+	public List listCommercialSolutionsByValueRange(float valorA, float valorB);
 
-	// @SuppressWarnings("unchecked")
-	public List<?> listScheduledTrainingSolutions();
+	@SuppressWarnings("unchecked")
+	public List listScheduledTrainingSolutions();
 
-	// @SuppressWarnings("unchecked")
-	public List<?> listNotScheduledTrainingSolutions();
+	@SuppressWarnings("unchecked")
+	public List listNotScheduledTrainingSolutions();
 
-	// @SuppressWarnings("unchecked")
-	public List<?> listTrainingSolutionsAccordingTo(String descricao, StringQueryKind descKind,
+	@SuppressWarnings("unchecked")
+	public List listTrainingSolutionsAccordingTo(String descricao, StringQueryKind descKind,
 			Categoria categoria, float valorInic, float valorFin,
 			ScheduleScheduledTrainingFilterType loteKind, int firstResult);
 	
@@ -66,8 +66,8 @@ public interface ComercialSolutionService {
 	
 	public List<CommercialSolutionDetailTab> listTabsByCommercialSolutionId(int id, String lang) throws Exception;
 
-	// @SuppressWarnings("unchecked")
-	public List<?> listAll();
+	@SuppressWarnings("unchecked")
+	public List listAll();
 
 	public ComercialSolution saveOrUpdate(ComercialSolution produto) throws Exception;
 

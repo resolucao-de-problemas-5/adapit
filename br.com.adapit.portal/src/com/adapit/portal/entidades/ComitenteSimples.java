@@ -1,11 +1,12 @@
 package com.adapit.portal.entidades;
 
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
 @Entity
-public class ComitenteSimples extends PessoaEmDivulgacao {
+public class ComitenteSimples extends PessoaEmDivulgacao implements Serializable{
 
 	private static final long serialVersionUID = 235734836438368L;
 

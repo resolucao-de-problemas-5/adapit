@@ -116,5 +116,6 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/postgresql-9.1-901.jdbc3.jar"/>
 	<classpathentry kind="lib" path="lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
+	<classpathentry kind="src" path="infrastructure/com/workcase/hibernate/tools"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

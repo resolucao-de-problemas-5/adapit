@@ -12,13 +12,14 @@ import com.adapit.portal.entidades.Endereco;
 import com.adapit.portal.entidades.Pais;
 import com.adapit.portal.services.EnderecoService;
 import com.adapit.portal.services.local.LocalServicesUtility;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 /**
  * @spring.bean id="enderecoServiceDAOHibernate" singleton="true"
  * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
  */
-public class EnderecoServiceDAOHibernate extends GenericDAOHibernate implements EnderecoService {
+public class EnderecoServiceDAOHibernate extends GenericDAOHibernate implements GenericDAO, EnderecoService {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;

@@ -64,7 +64,7 @@ public class TurmaTreinamento implements Serializable{
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable=true,name="day_turn")
-	private TurnoTreinamento turno = TurnoTreinamento.Manha;
+	private TurnoTreinamento turno = TurnoTreinamento.Manhã;
 	
 	
 	@Basic(fetch=FetchType.LAZY)

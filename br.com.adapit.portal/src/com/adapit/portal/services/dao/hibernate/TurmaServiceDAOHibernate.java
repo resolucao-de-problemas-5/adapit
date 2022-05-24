@@ -26,6 +26,7 @@ import com.adapit.portal.services.TurmaService;
 import com.adapit.portal.services.local.LocalServicesUtility;
 import com.adapit.portal.ui.frames.AdapitVirtualFrame;
 import com.adapit.portal.util.global.FilterResultSize;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 /**
@@ -33,7 +34,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
  */
 public class TurmaServiceDAOHibernate extends GenericDAOHibernate implements
-		TurmaService {
+		TurmaService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -105,7 +106,7 @@ public class TurmaServiceDAOHibernate extends GenericDAOHibernate implements
 			TipoExecucaoTreinamento tipoExecucaoTurmaTreinamento, int orderBy)
 			throws Exception {
 		if (filtro == null)
-			throw new Exception("O tipo do filtro nï¿½o pode ser nulo");
+			throw new Exception("O tipo do filtro não pode ser nulo");
 		String query = null;
 		if (filtro == TrainingClassFilterType.Turma)
 			query = "select l from "+turmaEntityName+" l";

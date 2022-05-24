@@ -2,18 +2,18 @@ package com.adapit.portal.entidades;
 
 public enum ScheduledTrainingStatus{
 	Adjudicado,
-	Aguardando_confirmacao_da_agenda,
+	Aguardando_confirmação_da_agenda,
 	Aguardando_embargo,
-	Aguardando_homologacao,
+	Aguardando_homologação,
 	Anulado,
 	Descartado,
-	Desistencia_do_arrematante,
+	Desistência_do_arrematante,
 	Dividido_em_sublotes,
-	Em_execucao_de_lances,
-	Em_execucao_de_lances_lote_individual,
+	Em_execução_de_lances,
+	Em_execução_de_lances_lote_individual,
 	Em_planejamento,
-	Leiloes_encerrados_sem_lances,
+	Leilões_encerrados_sem_lances,
 	Realizado,
-	Nao_homologado,
+	Não_homologado,
 	Suspenso
 }

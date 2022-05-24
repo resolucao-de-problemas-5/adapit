@@ -73,7 +73,7 @@ public class AgendaTreinamento implements Serializable{
 	private Date termino;
 	
 	@Enumerated(EnumType.ORDINAL)
-	private StatusAgenda status = StatusAgenda.Nao_cadastrada;
+	private StatusAgenda status = StatusAgenda.Não_cadastrada;
 	
 	@Column(name="confirmed")
 	private boolean confirmada=false;

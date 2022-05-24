@@ -34,6 +34,7 @@ import com.adapit.portal.services.PessoaService;
 import com.adapit.portal.services.local.LocalServicesUtility;
 import com.adapit.portal.services.validation.FieldMsgValidation;
 import com.adapit.portal.services.validation.FieldMsgValidationException;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -42,7 +43,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
  */
 public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
-		PessoaService {
+		PessoaService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -160,7 +161,7 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 		Session s = LocalServicesUtility.getInstance().openSession();
 		if (p.getTipoPessoa() instanceof Fisica){	
 			
-			if (p.getId() < 0){//ï¿½ novo usuï¿½rio	
+			if (p.getId() < 0){//é novo usuário	
 				int cpf = (Integer) s.createQuery("select count(fisica) from Fisica fisica where fisica.cpf=:cpf")
 				.setParameter("cpf", ((Fisica)p.getTipoPessoa()).getCpf())
 				.uniqueResult();
@@ -172,13 +173,13 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 				.uniqueResult();
 				if (cpf > 0 || rg > 0 || email > 0){
 					Hashtable<String,String> ht = new Hashtable<String,String>();
-					if (cpf > 0) ht.put("cpf","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (rg > 0) ht.put("rg","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+					if (cpf > 0) ht.put("cpf","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (rg > 0) ht.put("rg","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 					
 					return new FieldMsgValidation(ht);
 				}
-			}else{//ï¿½ update
+			}else{//é update
 				int cpf = (Integer) s.createQuery("select count(fisica) from Fisica fisica where fisica.cpf=:cpf and fisica.id <> :id")
 				.setParameter("cpf", ((Fisica)p.getTipoPessoa()).getCpf())
 				.setParameter("id",p.getTipoPessoa().getId())
@@ -193,15 +194,15 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 				.uniqueResult();
 				if (cpf > 0 || rg > 0 || email > 0){
 					Hashtable<String,String> ht = new Hashtable<String,String>();
-					if (cpf > 0) ht.put("cpf","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (rg > 0) ht.put("rg","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+					if (cpf > 0) ht.put("cpf","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (rg > 0) ht.put("rg","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 					
 					return new FieldMsgValidation(ht);
 				}
 			}
 		}else{
-			if (p.getId() < 0){//ï¿½ novo usuï¿½rio	
+			if (p.getId() < 0){//é novo usuário	
 				int cnpj = (Integer) s.createQuery("select count(juridica) from Juridica juridica where juridica.cnpj=:cnpj")
 				.setParameter("cnpj", ((Juridica)p.getTipoPessoa()).getCnpj())
 				.uniqueResult();
@@ -214,9 +215,9 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 				
 				if (cnpj > 0 || inscricaoEstadual > 0 || email > 0){
 					Hashtable<String,String> ht = new Hashtable<String,String>();
-					if (cnpj > 0) ht.put("cnpj","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+					if (cnpj > 0) ht.put("cnpj","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 					
 					return new FieldMsgValidation(ht);
 				}
@@ -236,9 +237,9 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 				
 				if (cnpj > 0 || inscricaoEstadual > 0 || email > 0){
 					Hashtable<String,String> ht = new Hashtable<String,String>();
-					if (cnpj > 0) ht.put("cnpj","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-					if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+					if (cnpj > 0) ht.put("cnpj","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","está repetida em outro registro. Não pode haver valores repetidos.");
+					if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 					
 					return new FieldMsgValidation(ht);
 				}
@@ -255,10 +256,10 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 		try{
 			s = LocalServicesUtility.getInstance().openSession();
 			
-			//Checa se dados nï¿½o serï¿½o replicados
+			//Checa se dados não serão replicados
 			if (p.getTipoPessoa() instanceof Fisica){	
 				
-				if (p.getId() < 0){//ï¿½ novo usuï¿½rio	
+				if (p.getId() < 0){//é novo usuário	
 					int cpf = (Integer) s.createQuery("select count(fisica) from Fisica fisica where fisica.cpf=:cpf")
 					.setParameter("cpf", ((Fisica)p.getTipoPessoa()).getCpf())
 					.uniqueResult();
@@ -270,13 +271,13 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 					.uniqueResult();
 					if (cpf > 0 || rg > 0 || email > 0){
 						Hashtable<String,String> ht = new Hashtable<String,String>();
-						if (cpf > 0) ht.put("cpf","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (rg > 0) ht.put("rg","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+						if (cpf > 0) ht.put("cpf","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (rg > 0) ht.put("rg","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 						
 						throw new FieldMsgValidationException(ht);
 					}
-				}else{//ï¿½ update
+				}else{//é update
 					int cpf = (Integer) s.createQuery("select count(fisica) from Fisica fisica where fisica.cpf=:cpf and fisica.id <> :id")
 					.setParameter("cpf", ((Fisica)p.getTipoPessoa()).getCpf())
 					.setParameter("id",p.getTipoPessoa().getId())
@@ -291,15 +292,15 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 					.uniqueResult();
 					if (cpf > 0 || rg > 0 || email > 0){
 						Hashtable<String,String> ht = new Hashtable<String,String>();
-						if (cpf > 0) ht.put("cpf","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (rg > 0) ht.put("rg","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+						if (cpf > 0) ht.put("cpf","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (rg > 0) ht.put("rg","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 						
 						throw new FieldMsgValidationException(ht);
 					}
 				}
 			}else{
-				if (p.getId() < 0){//ï¿½ novo usuï¿½rio	
+				if (p.getId() < 0){//é novo usuário	
 					int cnpj = (Integer) s.createQuery("select count(juridica) from Juridica juridica where juridica.cnpj=:cnpj")
 					.setParameter("cnpj", ((Juridica)p.getTipoPessoa()).getCnpj())
 					.uniqueResult();
@@ -312,9 +313,9 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 					
 					if (cnpj > 0 || inscricaoEstadual > 0 || email > 0){
 						Hashtable<String,String> ht = new Hashtable<String,String>();
-						if (cnpj > 0) ht.put("cnpj","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+						if (cnpj > 0) ht.put("cnpj","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 						
 						throw new FieldMsgValidationException(ht);
 					}
@@ -334,9 +335,9 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 					
 					if (cnpj > 0 || inscricaoEstadual > 0 || email > 0){
 						Hashtable<String,String> ht = new Hashtable<String,String>();
-						if (cnpj > 0) ht.put("cnpj","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-						if (email>0) ht.put("email","estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+						if (cnpj > 0) ht.put("cnpj","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (inscricaoEstadual > 0) ht.put("inscricaoEstadual","está repetida em outro registro. Não pode haver valores repetidos.");
+						if (email>0) ht.put("email","está repetida em outro registro. Não pode haver valores repetidos.");
 						
 						throw new FieldMsgValidationException(ht);
 					}
@@ -377,11 +378,11 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 		}catch(org.hibernate.exception.ConstraintViolationException ex){
 			ex.printStackTrace();
 			Hashtable<String,String> ht = new Hashtable<String,String>();
-			ht.put("cnpj","pode estar repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-			ht.put("inscricaoEstadual","pode estar repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-			ht.put("cpf","pode estar repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-			ht.put("rg","pode estar repetida em outro registro. Nï¿½o pode haver valores repetidos.");
-			ht.put("email","pode estar repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+			ht.put("cnpj","pode estar repetida em outro registro. Não pode haver valores repetidos.");
+			ht.put("inscricaoEstadual","pode estar repetida em outro registro. Não pode haver valores repetidos.");
+			ht.put("cpf","pode estar repetida em outro registro. Não pode haver valores repetidos.");
+			ht.put("rg","pode estar repetida em outro registro. Não pode haver valores repetidos.");
+			ht.put("email","pode estar repetida em outro registro. Não pode haver valores repetidos.");
 				
 			throw new FieldMsgValidationException(ht);			
 		}catch(FieldMsgValidationException ex){
@@ -427,15 +428,15 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 						if (cpf > 0)
 							ht
 									.put("cpf",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 						if (rg > 0)
 							ht
 									.put("rg",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 						if (email > 0)
 							ht
 									.put("email",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 
 						throw new FieldMsgValidationException(ht);
 					} else {
@@ -469,15 +470,15 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 						if (cpf > 0)
 							ht
 									.put("cpf",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 						if (rg > 0)
 							ht
 									.put("rg",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 						if (email > 0)
 							ht
 									.put("email",
-											"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+											"está repetida em outro registro. Não pode haver valores repetidos.");
 
 						throw new FieldMsgValidationException(ht);
 					} else {
@@ -1076,7 +1077,7 @@ public class PessoaServiceDAOHibernate extends GenericDAOHibernate implements
 					if (email > 0)
 						ht
 								.put("email",
-										"estï¿½ repetida em outro registro. Nï¿½o pode haver valores repetidos.");
+										"está repetida em outro registro. Não pode haver valores repetidos.");
 
 					throw new FieldMsgValidationException(ht);
 				} else {

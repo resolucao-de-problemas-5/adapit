@@ -36,7 +36,9 @@ import com.adapit.portal.services.ScheduleScheduledTrainingFilterType;
 import com.adapit.portal.services.StringQueryKind;
 import com.adapit.portal.services.local.LocalImagemService;
 import com.adapit.portal.services.local.LocalServicesUtility;
+import com.adapit.portal.ui.forms.imageform.ImageListForm;
 import com.adapit.portal.util.global.FilterResultSize;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 /**
@@ -45,7 +47,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  */
 
 public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate implements
-		ComercialSolutionService {
+		ComercialSolutionService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -59,7 +61,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna todos os comercialSolutions em que a descriï¿½ï¿½o contenha o valor passado
+	 * Retorna todos os comercialSolutions em que a descrição contenha o valor passado
 	 * como argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -83,7 +85,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna o comercialSolution em que a descriï¿½ï¿½o inicia pelo valor passado como
+	 * Retorna o comercialSolution em que a descrição inicia pelo valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -107,7 +109,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna o comercialSolution em que a descriï¿½ï¿½o termina pelo valor passado como
+	 * Retorna o comercialSolution em que a descrição termina pelo valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -131,7 +133,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna o comercialSolution em que a descriï¿½ï¿½o ï¿½ igual ao valor passado como
+	 * Retorna o comercialSolution em que a descrição é igual ao valor passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -155,7 +157,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna todos os comercialSolutions em que a categoria ï¿½ igual ao id passado como
+	 * Retorna todos os comercialSolutions em que a categoria é igual ao id passado como
 	 * argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -178,7 +180,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna todos os comercialSolutions em que a avaliaï¿½ï¿½o esteja na faixa de valores
+	 * Retorna todos os comercialSolutions em que a avaliação esteja na faixa de valores
 	 * passados como argumento
 	 */
 	@SuppressWarnings("unchecked")
@@ -207,7 +209,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna todos os comercialSolutions jï¿½ loteados
+	 * Retorna todos os comercialSolutions já loteados
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -228,7 +230,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna todos os comercialSolutions nï¿½o loteados
+	 * Retorna todos os comercialSolutions não loteados
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1344,7 +1346,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 			try {
 				s.beginTransaction();
 				if(solution.getId()>0){
-					System.out.println("Salvando alteraï¿½ï¿½es em " + solution.getId() + " " + solution.getClass().getSimpleName());
+					System.out.println("Salvando alterações em " + solution.getId() + " " + solution.getClass().getSimpleName());
 					ComercialSolution cm = (ComercialSolution)
 					s.createQuery("select cm from "+solution.getClass().getSimpleName()+" cm where cm.id="+solution.getId()).uniqueResult();
 					
@@ -1384,7 +1386,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Remove o solution que contï¿½m o identificador passado como argumento
+	 * Remove o solution que contém o identificador passado como argumento
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1408,7 +1410,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Remove todos os solutions que pertenï¿½am a um lote
+	 * Remove todos os solutions que pertençam a um lote
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1482,7 +1484,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 
 	/**
-	 * Retorna um solution pela descriï¿½ï¿½o
+	 * Retorna um solution pela descrição
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1506,7 +1508,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 	
 	/**
-	 * Retorna um solution e tambï¿½m as propriedades em cascata
+	 * Retorna um solution e também as propriedades em cascata
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1600,7 +1602,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	
 	
 	/**
-	 * Retorna um solution e tambï¿½m as propriedades em cascata
+	 * Retorna um solution e também as propriedades em cascata
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1855,7 +1857,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 
 	
 	/**
-	 * Retorna um solution e tambï¿½m as propriedades em cascata
+	 * Retorna um solution e também as propriedades em cascata
 	 */
 	@Override
 	public TrainingSolution mergeCascadingProperties(TrainingSolution solution, boolean images, boolean categoria, boolean comercialSolutionItem) throws Exception {
@@ -1883,7 +1885,7 @@ public class ComercialSolutionServiceDAOHibernate extends GenericDAOHibernate im
 	}
 	
 	/**
-	 * Retorna um solution e tambï¿½m as propriedades em cascata
+	 * Retorna um solution e também as propriedades em cascata
 	 */
 	@Override
 	public ComercialSolution mergeCascadingProperties(ComercialSolution solution, boolean images, boolean categoria) throws Exception {

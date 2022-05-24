@@ -7,9 +7,6 @@
  * the Source Creation and Management node. Right-click the template and choose
  * Open. You can then make changes to the template in the Source Editor.
  */
-
-package com.workcase.hibernate.tools;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -191,10 +188,10 @@ public class HibernateUtil {
     }
     
     /**
-     * Método responsável por buscar um Coleção de objetos baseado na query recebida por parametro, possui trasação interna por isso não pode
-     * ser chamado dentro de outras transações.
+     * M�todo respons�vel por buscar um Cole��o de objetos baseado na query recebida por parametro, possui trasa��o interna por isso n�o pode
+     * ser chamado dentro de outras transa��es.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criação..:</b> 07/12/2005 14:20:06</p>
+     * <p><b>Cria��o..:</b> 07/12/2005 14:20:06</p>
      * @return Collection
      */
     public Collection find(  String hql ){

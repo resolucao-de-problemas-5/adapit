@@ -1,6 +1,6 @@
 package com.adapit.portal.entidades;
 
-// import java.io.Serializable;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="Publications")
-public class Publication extends Paper{
+public class Publication extends Paper implements Serializable{
 
 	private static final long serialVersionUID = 976357436834688643L;
 	

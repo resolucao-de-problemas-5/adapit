@@ -1,6 +1,6 @@
 package com.adapit.portal.entidades;
 
-// import java.io.Serializable;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,13 +17,13 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-// @SuppressWarnings({"serial","unchecked","unused","static-access"})
+@SuppressWarnings({"serial","unchecked","unused","static-access"})
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @OnDelete(action=OnDeleteAction.CASCADE)
 @Table(name="TrainingTutorPerson")
-public class Instrutor extends Participante{
+public class Instrutor extends Participante implements Serializable{
 
 	private static final long serialVersionUID = 9982743692476473L;
 	

@@ -27,7 +27,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  */
 @SuppressWarnings({"unchecked"})
 public class FileServiceDAOHibernate extends GenericDAOHibernate implements
-		FileService {
+		FileService, GenericDAO {
 	
 	private static final  String fileEntityName = Arquivo.class.getSimpleName();
 

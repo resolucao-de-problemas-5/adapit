@@ -6,7 +6,7 @@ import com.adapit.portal.entidades.ContatoProcessoTreinamento;
 import com.adapit.portal.entidades.ContatoTreinamento;
 import com.adapit.portal.entidades.Endereco;
 import com.adapit.portal.entidades.TurmaTreinamento;
-// @SuppressWarnings({"serial","unchecked","unused","static-access"})
+@SuppressWarnings({"serial","unchecked","unused","static-access"})
 public interface ContatoTreinamentoService {
 
 	public List<ContatoProcessoTreinamento> listAllProcessos(int firstResult) throws Exception;

@@ -8,7 +8,7 @@ import com.adapit.portal.entidades.ComercialSolution;
 import com.adapit.portal.entidades.News;
 import com.adapit.portal.entidades.Update;
 import com.adapit.portal.entidades.Usuario;
-// import com.adapit.portal.services.mail.GenericEmailSender;
+import com.adapit.portal.services.mail.GenericEmailSender;
 import com.adapit.portal.services.mail.UpdateVersionMailSender;
 import com.workcase.gui.utils.SwingContext;
 

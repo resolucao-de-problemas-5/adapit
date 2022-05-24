@@ -17,6 +17,7 @@ import com.adapit.portal.entidades.Publication;
 import com.adapit.portal.services.PublicationService;
 import com.adapit.portal.services.StringQueryKind;
 import com.adapit.portal.services.local.LocalServicesUtility;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -27,7 +28,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  */
 
 public class PublicationServiceDAOHibernate extends GenericDAOHibernate implements
-		PublicationService {
+		PublicationService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -37,7 +38,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Retorna todos os publications em que a descriï¿½ï¿½o contenha o valor passado
+	 * Retorna todos os publications em que a descrição contenha o valor passado
 	 * como argumento
 	 */
 	@Override
@@ -61,7 +62,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Retorna o publication em que a descriï¿½ï¿½o inicia pelo valor passado como
+	 * Retorna o publication em que a descrição inicia pelo valor passado como
 	 * argumento
 	 */
 	@Override
@@ -85,7 +86,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Retorna o publication em que a descriï¿½ï¿½o termina pelo valor passado como
+	 * Retorna o publication em que a descrição termina pelo valor passado como
 	 * argumento
 	 */
 	@Override
@@ -109,7 +110,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Retorna o publication em que a descriï¿½ï¿½o ï¿½ igual ao valor passado como
+	 * Retorna o publication em que a descrição é igual ao valor passado como
 	 * argumento
 	 */
 	@Override
@@ -273,7 +274,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Remove o publication que contï¿½m o identificador passado como argumento
+	 * Remove o publication que contém o identificador passado como argumento
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -373,7 +374,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 						//System.out.println(img.getRotulo());
 						arr.add(img);
 					}
-				}//else System.out.println("ids ï¿½ nulo");
+				}//else System.out.println("ids é nulo");
 				//return s.createQuery(hql.toString()).list();
 				return arr;
 			} catch (Exception e) {
@@ -390,7 +391,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 
 	/**
-	 * Retorna um publication pela descriï¿½ï¿½o
+	 * Retorna um publication pela descrição
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -414,7 +415,7 @@ public class PublicationServiceDAOHibernate extends GenericDAOHibernate implemen
 	}
 	
 	/**
-	 * Retorna um publication e tambï¿½m as propriedades em cascata
+	 * Retorna um publication e também as propriedades em cascata
 	 */
 	@SuppressWarnings("unchecked")
 	public Publication getPublicationByIdCascadingProperties(java.io.Serializable id, boolean images) throws Exception {

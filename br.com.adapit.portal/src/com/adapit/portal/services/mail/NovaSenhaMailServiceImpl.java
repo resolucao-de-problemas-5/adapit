@@ -14,51 +14,52 @@ public class NovaSenhaMailServiceImpl implements NovaSenhaMailService {
 	private MailSender mailSender;
 	private SimpleMailMessage message;
 	private LocalServicesUtility service = LocalServicesUtility.getInstance();
-
+	 
 	public boolean changePasswordByEmail(String email) throws Exception {
-		Usuario usuario = null;
+		Usuario usuario=null;
 		try {
 			Session s = service.openSession();
 			usuario = (Usuario) s.createQuery("select user from Usuario user where user.dadosPessoais.email=:email")
-					.setParameter("email", email)
-					.uniqueResult();
-			System.out.println("Usuario nao encontrado para o email informado!");
-			if (usuario == null)
-				return false;
-
+			.setParameter("email", email)
+			.uniqueResult();
+			System.out.println("Usuário não encontrado para o email informado!");
+			if (usuario == null) return false;
+			
+			
 			SimpleMailMessage msg = new SimpleMailMessage(this.message);
 			msg.setTo(usuario.getDadosPessoais().getEmail());
-			String text = "";
-			text += "Caro(a) " + usuario.getDadosPessoais().getNome();
-			if (usuario.getDadosPessoais().getTipoPessoa() instanceof Fisica) {
-				text += " " + ((Fisica) usuario.getDadosPessoais().getTipoPessoa()).getSobrenome();
+			String text="";
+			text+="Caro(a) " + usuario.getDadosPessoais().getNome();
+			if (usuario.getDadosPessoais().getTipoPessoa() instanceof Fisica){
+				text+=" "+((Fisica)usuario.getDadosPessoais().getTipoPessoa()).getSobrenome();
 			}
-			text += ", voce acaba de requisitar uma nova senha no sistema da Adapit Solucoes em TI!";
-			text += '\n' + "" + "Esta senha foi gerada. Seus novos dados sao mostrados abaixo: " + '\n';
-			text += '\n' + "" + ".............................................." + '\n';
-			text += '\n' + "" + "      Seu login ï¿½: " + usuario.getLogin();
+			text+=", você acaba de requisitar uma nova senha no sistema da Adapit Soluções em TI!";
+			text+='\n'+""+"Esta senha foi gerada. Seus novos dados são mostrados abaixo: "+'\n';
+			text+='\n'+""+".............................................."+'\n';
+			text+='\n'+""+"      Seu login é: " + usuario.getLogin();
 			String senha = IdGenerator.getInstance().generateId(8);
-			text += '\n' + "" + "      Sua nova senha ï¿½: " + senha;
-			text += '\n' + "" + ".............................................." + '\n';
-
+			text+='\n'+""+"      Sua nova senha é: " + senha;
+			text+='\n'+""+".............................................."+'\n';
+			
 			s.createQuery("update Usuario user set user.password=:pwd where user.login=:login")
-					.setParameter("pwd", Usuario.encrypt(senha))
-					.setParameter("login", usuario.getLogin())
-					.executeUpdate();
+			.setParameter("pwd",Usuario.encript(senha))
+			.setParameter("login",usuario.getLogin())
+			.executeUpdate();
 			System.out.println("Senha normal " + senha);
-			System.out.println("Senha encriptografada " + Usuario.encrypt(senha));
+			System.out.println("Senha encriptografada " + Usuario.encript(senha));
 			msg.setText(text);
-			try {
+			try{
 				mailSender.send(msg);
-			} catch (MailException ex) {
+			}
+			catch(MailException ex) {
 				System.err.println(ex.getMessage());
 			}
 			return true;
-
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
+		}finally{
+			
 		}
 		return false;
 	}

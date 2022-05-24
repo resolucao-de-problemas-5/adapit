@@ -63,7 +63,7 @@ public class UsuarioListForm extends JPanel {
 	@SuppressWarnings("unused")
 	private SwingBinder binder = new SwingBinder();
 
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings( { "unchecked", "unused" })
 	private Map hashComps = new java.util.HashMap();
 
 	private JLabel nomePessoaTextFieldLabel;
@@ -135,17 +135,17 @@ public class UsuarioListForm extends JPanel {
 		setSize(new java.awt.Dimension(633, 503));
 		setLocation(new java.awt.Point(0, 0));
 		setLayout(new BorderLayout());
-		add(getTopPanel(), BorderLayout.NORTH);
-		add(getBasePanel(), BorderLayout.CENTER);
+		add(getTopPanel(),BorderLayout.NORTH);
+		add(getBasePanel(),BorderLayout.CENTER);
 		add(getCadastreUsuarioButtonsPanel(), BorderLayout.SOUTH);
-
+		
 		ativarByNameSearch(false);
 	}
-
+	
 	private JPanel topPanel;
-
-	private JPanel getTopPanel() {
-		if (topPanel == null) {
+	
+	private JPanel getTopPanel(){
+		if(topPanel == null){
 			topPanel = new JPanel();
 			topPanel.setLayout(null);
 			topPanel.add(getSearchUsuarioButton(), null);
@@ -156,7 +156,7 @@ public class UsuarioListForm extends JPanel {
 			topPanel.add(getResultNumberPanel());
 			topPanel.add(getPesquisaVancadaButton(), null);
 			topPanel.add(getFiltersPanel());
-			topPanel.setPreferredSize(new Dimension(625, 165));
+			topPanel.setPreferredSize(new Dimension(625,165));
 		}
 		return topPanel;
 	}
@@ -170,9 +170,9 @@ public class UsuarioListForm extends JPanel {
 			filtersPanel.add(getFilterFieldAndSearchButtonPanel(),
 					"Filtrar por Nome e Login");
 			filtersPanel.add(getUserRulefilterPanel(),
-					"Pelo Tipo de Acesso do Usuario");
+					"Pelo Tipo de Acesso do Usuário");
 			filtersPanel.add(getActivePanel(),
-					"Pelo Estado da Conta do Usuario");
+					"Pelo Estado da Conta do Usuário");
 		}
 		return filtersPanel;
 	}
@@ -259,8 +259,7 @@ public class UsuarioListForm extends JPanel {
 		if (nomePessoaCheckBox == null) {
 			nomePessoaCheckBox = new JCheckBox(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Filtrarpelonome"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Filtrarpelonome"));
 			nomePessoaCheckBox.setSize(new java.awt.Dimension(120, 20));
 			nomePessoaCheckBox.setLocation(new java.awt.Point(310, 0));
 			nomePessoaCheckBox.addItemListener(new ItemListener() {
@@ -295,7 +294,7 @@ public class UsuarioListForm extends JPanel {
 		if (byLoginRadioButton == null) {
 			byLoginRadioButton = new JRadioButton(
 					messages
-							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.DeUsuario"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.DeUsuário"));
 			byLoginRadioButton.setSize(new java.awt.Dimension(80, 20));
 			byLoginRadioButton.setLocation(new java.awt.Point(510, 0));
 			return byLoginRadioButton;
@@ -434,8 +433,7 @@ public class UsuarioListForm extends JPanel {
 		if (userRuleComboBoxLabel == null) {
 			userRuleComboBoxLabel = new JLabel(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Cliente/Funcionï¿½rio"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Cliente/Funcionário"));
 			userRuleComboBoxLabel.setSize(new java.awt.Dimension(110, 20));
 			userRuleComboBoxLabel.setLocation(new Point(10, 40));
 			userRuleComboBoxLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -459,7 +457,7 @@ public class UsuarioListForm extends JPanel {
 
 		if (porFuncaoCheckBox == null) {
 			porFuncaoCheckBox = new JCheckBox(
-					"Listar pela funï¿½ï¿½o execida no sistema");
+					"Listar pela função execida no sistema");
 			porFuncaoCheckBox.setSize(new java.awt.Dimension(300, 20));
 			porFuncaoCheckBox.setLocation(new Point(10, 16));
 			porFuncaoCheckBox.addItemListener(new ItemListener() {
@@ -500,8 +498,7 @@ public class UsuarioListForm extends JPanel {
 			ativosInativosRadioButton = new JRadioButton(
 					"Listar os "
 							+ messages
-									.getMessage(
-											"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.AtivoseInativos"));
+									.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.AtivoseInativos"));
 			ativosInativosRadioButton.setSize(new java.awt.Dimension(150, 20));
 			ativosInativosRadioButton.setLocation(new java.awt.Point(0, 0));
 			ativosInativosRadioButton.setSelected(true);
@@ -578,9 +575,9 @@ public class UsuarioListForm extends JPanel {
 			basePanel.setSize(new Dimension(610, 252));
 			basePanel.setLocation(new Point(5, 155));
 			basePanel.add(getPessoaDataTableScrollPane(), "Dados de Pessoa");
-			basePanel.add(getUserTableScrollPane(), "Dados de Usuario");
+			basePanel.add(getUserTableScrollPane(), "Dados de Usuário");
 			basePanel.add(getPfTableScrollPane(), "Dados de Pessoa Fisica");
-			basePanel.add(getPjTableScrollPane(), "Dados de Pessoa Jurï¿½dica");
+			basePanel.add(getPjTableScrollPane(), "Dados de Pessoa Jurídica");
 		}
 		return basePanel;
 	}
@@ -753,7 +750,7 @@ public class UsuarioListForm extends JPanel {
 								if (u.getUserCadastreType().equals(
 										UserCadastreType.Administrador_do_sistema)
 										|| u.getUserCadastreType().equals(
-												UserCadastreType.Funcionario)) {
+												UserCadastreType.Funcionário)) {
 									AdapitVirtualFrame.getInstance()
 											.editarFuncionario(u);
 								} else if (u.getUserCadastreType().equals(
@@ -808,7 +805,7 @@ public class UsuarioListForm extends JPanel {
 						int resp = JOptionPane.showConfirmDialog(
 								UsuarioListForm.this,
 								"Apagar os usuarios selecionados?",
-								"Remover usuario", JOptionPane.YES_NO_OPTION);
+								"Remover usuário", JOptionPane.YES_NO_OPTION);
 						if (resp == JOptionPane.YES_OPTION) {
 							RemoteUserService.getInstance().remove(users);
 						}
@@ -859,7 +856,7 @@ public class UsuarioListForm extends JPanel {
 	UserCadastreType ur = null;
 	UserDataFilterType un = null;
 
-	public void pesquisar() throws Exception {
+	public void pesquisar() throws Exception{
 
 		if (getPorFuncaoCheckBox().isSelected())
 			ur = (UserCadastreType) getUserRuleComboBox().getSelectedItem();
@@ -890,13 +887,11 @@ public class UsuarioListForm extends JPanel {
 	private void listar(int firstResult) {
 		List userList = RemoteUserService.getInstance().listAccordingTo(desc,
 				byDescKind, un, ur, byActive, firstResult);
-		/*
-		 * try {
-		 * System.out.println(userList.size());
-		 * } catch (Exception e) {
-		 * e.printStackTrace();
-		 * }
-		 */
+		/*try {
+			System.out.println(userList.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
 		updateTable(userList);
 	}
 
@@ -907,7 +902,7 @@ public class UsuarioListForm extends JPanel {
 	int secBegin = 0;
 	int secCount;
 
-	private void criarListar() throws Exception {
+	private void criarListar() throws Exception{
 
 		total = countFirst;
 		final int number = total / max;
@@ -915,7 +910,7 @@ public class UsuarioListForm extends JPanel {
 		secBegin = 0;
 		secCount = 0;
 		reportResultsLabel.setText("Encontrados " + total
-				+ " itens. Mostrando 1 atï¿½ " + max);
+				+ " itens. Mostrando 1 até " + max);
 		getResultNumberPanel();
 		changeResultNumberPanel();
 
@@ -1011,7 +1006,7 @@ public class UsuarioListForm extends JPanel {
 			specializedFilterButtonsPanel = new JPanel();
 			specializedFilterButtonsPanel.setBorder(javax.swing.BorderFactory
 					.createTitledBorder(javax.swing.BorderFactory
-							.createTitledBorder("Listar os usuarios que:")));
+							.createTitledBorder("Listar os usuários que:")));
 			specializedFilterButtonsPanel.setSize(new java.awt.Dimension(586,
 					84));
 			specializedFilterButtonsPanel.setLocation(new java.awt.Point(15,
@@ -1030,8 +1025,7 @@ public class UsuarioListForm extends JPanel {
 		if (listarByContasAPagarButton == null) {
 			listarByContasAPagarButton = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Possuemcontasapagar"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Possuemcontasapagar"));
 			listarByContasAPagarButton.setSize(new java.awt.Dimension(150, 20));
 			listarByContasAPagarButton.setLocation(new java.awt.Point(0, 0));
 		}
@@ -1043,8 +1037,7 @@ public class UsuarioListForm extends JPanel {
 		if (listarByDeactivatedButton == null) {
 			listarByDeactivatedButton = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Jï¿½foramdesativados"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Jáforamdesativados"));
 			listarByDeactivatedButton.setSize(new java.awt.Dimension(150, 20));
 			listarByDeactivatedButton.setLocation(new java.awt.Point(0, 20));
 		}
@@ -1056,8 +1049,7 @@ public class UsuarioListForm extends JPanel {
 		if (listarByItensPostadosVendaDiretaButton == null) {
 			listarByItensPostadosVendaDiretaButton = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Jï¿½postaramitensparavendadireta"));
+							.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Jápostaramitensparavendadireta"));
 			listarByItensPostadosVendaDiretaButton
 					.setSize(new java.awt.Dimension(150, 20));
 			listarByItensPostadosVendaDiretaButton
@@ -1084,7 +1076,7 @@ public class UsuarioListForm extends JPanel {
 		if (pesquisaVancadaButton == null) {
 			pesquisaVancadaButton = new JButton();
 			pesquisaVancadaButton.setBounds(new Rectangle(5, 131, 176, 24));
-			pesquisaVancadaButton.setText("Pesquisa Avanï¿½ada");
+			pesquisaVancadaButton.setText("Pesquisa Avançada");
 			pesquisaVancadaButton
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1094,6 +1086,7 @@ public class UsuarioListForm extends JPanel {
 		}
 		return pesquisaVancadaButton;
 	}
+
 
 	@SuppressWarnings("unused")
 	private static Icon getIcon(String name) {
@@ -1186,22 +1179,19 @@ public class UsuarioListForm extends JPanel {
 					.addPropertyChangeListener(new PessoaDataTablePropertyChangeListener());
 		}
 
-		/*
-		 * @SuppressWarnings("unchecked")
-		 * public PessoaDataTable(List elements) {
-		 * super();
-		 * UsuarioListForm.this.elements = elements;
-		 * this.setModel(new PessoaDataTableModel(null));
-		 * this
-		 * .addPropertyChangeListener(new PessoaDataTablePropertyChangeListener());
-		 * }
-		 */
+		/*@SuppressWarnings("unchecked")
+		public PessoaDataTable(List elements) {
+			super();
+			UsuarioListForm.this.elements = elements;
+			this.setModel(new PessoaDataTableModel(null));
+			this
+					.addPropertyChangeListener(new PessoaDataTablePropertyChangeListener());
+		}*/
 
-		/*
-		 * public void setDefineCellRenderers() {
-		 * 
-		 * }
-		 */
+		/*public void setDefineCellRenderers() {
+
+		}
+*/
 		@SuppressWarnings("unchecked")
 		public void updateTable() {
 			usuarios.clear();
@@ -1212,8 +1202,8 @@ public class UsuarioListForm extends JPanel {
 				int i = 0;
 				while (it.hasNext()) {
 					Object obj = it.next();
-					if (!(obj instanceof Usuario))
-						System.out.println(i + " nao ï¿½ instï¿½ncia de usuario " + obj.getClass().getName());
+					if(!(obj instanceof Usuario))
+						System.out.println(i+" não é instância de usuario " + obj.getClass().getName());
 					if (obj instanceof Usuario) {
 						try {
 							Usuario usuario = (Usuario) obj;
@@ -1234,12 +1224,12 @@ public class UsuarioListForm extends JPanel {
 												.getDadosPessoais().getNome()
 												+ " " + ((Juridica) tp)
 														.getRazaoSocial();
-										values[i][3] = "Pessoa Jurï¿½dica";
+										values[i][3] = "Pessoa Jurídica";
 									} else {
 										values[i][0] = usuario
 												.getDadosPessoais().getNome()
 												+ " " + ((Fisica) tp).getSobrenome();
-										values[i][3] = "Pessoa Fï¿½sica";
+										values[i][3] = "Pessoa Física";
 									}
 								}
 							} catch (Exception e) {
@@ -1251,7 +1241,7 @@ public class UsuarioListForm extends JPanel {
 							e.printStackTrace();
 						}
 					}
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new PessoaDataTableModel(values));
 				updateUI();
 			} else {
@@ -1293,17 +1283,13 @@ public class UsuarioListForm extends JPanel {
 						values,
 						new String[] {
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Nome"),
+										.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Nome"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Email"),
+										.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Email"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Telefone"),
+										.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.Telefone"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.TipodePessoa"),
+										.getMessage("com.adapit.portal.ui.forms.manutencaousuario.UsuarioListForm.TipodePessoa"),
 								"" });
 			}
 
@@ -1356,7 +1342,7 @@ public class UsuarioListForm extends JPanel {
 							e.printStackTrace();
 						}
 					}
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new UserPessoaFisicaTableModel(values));
 				updateUI();
 			} else {
@@ -1449,8 +1435,8 @@ public class UsuarioListForm extends JPanel {
 
 			public UserPessoaJuridicaTableModel(Object[][] values) {
 
-				super(values, new String[] { "Razao Social", "CNPJ",
-						"Inscriï¿½ï¿½o Estadual", "Ramo de Atividade", "" });
+				super(values, new String[] { "Razão Social", "CNPJ",
+						"Inscrição Estadual", "Ramo de Atividade", "" });
 			}
 
 			@SuppressWarnings("unchecked")
@@ -1540,7 +1526,7 @@ public class UsuarioListForm extends JPanel {
 		}
 
 	}
-
+	
 	public void listar(List userList) {
 		updateTable(userList);
 	}

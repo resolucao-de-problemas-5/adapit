@@ -20,8 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import com.workcase.gui.utils.ResourceMessage;
 import com.workcase.gui.utils.SpringResourceMessage;
 import com.workcase.gui.utils.SwingBinder;
-
-@SuppressWarnings({ "serial", "unchecked" })
+@SuppressWarnings({"serial","unchecked"})
 public class AgendaListaProjetoDialog extends JDialog {
 
 	private ResourceMessage messages = SpringResourceMessage.getInstance();
@@ -122,7 +121,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 
 	public AgendaListaProjetoDialog() {
 		super();
-		// super(LeilaoVirtualFrame.getInstance());
+		//super(LeilaoVirtualFrame.getInstance());
 		setTitle(messages
 				.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.AgendaListaLoteDialog"));
 		setModal(true);
@@ -167,7 +166,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 		if (numeroLoteComboBoxLabel == null) {
 			numeroLoteComboBoxLabel = new JLabel(
 					messages
-							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NumerodoLote"));
+							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NúmerodoLote"));
 			numeroLoteComboBoxLabel.setSize(new java.awt.Dimension(100, 20));
 			numeroLoteComboBoxLabel.setLocation(new java.awt.Point(0, 0));
 			numeroLoteComboBoxLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -191,7 +190,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 		if (dataLeilaoComboBoxLabel == null) {
 			dataLeilaoComboBoxLabel = new JLabel(
 					messages
-							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.DatadoLeilao"));
+							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.DatadoLeilão"));
 			dataLeilaoComboBoxLabel.setSize(new java.awt.Dimension(100, 20));
 			dataLeilaoComboBoxLabel.setLocation(new java.awt.Point(210, 0));
 			dataLeilaoComboBoxLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -209,7 +208,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 			tabbedPane.add(getBasePanel(), "Lotes e Datas");
 			tabbedPane.add(getAgendasLancesPanel(), "Lotes e Lances");
 			tabbedPane.add(getHistoricoLancesCleintesPanel(),
-					"Histï¿½rico da Participacao de Clientes em Leiloes");
+					"Histórico da Participação de Clientes em Leilões");
 		}
 		return tabbedPane;
 	}
@@ -575,8 +574,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 		if (verHistoricoClienteButton == null) {
 			verHistoricoClienteButton = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.VerHistï¿½ricodoCliente"));
+							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.VerHistóricodoCliente"));
 			verHistoricoClienteButton.setSize(new java.awt.Dimension(150, 24));
 			verHistoricoClienteButton.setLocation(new java.awt.Point(190, 0));
 		}
@@ -700,8 +698,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 		if (listarPrefCliente == null) {
 			listarPrefCliente = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ListarasPreferenciasdoCliente"));
+							.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ListarasPreferênciasdoCliente"));
 			listarPrefCliente.setSize(new java.awt.Dimension(150, 20));
 			listarPrefCliente.setLocation(new java.awt.Point(0, 3));
 		}
@@ -713,7 +710,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 		new java.lang.Thread(new Runnable() {
 			public void run() {
 				AgendaListaProjetoDialog gui = new AgendaListaProjetoDialog();
-				// gui.setDefaultCloseOperation(javax.swing.JDialog.EXIT_ON_CLOSE);
+				//gui.setDefaultCloseOperation(javax.swing.JDialog.EXIT_ON_CLOSE);
 				gui.setVisible(true);
 			}
 		}).run();
@@ -738,7 +735,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 			e.printStackTrace();
 		} catch (java.lang.Exception e) {
 			e.printStackTrace();
-		} // end of catch block
+		}// end of catch block
 		return null;
 	}
 
@@ -786,9 +783,9 @@ public class AgendaListaProjetoDialog extends JDialog {
 				int ne = elements.size();
 				java.util.Iterator it = elements.iterator();
 				java.lang.Object values[][] = new java.lang.Object[ne][5];
-				// int i = 0;
+				//int i = 0;
 				while (it.hasNext()) {
-					// Object obj = it.next();
+					//Object obj = it.next();
 					/*
 					 * if (obj instanceof
 					 * com.adapit.portal.entidades.AgendaLote){
@@ -796,7 +793,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 					 * agendaLote=(com.adapit.portal.entidades.AgendaLote) obj;
 					 * i++; }
 					 */
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new UsuarioHistoricoLancezTableModel(values));
 				updateUI();
 			} else {
@@ -812,11 +809,11 @@ public class AgendaListaProjetoDialog extends JDialog {
 
 				AgendaListaProjetoDialog.UsuarioHistoricoLancezTable jt = (AgendaListaProjetoDialog.UsuarioHistoricoLancezTable) e
 						.getSource();
-				// int col = jt.getSelectedColumn();
+				//int col = jt.getSelectedColumn();
 				int row = jt.getSelectedRow();
 				if (jt.getElements() != null && row > -1)
 					try {
-						// java.lang.Object obj = jt.getElements().get(row);
+						//java.lang.Object obj = jt.getElements().get(row);
 						/*
 						 * if (obj instanceof
 						 * com.adapit.portal.entidades.AgendaLote){
@@ -846,20 +843,15 @@ public class AgendaListaProjetoDialog extends JDialog {
 						values,
 						new String[] {
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Leilao"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Leilão"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NumerodoLote"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NúmerodoLote"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Inicio"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Início"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Ganhou"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Ganhou"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ï¿½ltimoLance") });
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ÚltimoLance") });
 			}
 
 			public Class getColumnClass(int columnIndex) {
@@ -920,9 +912,9 @@ public class AgendaListaProjetoDialog extends JDialog {
 				int ne = elements.size();
 				java.util.Iterator it = elements.iterator();
 				java.lang.Object values[][] = new java.lang.Object[ne][4];
-				// int i = 0;
+				//int i = 0;
 				while (it.hasNext()) {
-					// Object obj = it.next();
+					//Object obj = it.next();
 					/*
 					 * if (obj instanceof
 					 * com.adapit.portal.entidades.AgendaLote){
@@ -933,7 +925,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 					 * values[i][8]=agendaLote.getInicio();
 					 * values[i][9]=agendaLote.getStatus(); i++; }
 					 */
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new AgendasTableModel(values));
 				updateUI();
 			} else {
@@ -949,11 +941,11 @@ public class AgendaListaProjetoDialog extends JDialog {
 
 				AgendaListaProjetoDialog.AgendasTable jt = (AgendaListaProjetoDialog.AgendasTable) e
 						.getSource();
-				// int col = jt.getSelectedColumn();
+				//int col = jt.getSelectedColumn();
 				int row = jt.getSelectedRow();
 				if (jt.getElements() != null && row > -1)
 					try {
-						// java.lang.Object obj = jt.getElements().get(row);
+						//java.lang.Object obj = jt.getElements().get(row);
 						/*
 						 * if (obj instanceof
 						 * com.adapit.portal.entidades.AgendaLote){
@@ -989,17 +981,13 @@ public class AgendaListaProjetoDialog extends JDialog {
 						values,
 						new String[] {
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.InicioPrevisto"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.InícioPrevisto"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.TerminoPrevisto"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.TérminoPrevisto"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Inicio"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Início"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Estado") });
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Estado") });
 			}
 
 			public Class getColumnClass(int columnIndex) {
@@ -1060,9 +1048,9 @@ public class AgendaListaProjetoDialog extends JDialog {
 				int ne = elements.size();
 				java.util.Iterator it = elements.iterator();
 				java.lang.Object values[][] = new java.lang.Object[ne][4];
-				// int i = 0;
+				//int i = 0;
 				while (it.hasNext()) {
-					// Object obj = it.next();
+					//Object obj = it.next();
 					/*
 					 * if (obj instanceof
 					 * com.adapit.portal.entidades.AgendaLote){
@@ -1070,7 +1058,7 @@ public class AgendaListaProjetoDialog extends JDialog {
 					 * agendaLote=(com.adapit.portal.entidades.AgendaLote) obj;
 					 * i++; }
 					 */
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new LancesTableModel(values));
 				updateUI();
 			} else {
@@ -1092,17 +1080,13 @@ public class AgendaListaProjetoDialog extends JDialog {
 						values,
 						new String[] {
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Numero"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Número"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NomedoCliente"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.NomedoCliente"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Hora(hhmmss)"),
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.Hora(hhmmss)"),
 								messages
-										.getMessage(
-												"com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ValordoLance") });
+										.getMessage("com.adapit.portal.ui.forms.baseleilao.AgendaListaLoteDialog.ValordoLance") });
 			}
 
 			public Class getColumnClass(int columnIndex) {
@@ -1124,11 +1108,11 @@ public class AgendaListaProjetoDialog extends JDialog {
 
 				AgendaListaProjetoDialog.LancesTable jt = (AgendaListaProjetoDialog.LancesTable) e
 						.getSource();
-				// int col = jt.getSelectedColumn();
+				//int col = jt.getSelectedColumn();
 				int row = jt.getSelectedRow();
 				if (jt.getElements() != null && row > -1)
 					try {
-						// java.lang.Object obj = jt.getElements().get(row);
+						//java.lang.Object obj = jt.getElements().get(row);
 						/*
 						 * if (obj instanceof
 						 * com.adapit.portal.entidades.AgendaLote){

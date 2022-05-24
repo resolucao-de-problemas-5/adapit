@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.adapit.portal.entidades.Categoria;
 import com.adapit.portal.services.CategoriaService;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -18,7 +19,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
 * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
 */
 
-public class CategoriaServiceDAOHibernate extends GenericDAOHibernate implements CategoriaService{
+public class CategoriaServiceDAOHibernate extends GenericDAOHibernate implements CategoriaService, GenericDAO{
 	
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;

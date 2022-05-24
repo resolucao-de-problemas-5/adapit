@@ -79,24 +79,24 @@ public class UsuarioFormController extends BaseFormController {
 			Session s = LocalServicesUtility.getInstance().openSession();
 			try {
 				s.beginTransaction();
-
-				usuario.setPassword(Usuario.encrypt(usuario.getPassword()));
-				usuario.setPasswordConf(Usuario.encrypt(usuario.getPassword()));
+				
+				usuario.setPassword(Usuario.encript(usuario.getPassword()));
+				usuario.setPasswordConf(Usuario.encript(usuario.getPassword()));
 				if (!usuario.isNewUser()) {
 					novo = true;
-					// Nao pode atulizar dados do usuario!!
-					// s.update(usuario);
+					//Não pode atulizar dados do usuário!!
+					//s.update(usuario);
 					s.update(endereco);
 					s.update(pessoa);
 					s.update(tipoPessoa);
 					s.update(preferencia);
 				} else {
 					endereco.setId(0);
-					s.persist(endereco);
-					s.persist(pessoa);
-					s.persist(tipoPessoa);
-					s.persist(usuario);
-					s.persist(preferencia);
+					s.persist(endereco);										
+					s.persist(pessoa);										
+					s.persist(tipoPessoa);					
+					s.persist(usuario);										
+					s.persist(preferencia);											
 				}
 
 				s.getTransaction().commit();
@@ -151,7 +151,7 @@ public class UsuarioFormController extends BaseFormController {
 		 * errors.addError(oe1); } else if (!isValidEndereco(request)){ //throw
 		 * errors; ObjectError oe1 = new ObjectError("form", new
 		 * String[]{"error"}, null,"errors.default"); errors.addError(oe1); }
-		 * }else{ System.out.println("Existem erros de formulario detectados na
+		 * }else{ System.out.println("Existem erros de formulário detectados na
 		 * classe base"); }
 		 */
 
@@ -201,7 +201,7 @@ public class UsuarioFormController extends BaseFormController {
 			}
 		} else {
 			System.out
-					.println("Existem erros de formulario detectados na classe base");
+					.println("Existem erros de formulário detectados na classe base");
 		}
 
 	}
@@ -209,7 +209,7 @@ public class UsuarioFormController extends BaseFormController {
 	protected boolean isValidUsuario(HttpServletRequest request,
 			Usuario usuario, BindException errors) throws Exception {
 		if (usuario.getPassword().equals(usuario.getPasswordConf())) {
-			System.out.println("Validando o usuario");
+			System.out.println("Validando o usuário");
 			if (!(usuario.getPassword().length() < 6 || usuario.getPassword()
 					.length() > 8)) {
 				if (usuario.isNewUser()) {
@@ -223,7 +223,7 @@ public class UsuarioFormController extends BaseFormController {
 						return false;
 					} else {
 						System.out
-								.println("Usuario nao existe e pode ser cadastrado");
+								.println("Usuario não existe e pode ser cadastrado");
 					}
 				} else
 					return true;
@@ -240,7 +240,7 @@ public class UsuarioFormController extends BaseFormController {
 				return false;
 			}
 		} else {
-			System.out.println("Senhas nao conferem");
+			System.out.println("Senhas não conferem");
 			if (!(usuario.getPassword().length() < 6 || usuario.getPassword()
 					.length() > 8)) {
 				ObjectError oe1 = new ObjectError("usuario",
@@ -286,7 +286,7 @@ public class UsuarioFormController extends BaseFormController {
 		// System.out.println("Usuario " + usuario.getLogin());
 
 		Map m = // super.referenceData(request,arg1,detectedErrors);
-				new HashMap();
+		new HashMap();
 
 		Hashtable ht = new Hashtable();
 		ArrayList<String> arr = new ArrayList();
@@ -419,7 +419,8 @@ public class UsuarioFormController extends BaseFormController {
 		tipoPessoa.setCpf(request.getParameter("cpf"));
 
 		tipoPessoa.setSobrenome(request.getParameter("sobrenome"));
-
+		
+		
 		org.springframework.validation.BindException errors = new org.springframework.validation.BindException(
 				tipoPessoa, "fisica");
 		getValidator().validate(tipoPessoa, errors);

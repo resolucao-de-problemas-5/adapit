@@ -17,6 +17,7 @@ import com.adapit.portal.entidades.News;
 import com.adapit.portal.services.NewsService;
 import com.adapit.portal.services.StringQueryKind;
 import com.adapit.portal.services.local.LocalServicesUtility;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -26,7 +27,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  */
 
 public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
-		NewsService {
+		NewsService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;
@@ -36,7 +37,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna todos os newss em que a descriï¿½ï¿½o contenha o valor passado
+	 * Retorna todos os newss em que a descrição contenha o valor passado
 	 * como argumento
 	 */
 	@Override
@@ -60,7 +61,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna o news em que a descriï¿½ï¿½o inicia pelo valor passado como
+	 * Retorna o news em que a descrição inicia pelo valor passado como
 	 * argumento
 	 */
 	@Override
@@ -84,7 +85,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna o news em que a descriï¿½ï¿½o termina pelo valor passado como
+	 * Retorna o news em que a descrição termina pelo valor passado como
 	 * argumento
 	 */
 	@Override
@@ -108,7 +109,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna o news em que a descriï¿½ï¿½o ï¿½ igual ao valor passado como
+	 * Retorna o news em que a descrição é igual ao valor passado como
 	 * argumento
 	 */
 	@Override
@@ -275,7 +276,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Remove o news que contï¿½m o identificador passado como argumento
+	 * Remove o news que contém o identificador passado como argumento
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -375,7 +376,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 						//System.out.println(img.getRotulo());
 						arr.add(img);
 					}
-				}//else System.out.println("ids ï¿½ nulo");
+				}//else System.out.println("ids é nulo");
 				//return s.createQuery(hql.toString()).list();
 				return arr;
 			} catch (Exception e) {
@@ -392,7 +393,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 
 	/**
-	 * Retorna um news pela descriï¿½ï¿½o
+	 * Retorna um news pela descrição
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -416,7 +417,7 @@ public class NewsServiceDAOHibernate extends GenericDAOHibernate implements
 	}
 	
 	/**
-	 * Retorna um news e tambï¿½m as propriedades em cascata
+	 * Retorna um news e também as propriedades em cascata
 	 */
 	@SuppressWarnings("unchecked")
 	public News getNewsByIdCascadingProperties(java.io.Serializable id, boolean images) throws Exception {

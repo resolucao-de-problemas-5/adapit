@@ -15,6 +15,7 @@ import com.adapit.portal.entidades.News;
 import com.adapit.portal.services.ImagemService;
 import com.adapit.portal.services.local.LocalServicesUtility;
 import com.adapit.portal.util.global.FilterResultSize;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 /**
@@ -22,7 +23,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
  */
 public class ImagemServiceDAOHibernate extends GenericDAOHibernate implements
-		ImagemService {
+		ImagemService, GenericDAO {
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;

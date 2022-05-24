@@ -1,5 +1,6 @@
 package com.adapit.portal.entidades;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -19,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Inheritance(strategy=InheritanceType.JOINED)
 @OnDelete(action=OnDeleteAction.CASCADE)
 @Table(name="LegalRepresentantPerson")
-public class RepresentanteLegal extends Participante{
+public class RepresentanteLegal extends Participante implements Serializable{
 
 	private static final long serialVersionUID = 23472458285245L;
 

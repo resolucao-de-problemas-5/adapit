@@ -26,7 +26,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
  * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
  */
 public class ContaServiceDAOHibernate extends GenericDAOHibernate implements 
-ContaService{
+ContaService, GenericDAO{
 
 	@SuppressWarnings("unused")
 	private SessionFactory sessionFactory;

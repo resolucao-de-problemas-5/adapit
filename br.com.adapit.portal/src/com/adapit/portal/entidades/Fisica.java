@@ -1,6 +1,6 @@
 package com.adapit.portal.entidades;
 
-// import java.io.Serializable;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,7 +20,7 @@ import org.hibernate.annotations.Index;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="FisicPersonData")
-public class Fisica extends TipoPessoa{
+public class Fisica extends TipoPessoa implements Serializable {
 
 	private static final long serialVersionUID = 923845677723647L;
 	

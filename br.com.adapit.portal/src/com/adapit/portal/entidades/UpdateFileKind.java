@@ -5,17 +5,17 @@ public enum UpdateFileKind {
 	
 	Apostila,
 	Slide,
-	Material_Didatico,
-	Help_manual_de_usuario,
+	Material_Didático,
+	Help_manual_de_usuário,
 	Tutorial,
 	
-	Documentacao_de_sistema,
-	Documentacao_de_escritorio,
+	Documentação_de_sistema,
+	Documentação_de_escritório,
 	Contrato_de_software,
 	Contrato_diversos,
 	
-	Versao_compactada_compilada_software,
-	Versao_compactada_fontes_software,
+	Versão_compactada_compilada_software,
+	Versão_compactada_fontes_software,
 	
 	Artigo
 	

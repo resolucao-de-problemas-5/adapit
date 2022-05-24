@@ -14,6 +14,7 @@ import com.adapit.portal.entidades.Usuario;
 import com.adapit.portal.services.ParticipanteService;
 import com.adapit.portal.services.validation.FieldMsgValidationException;
 import com.adapit.portal.services.validation.ValidationException;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -22,7 +23,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
 * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
 */
 
-public class ParticipanteServiceDAOHibernate extends GenericDAOHibernate implements ParticipanteService{
+public class ParticipanteServiceDAOHibernate extends GenericDAOHibernate implements ParticipanteService, GenericDAO{
 	
 	private SessionFactory sessionFactory;
 
@@ -40,7 +41,7 @@ public class ParticipanteServiceDAOHibernate extends GenericDAOHibernate impleme
 			
 			session.saveOrUpdate(participante);
 			if(newUser){
-				usuario.setPassword(Usuario.encrypt(usuario.getPassword()));
+				usuario.setPassword(Usuario.encript(usuario.getPassword()));
 				session.saveOrUpdate(usuario);
 			}else{
 				usuario = (Usuario) session.load(Usuario.class, usuario.getLogin());

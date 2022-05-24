@@ -18,7 +18,7 @@ public class AgendaTreinamentoDialog extends JDialog{
 	}
 
 	private void initialize(){
-		setTitle("Cadastro de Datas de Leil√µes por Lotes");
+		setTitle("Cadastro de Datas de Leilıes por Lotes");
 		setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new java.awt.BorderLayout());
 		setSize(new Dimension(580, 406));

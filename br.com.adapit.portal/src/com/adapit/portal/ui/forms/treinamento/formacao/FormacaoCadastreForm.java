@@ -69,7 +69,7 @@ import com.workcase.gui.utils.UIUtil;
 import com.workcase.gui.utils.Validate;
 import com.workcase.utils.Moeda;
 
-@SuppressWarnings({ "serial", "unchecked", "unused", "static-access" })
+@SuppressWarnings({"serial","unchecked","unused","static-access"})
 public class FormacaoCadastreForm extends JPanel {
 
 	private JPanel numeroLotePanel;
@@ -78,10 +78,10 @@ public class FormacaoCadastreForm extends JPanel {
 
 	private SwingBinder binder = new SwingBinder();
 
-	private FormacaoTreinamento formacao = new FormacaoTreinamento(); // @jve:decl-index=0:
+	private FormacaoTreinamento formacao = new FormacaoTreinamento();  //  @jve:decl-index=0:
 
 	@SuppressWarnings("unchecked")
-	private Map hashComps = new java.util.HashMap(); // @jve:decl-index=0:
+	private Map hashComps = new java.util.HashMap();  //  @jve:decl-index=0:
 
 	private boolean processFocus = true;
 
@@ -129,12 +129,12 @@ public class FormacaoCadastreForm extends JPanel {
 		initialize();
 	}
 
-	private void initialize() {
+	private void initialize() {		
 		setLayout(null);
 		add(getNumeroLotePanel());
 		add(getCadastramentoTabbedPane());
 		add(getButtonsPanel());
-		this.setBounds(new Rectangle(0, 0, 660, 599));
+		this.setBounds(new Rectangle(0, 0, 660, 599));		
 		this.add(getCodigoLabel(), null);
 
 		add(this.getErrorPanel());
@@ -150,70 +150,69 @@ public class FormacaoCadastreForm extends JPanel {
 			numeroLotePanel.setLocation(new Point(15, 30));
 			numeroLotePanel.setLayout(null);
 			numeroLotePanel.add(getCodigoComboBox());
-			numeroLotePanel.add(getRefreshLotesButton(), null);
+			numeroLotePanel.add(getRefreshLotesButton(),null);
 			numeroLotePanel.add(getEditarLoteButton(), null);
 		}
 		return numeroLotePanel;
 	}
+	
+	private Hashtable<String,FormacaoTreinamento> formacoes;  //  @jve:decl-index=0:
 
-	private Hashtable<String, FormacaoTreinamento> formacoes; // @jve:decl-index=0:
-
+	
 	@SuppressWarnings("unchecked")
-	public void initializeFormacoes() {
-		getCadastramentoTabbedPane().setVisible(false);
-		try {
+	public void initializeFormacoes(){
+		getCadastramentoTabbedPane().setVisible(false);	
+		try {			
 			List<FormacaoTreinamento> list = RemoteTreinamentoService.getInstance()
-					.listAllTrainingFormations();
-			formacoes = new Hashtable<String, FormacaoTreinamento>();
+				.listAllTrainingFormations();
+			formacoes = new Hashtable<String,FormacaoTreinamento>();
 			codigoComboBox.removeAllItems();
-			int i = 0;
-			if (list != null && list.size() > 0) {
+			int i=0;
+			if (list != null && list.size() > 0){
 				Iterator<FormacaoTreinamento> it = list.iterator();
-				while (it.hasNext()) {
-					FormacaoTreinamento l = it.next();
-					if (i == 0)
-						formacao = l;
-					if (!formacoes.containsKey(l.getCodigo())) {
+				while (it.hasNext()){
+					FormacaoTreinamento l = it.next();					
+					if (i == 0) formacao = l;
+					if (!formacoes.containsKey(l.getCodigo())){
 						codigoComboBox.addItem(l.getCodigo());
-						formacoes.put(l.getCodigo(), l);
+						formacoes.put(l.getCodigo(),l);
 					}
 					i++;
-				}
+				}				
 			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
-		}
+		}		
 	}
 
-	private void codigoComboEdited() {
+	private void codigoComboEdited(){
 		String num = (String) codigoComboBox.getSelectedItem();
 		try {
-			FormacaoTreinamento formacao = formacoes.get(num);
-			if (formacao != null) {
+			FormacaoTreinamento formacao = formacoes.get(num);			
+			if (formacao != null){
 				FormacaoCadastreForm.this.formacao = formacao;
 				editarFormacaoSelecionada();
-			} else {
-				int conf = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this,
-						"A formaï¿½ï¿½o de codigo " + num + " nao existe. Voce deseja criï¿½-la?", "Criar nova formaï¿½ï¿½o",
-						JOptionPane.YES_NO_OPTION);
-				if (conf == JOptionPane.YES_OPTION) {
+			}
+			else{
+				int conf = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this, "A formação de código " + num + " não existe. Você deseja criá-la?", "Criar nova formação", JOptionPane.YES_NO_OPTION);
+				if (conf == JOptionPane.YES_OPTION){					
 					try {
 						FormacaoTreinamento newFormacao = new FormacaoTreinamento();
 						newFormacao.setCodigo(num);
 						newFormacao.setAvaliacao(0.0f);
 						newFormacao.setDescricao("");
-						newFormacao.setTechnology(Technologies.Linguagem_de_Programacao_Java);
+						newFormacao.setTechnology(Technologies.Linguagem_de_Programação_Java);
 						newFormacao.setNome("");
-
-						try {
-							newFormacao = (FormacaoTreinamento) RemoteServicesUtility.getInstance().save(newFormacao);
-							if (formacoes != null && !formacoes.containsKey(newFormacao.getCodigo())) {
+						
+						try{
+							newFormacao = (FormacaoTreinamento) RemoteServicesUtility.getInstance().save(newFormacao);							
+							if (formacoes != null && !formacoes.containsKey(newFormacao.getCodigo())){
 								codigoComboBox.addItem(newFormacao.getCodigo());
-								formacoes.put(newFormacao.getCodigo(), newFormacao);
-								codigoComboBox.setSelectedItem(newFormacao.getCodigo());
+								formacoes.put(newFormacao.getCodigo(),newFormacao);
+								codigoComboBox.setSelectedItem(newFormacao.getCodigo());								
 							}
-						} catch (Exception ex) {
-							ex.printStackTrace();
+						}catch(Exception ex){
+							ex.printStackTrace();							
 						}
 						editarFormacaoSelecionada();
 					} catch (Exception e) {
@@ -224,34 +223,34 @@ public class FormacaoCadastreForm extends JPanel {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+	
 	}
 
-	private boolean refreshingCodTreinamentoComboBox = false;
-
+	
+	private boolean refreshingCodTreinamentoComboBox=false;
+	
 	@SuppressWarnings("unchecked")
 	public JComponent getCodigoComboBox() {
 		if (codigoComboBox == null) {
 			codigoComboBox = new JComboBox();
-
+			
 			codigoComboBox.setEditable(true);
-
+			
 			codigoComboBox.setSize(new java.awt.Dimension(106, 22));
 			codigoComboBox.setLocation(new java.awt.Point(0, 0));
-
-			codigoComboBox.addItemListener(new ItemListener() {
+			
+			codigoComboBox.addItemListener(new ItemListener(){
 				@Override
 				public void itemStateChanged(ItemEvent evt) {
-					if (evt.getStateChange() == ItemEvent.SELECTED && !refreshingCodTreinamentoComboBox) {
-						if (formacoes != null) {
+					if (evt.getStateChange() == ItemEvent.SELECTED && !refreshingCodTreinamentoComboBox){
+						if (formacoes != null){
 							formacao = formacoes.get(codigoComboBox.getSelectedItem());
-							if (formacao != null)
-								editarFormacaoSelecionada();
-						}
+							if (formacao != null) editarFormacaoSelecionada();
+						} 
 					}
-				}
+				}				
 			});
-
+			
 			this.binder.addBindProperty(this.formacao, this.codigoComboBox,
 					"codigo");
 
@@ -259,46 +258,48 @@ public class FormacaoCadastreForm extends JPanel {
 			JWarningComponent warn = new JWarningComponent(
 					this.codigoComboBox);
 			warn.setBounds(0, 0, 106, 22);
-			codigoComboBox.addActionListener(new ActionListener() {
+			codigoComboBox.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent evt) {
-					if (evt.getActionCommand().equalsIgnoreCase("comboBoxEdited")) {
+					if (evt.getActionCommand().equalsIgnoreCase("comboBoxEdited")){
 						codigoComboEdited();
 					}
-				}
+				}				
 			});
 			return warn;
 		}
 		return codigoComboBox;
 	}
+	
+	
 
 	public FormacaoTreinamento validateFormacaoForm() throws Exception {
-		setErrorIcon(false);
+		setErrorIcon(false);		
 		try {
 			formacao.setAvaliacao((float) Moeda.valorRealToDouble(avaliacaoTextField.getText()));
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();			
 		}
 		try {
 			formacao.setCargaHorariaTotal(Integer.parseInt(cargaHorariaTextField.getText()));
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();			
 		}
 		formacao.setNome(nomeFormacaoTextField.getText());
-		formacao.setTechnology(Technologies.valueOf(((String) technologyComboBox.getSelectedItem()).replace(" ", "_")));
+		formacao.setTechnology(Technologies.valueOf(((String)technologyComboBox.getSelectedItem()).replace(" ", "_")));
 		formacao.setDescricao(descricaoTextArea.getText());
-
-		if (!validateFormacaoBean())
-			throw new Exception("Formaï¿½ï¿½o Invalida");
-
+		
+		if (!validateFormacaoBean()) throw new Exception("Formação Inválida");
+	
 		return formacao;
 	}
 
+	
 	public FormacaoTreinamento cadastreFormacao() throws Exception {
-		try {
+		try{
 			validateFormacaoForm();
 			RemoteTreinamentoService.getInstance().updateTrainingFormationProperties(formacao);
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return formacao;
@@ -307,14 +308,13 @@ public class FormacaoCadastreForm extends JPanel {
 	@SuppressWarnings("unchecked")
 	public boolean validateFormacaoBean() {
 		getErrorPanel().removeAllElements();
-		if (processFocus)
-			try {
-				if (UIUtil.processFocus(this)) {
-					processFocus = false;
-				}
-			} catch (Exception ex) {
-
+		if (processFocus) try{
+			if (UIUtil.processFocus(this)) {
+				processFocus = false;
 			}
+		}catch(Exception ex){
+			
+		}
 		Validate validate = new Validate();
 		Map errors = validate.validate(this.formacao, "formacaoTreinamento");
 		if (errors == null)
@@ -374,14 +374,14 @@ public class FormacaoCadastreForm extends JPanel {
 		this.setErrorIcon(false);
 		updateUI();
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public List<ComercialSolutionItem> getItens(int loteId) {
-		try {
-			return RemoteTreinamentoService.getInstance().getTrainingSolutionItensByFormationId(loteId);
-		} catch (Exception ex) {
+	public List<ComercialSolutionItem> getItens(int loteId){			
+		try{
+			return RemoteTreinamentoService.getInstance().getTrainingSolutionItensByFormationId(loteId);			
+		}catch(Exception ex){
 			ex.printStackTrace();
-		}
+		}		
 		return null;
 	}
 
@@ -389,27 +389,24 @@ public class FormacaoCadastreForm extends JPanel {
 	public void editRegister(FormacaoTreinamento objFormacao) {
 		// Nunca passar como argumento novos objetos!!!
 		getCadastramentoTabbedPane().setVisible(true);
-
-		if (this.formacao == null)
-			return;
-
+		
+		if (this.formacao == null) return;	
+		
 		try {
-			objFormacao = (FormacaoTreinamento) RemoteTreinamentoService.getInstance()
-					.loadTrainingFormationByFormationId(objFormacao.getId());
-
+			objFormacao = (FormacaoTreinamento) RemoteTreinamentoService.getInstance().loadTrainingFormationByFormationId(objFormacao.getId());
+		
 			this.formacao.setAvaliacao(objFormacao.getAvaliacao());
 			this.formacao.setId(objFormacao.getId());
 			this.formacao.setCodigo(objFormacao.getCodigo());
 			this.formacao.setTechnology(objFormacao.getTechnology());
 			this.formacao.setNome(objFormacao.getNome());
 			this.formacao.setCargaHorariaTotal(objFormacao.getCargaHorariaTotal());
-
+			
 			this.formacao.setDescricao(objFormacao.getDescricao());
 			try {
 				formacao.setImagem(objFormacao.getImagem());
-				if (formacao.getImagem() != null) {
-					formacao.getImagem().setSmallImageBytes(RemoteImagemService.getInstance()
-							.getSmallImageBytesFromImage(objFormacao.getImagem().getId()));
+				if (formacao.getImagem()!= null){
+					formacao.getImagem().setSmallImageBytes(RemoteImagemService.getInstance().getSmallImageBytesFromImage(objFormacao.getImagem().getId()));
 					Imagem im = formacao.getImagem();
 					getSmallLabelImage().setIcon(im.getSmallImageIcon(false));
 					getSmallLabelImage().updateUI();
@@ -417,38 +414,38 @@ public class FormacaoCadastreForm extends JPanel {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-
-			try {
+			
+		
+			try {				
 				getTreinamentosList().updateTable();
-				/*
-				 * gerarDescButton.setEnabled(true);
-				 * anexarButton.setEnabled(true);
-				 */
+				/*gerarDescButton.setEnabled(true);
+				anexarButton.setEnabled(true);*/
 				addTreinamentosButton.setEnabled(true);
 				calcularPelosItensButton.setEnabled(true);
-
+					
 				atualizarFormacoesButton.setEnabled(true);
 				addTreinamentosButton.setEnabled(true);
 				avaliacaoTextField.setEnabled(true);
-				avaliacaoTextField.setText(Moeda.getValorReal((Float) formacao.getAvaliacao()));
+				avaliacaoTextField.setText(Moeda.getValorReal((Float)  formacao.getAvaliacao()));
 				descricaoTextArea.setEnabled(true);
 				descricaoTextArea.setText(formacao.getDescricao());
-				cargaHorariaTextField.setText("" + formacao.getCargaHorariaTotal());
-
-				if (formacao.getNome() != null) {
+				cargaHorariaTextField.setText(""+formacao.getCargaHorariaTotal());
+				
+				if (formacao.getNome() != null){
 					nomeFormacaoTextField.setText(formacao.getNome());
-				} else {
+				}else{
 					nomeFormacaoTextField.setText("");
 				}
-				if (formacao.getTechnology() != null) {
+				if (formacao.getTechnology() != null){
 					technologyComboBox.setSelectedItem(formacao.getTechnology().name().replace("_", " "));
-				} else {
+				}else{
 					technologyComboBox.setSelectedItem(0);
-				}
+				}				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -471,18 +468,20 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JLabel getCodigoLabel() {
 		if (codigoLabel == null) {
-			codigoLabel = new JLabel("Codigo da Formaï¿½ï¿½o");
+			codigoLabel = new JLabel("Código da Formação");
 			codigoLabel.setBounds(new Rectangle(15, 7, 156, 22));
 			codigoLabel.setIcon(new ImageIcon(getClass().getResource("/imgs/basket_put.png")));
 			codigoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return codigoLabel;
 	}
+	
+
 
 	protected JPanel getAvaliacaoCodLotePanel() {
 		if (avaliacaoCodLotePanel == null) {
 			tempoLabel = new JLabel();
-			tempoLabel.setText("Carga Horaria:");
+			tempoLabel.setText("Carga Horária:");
 			tempoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			GridLayout gridLayout = new GridLayout();
 			gridLayout.setRows(5);
@@ -491,7 +490,7 @@ public class FormacaoCadastreForm extends JPanel {
 			avaliacaoCodLotePanel.setLayout(gridLayout);
 			avaliacaoCodLotePanel.setBounds(new Rectangle(523, 153, 104, 117));
 			avaliacaoCodLotePanel.add(tempoLabel, null);
-			avaliacaoCodLotePanel.add(getCargaHorariaTextField(), null);
+			avaliacaoCodLotePanel.add(getCargaHorariaTextField(), null);			
 			avaliacaoCodLotePanel.add(getAvaliacaoTextFieldLabel(), null);
 			avaliacaoCodLotePanel.add(getAvaliacaoTextField(), null);
 			avaliacaoCodLotePanel.add(getCalcularPelosItensButton(), null);
@@ -533,16 +532,15 @@ public class FormacaoCadastreForm extends JPanel {
 		if (calcularPelosItensButton == null) {
 			calcularPelosItensButton = new JButton(
 					messages
-							.getMessage(
-									"com.adapit.portal.ui.forms.baseleilao.LoteCadastreForm.CalcularPelosItensdeProduto"));
+							.getMessage("com.adapit.portal.ui.forms.baseleilao.LoteCadastreForm.CalcularPelosItensdeProduto"));
 			calcularPelosItensButton.setText("Calcular");
 			calcularPelosItensButton.setIcon(new ImageIcon(getClass().getResource("/imgs/calculator.png")));
 			calcularPelosItensButton.setEnabled(false);
-			calcularPelosItensButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
+			calcularPelosItensButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt){
 					try {
-						avaliacaoTextField.setText(Moeda.getValorReal((Float) soma));
-						cargaHorariaTextField.setText("" + somaCarga);
+						avaliacaoTextField.setText(Moeda.getValorReal((Float)  soma));	
+						cargaHorariaTextField.setText(""+somaCarga);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -554,11 +552,11 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JScrollPane descScrollPane;
 
-	// private JButton gerarDescButton = null;
+	//private JButton gerarDescButton = null;
 
 	private JButton editarLoteButton = null;
 
-	// private JButton anexarButton = null;
+	//private JButton anexarButton = null;
 
 	protected JScrollPane getDescScrollPane() {
 		if (descScrollPane == null) {
@@ -570,14 +568,13 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 		return descScrollPane;
 	}
-
 	@SuppressWarnings("unchecked")
 	protected JComponent getDescricaoTextArea() {
 		if (descricaoTextArea == null) {
 			descricaoTextArea = new JTextPane();
 			descricaoTextArea.setSize(new Dimension(334, 50));
 			descricaoTextArea.setLocation(new Point(90, 71));
-
+			
 			this.binder.addBindProperty(this.formacao, this.descricaoTextArea,
 					"descricao");
 
@@ -591,44 +588,46 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JLabel getDescricaoTextAreaLabel() {
 		if (descricaoTextAreaLabel == null) {
-			descricaoTextAreaLabel = new JLabel("Objetivo/Descricao da Formaï¿½ï¿½o:");
+			descricaoTextAreaLabel = new JLabel("Objetivo/Descrição da Formação:");
 			descricaoTextAreaLabel.setHorizontalAlignment(JLabel.LEFT);
 			descricaoTextAreaLabel.setBounds(new Rectangle(16, 243, 216, 20));
 		}
 		return descricaoTextAreaLabel;
 	}
+	
 
-	protected JTabbedPane cadastramentoTabbedPane;
-
+	protected JTabbedPane cadastramentoTabbedPane;	
+	
 	protected JTabbedPane getCadastramentoTabbedPane() {
-		if (cadastramentoTabbedPane == null) {
+		if (cadastramentoTabbedPane == null) {			
 			cadastramentoTabbedPane = new JTabbedPane();
 			cadastramentoTabbedPane.setTabPlacement(JTabbedPane.BOTTOM);
 			cadastramentoTabbedPane.setSize(new Dimension(635, 395));
 			cadastramentoTabbedPane.setLocation(new Point(15, 90));
-			cadastramentoTabbedPane.add(getTreinamentosPanel(), "Dados da Formaï¿½ï¿½o");
-			cadastramentoTabbedPane.add(getOutrasInformacoesPanel(), "Outras Informaï¿½oes");
+			cadastramentoTabbedPane.add(getTreinamentosPanel(),"Dados da Formação");	
+			cadastramentoTabbedPane.add(getOutrasInformacoesPanel(),"Outras Informações");
 		}
 		return cadastramentoTabbedPane;
 	}
 
-	protected JPanel getTreinamentosPanel() {
-		if (treinamentosPanel == null) {
 
+	protected JPanel getTreinamentosPanel() {
+		if (treinamentosPanel == null) {			
+			
 			treinamentosPanel = new JPanel();
 			treinamentosPanel.setSize(new Dimension(631, 301));
 			treinamentosPanel.setLocation(new Point(15, 85));
 			treinamentosPanel.setLayout(null);
-			// produtosPanel.setBorder(titledBorder);
+			//produtosPanel.setBorder(titledBorder);
 			treinamentosPanel.add(getTreinamentosListScrollPane());
 			treinamentosPanel.add(getTreinamentosButtonsListPanel());
 			treinamentosPanel.add(getAvaliacaoCodLotePanel(), null);
 			treinamentosPanel.add(getDescricaoTextAreaLabel(), null);
 			treinamentosPanel.add(getDescScrollPane(), null);
-			// treinamentosPanel.add(getGerarDescButton(), null);
-			// treinamentosPanel.add(getAnexarButton(), null);
+			//treinamentosPanel.add(getGerarDescButton(), null);
+			//treinamentosPanel.add(getAnexarButton(), null);
 			treinamentosPanel.add(getNomeFormacaoLabel(), null);
-			treinamentosPanel.add(getNomeFormacaoTextField(), null);
+			treinamentosPanel.add(getNomeFormacaoTextField(), null);	
 			treinamentosPanel.add(getResumoLabel(), null);
 			treinamentosPanel.add(getTechnologyComboBox(), null);
 		}
@@ -650,13 +649,13 @@ public class FormacaoCadastreForm extends JPanel {
 	protected TreinamentosList getTreinamentosList() {
 		if (treinamentosList == null) {
 			treinamentosList = new TreinamentosList();
-			treinamentosList.addFocusListener(new FocusAdapter() {
+			treinamentosList.addFocusListener(new FocusAdapter(){
 				@Override
 				public void focusGained(FocusEvent arg0) {
 					editarTreinamentoButton.setEnabled(true);
 					removeTreinamentoButton.setEnabled(true);
 					getItensTreinamentoButton().setEnabled(true);
-				}
+				}				
 			});
 			return treinamentosList;
 		}
@@ -675,13 +674,13 @@ public class FormacaoCadastreForm extends JPanel {
 			treinamentosButtonsListPanel.add(getAddprodutosButton(), null);
 			treinamentosButtonsListPanel.add(getEditarTreinamentoButton(), null);
 			treinamentosButtonsListPanel.add(getRemoveProdutosButton(), null);
-			treinamentosButtonsListPanel.add(getItensTreinamentoButton(), null);
+			treinamentosButtonsListPanel.add(getItensTreinamentoButton(),null);
 		}
 		return treinamentosButtonsListPanel;
 	}
 
 	private CadastrarTrainingSolutionDialog cadastrarTreinamentoDialog;
-
+	
 	protected JButton getAddprodutosButton() {
 		if (addTreinamentosButton == null) {
 			addTreinamentosButton = new JButton("Novo");
@@ -689,14 +688,14 @@ public class FormacaoCadastreForm extends JPanel {
 			addTreinamentosButton.setLocation(new java.awt.Point(0, 0));
 			addTreinamentosButton.setIcon(new ImageIcon(getClass().getResource("/imgs/package_add.png")));
 			addTreinamentosButton.setEnabled(false);
-
+			
 			addTreinamentosButton.addActionListener(new AdicionarTreinamentoEmFormacao());
 		}
 		return addTreinamentosButton;
 	}
-
+	
 	protected JButton buscarTreinamentoButton;
-
+	
 	@SuppressWarnings("unchecked")
 	protected JButton getBuscarTreinamentoButton() {
 		if (buscarTreinamentoButton == null) {
@@ -705,50 +704,50 @@ public class FormacaoCadastreForm extends JPanel {
 			buscarTreinamentoButton.setLocation(new java.awt.Point(0, 0));
 			buscarTreinamentoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/package_add.png")));
 			buscarTreinamentoButton.setEnabled(true);
-			buscarTreinamentoButton.addActionListener(new ActionListener() {
+			buscarTreinamentoButton.addActionListener(new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent evt) {
 					SelecionarTrainingSolutionListForm sel = new SelecionarTrainingSolutionListForm();
 					sel.setVisible(true);
 					TrainingSolution training = sel.getTrainingSolution();
-					if (training != null) {
-						String code = formacao.getCodigo();
-						try {
+					if (training != null){
+						String code = formacao.getCodigo();						
+						try{
 							TrainingFormationItem ip = RemoteTreinamentoService.getInstance()
-									.mergeNewTrainingSolutionOnTrainingFormation(training, formacao);
+								.mergeNewTrainingSolutionOnTrainingFormation(training, formacao);
 							AdapitVirtualFrame.getInstance()
-									.showOperationSucess("Adiï¿½ï¿½o de Treinamentos em Formaï¿½oes", "Treinamento "
-											+ ip.getTrainingSolution().getId()
-											+ " adicionado! Atualize os dados do item deste treinamento");
-						} catch (Exception ex) {
+								.showOperationSucess("Adição de Treinamentos em Formações", "Treinamento "
+										+ip.getTrainingSolution().getId()+" adicionado! Atualize os dados do item deste treinamento");
+						}catch(Exception ex){
 							ex.printStackTrace();
-							AdapitVirtualFrame.getInstance().showErrorDialog("Adiï¿½ï¿½o de Treinamentos em Formaï¿½oes",
-									"Nao foi possivel adicionar este treinamento na formaï¿½ï¿½o");
+							AdapitVirtualFrame.getInstance().showErrorDialog("Adição de Treinamentos em Formações", "Não foi possível adicionar este treinamento na formação");
 						}
-
-						initializeFormacoes();
+												
+						initializeFormacoes();						
 						codigoComboBox.setSelectedItem(code);
 						editarFormacaoSelecionada();
-
+						
 					}
 				}
-
+				
 			});
 		}
 		return buscarTreinamentoButton;
 	}
+	
 
-	private CadastrarTrainingSolutionDialog getCadastrarTreinamentoDialog() {
-		if (cadastrarTreinamentoDialog == null) {
+	
+	private CadastrarTrainingSolutionDialog getCadastrarTreinamentoDialog(){
+		if (cadastrarTreinamentoDialog == null){
 			cadastrarTreinamentoDialog = new CadastrarTrainingSolutionDialog();
 			cadastrarTreinamentoDialog.addWindowListener(new TreinamentoFrameListener());
 		}
 		return cadastrarTreinamentoDialog;
 	}
 
-	private class AdicionarTreinamentoEmFormacao extends AbstractAction {
-		public void doAction(java.awt.event.ActionEvent e) {
+	private class AdicionarTreinamentoEmFormacao extends AbstractAction{
+		public void doAction(java.awt.event.ActionEvent e) {			
 			try {
 				getCadastrarTreinamentoDialog().getComercialSolutionCadastreForm().newRegister();
 				getCadastrarTreinamentoDialog().setLocation(UIUtil.getScreenCenter(getCadastrarTreinamentoDialog()));
@@ -756,14 +755,14 @@ public class FormacaoCadastreForm extends JPanel {
 			} catch (RuntimeException e1) {
 				e1.printStackTrace();
 			}
-
+			
 		}
 	}
-
-	private JDialog itemSolutionDialog; // @jve:decl-index=0:visual-constraint="730,11"
-
-	private JDialog getItemSolutionDialog() {
-		if (itemSolutionDialog == null) {
+	
+	private JDialog itemSolutionDialog;  //  @jve:decl-index=0:visual-constraint="730,11"
+	
+	private JDialog getItemSolutionDialog(){
+		if (itemSolutionDialog == null){
 			itemSolutionDialog = new javax.swing.JDialog(AdapitVirtualFrame.getInstance());
 			itemSolutionDialog.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
 			itemSolutionDialog.setLayout(new java.awt.BorderLayout());
@@ -772,27 +771,27 @@ public class FormacaoCadastreForm extends JPanel {
 			itemSolutionDialog.setModal(true);
 			itemSolutionDialog.setTitle("Dados do Item do Treinamento");
 			itemSolutionDialog.setLocation(UIUtil.getScreenCenter(itemSolutionDialog));
-			itemSolutionDialog.add(getItemSolutionCadastreForm(), java.awt.BorderLayout.CENTER);
-			getItemSolutionCadastreForm().getConfirmarButton().addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
+			itemSolutionDialog.add(getItemSolutionCadastreForm(),java.awt.BorderLayout.CENTER);
+			getItemSolutionCadastreForm().getConfirmarButton().addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt){					
 					getItemSolutionDialog().dispose();
 				}
 			});
 		}
 		return itemSolutionDialog;
 	}
-
+	
 	private TrainingFormationItemCadastreForm itemSolutionCadastreForm;
-
-	private TrainingFormationItemCadastreForm getItemSolutionCadastreForm() {
-		if (itemSolutionCadastreForm == null) {
+	
+	private TrainingFormationItemCadastreForm getItemSolutionCadastreForm(){
+		if (itemSolutionCadastreForm == null){
 			itemSolutionCadastreForm = new TrainingFormationItemCadastreForm();
-
+			
 		}
 		return itemSolutionCadastreForm;
 	}
-
-	public void editItemSolucao(TrainingFormationItem ip, TrainingSolution p) {
+	
+	public void editItemSolucao(TrainingFormationItem ip, TrainingSolution p){
 		getItemSolutionCadastreForm().setTrainingSolution(p);
 		getItemSolutionCadastreForm().setFormacao(formacao);
 		getItemSolutionCadastreForm().editRegister(ip);
@@ -804,8 +803,8 @@ public class FormacaoCadastreForm extends JPanel {
 			e.printStackTrace();
 		}
 	}
-
-	public void newTrainingSolutionItem(TrainingSolution p) {
+	
+	public void newTrainingSolutionItem(TrainingSolution p){		
 		getItemSolutionCadastreForm().setTrainingSolution(p);
 		getItemSolutionCadastreForm().setFormacao(formacao);
 		getItemSolutionCadastreForm().newRegister();
@@ -817,58 +816,57 @@ public class FormacaoCadastreForm extends JPanel {
 			e.printStackTrace();
 		}
 	}
+	
 
+	
 	private JButton itensTreinamentoButton;
-
-	protected JButton getItensTreinamentoButton() {
-		if (itensTreinamentoButton == null) {
+	protected JButton getItensTreinamentoButton(){
+		if(itensTreinamentoButton == null){
 			itensTreinamentoButton = new JButton("Ordem");
 			itensTreinamentoButton.setEnabled(false);
-			itensTreinamentoButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/package_itens.png", 18, 18));
+			itensTreinamentoButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/package_itens.png",18,18));
 			itensTreinamentoButton.setToolTipText("Ordenar o Item Deste Produto");
-			itensTreinamentoButton.setSize(new java.awt.Dimension(100, 24));
-			itensTreinamentoButton.setLocation(new java.awt.Point(0, 48));
-			itensTreinamentoButton.addActionListener(new ActionListener() {
+			itensTreinamentoButton.setSize(new java.awt.Dimension(100,24));
+			itensTreinamentoButton.setLocation(new java.awt.Point(0,48));
+			itensTreinamentoButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent evt) {
 					int row = getTreinamentosList().getSelectedRow();
-					if (row >= 0)
-						try {
-							TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
-							if (ip != null) {
-								editItemSolucao(ip, ip.getTrainingSolution());
-							}
-						} catch (Exception ex) {
-							ex.printStackTrace();
+					if (row >= 0)try{
+						TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
+						if (ip != null){
+							editItemSolucao(ip,ip.getTrainingSolution());
 						}
-				}
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+				}				
 			});
 		}
 		return itensTreinamentoButton;
 	}
-
-	public class TreinamentoFrameListener extends WindowAdapter {
+	
+	public class TreinamentoFrameListener extends WindowAdapter{
 		@Override
-		public void windowClosed(WindowEvent evt) {
-			if (novoTreinamento) {
-				TrainingSolution p = getCadastrarTreinamentoDialog().getComercialSolutionCadastreForm().getSol();
+		public void windowClosed(WindowEvent evt) {	
+			if (novoTreinamento){
+				TrainingSolution p = getCadastrarTreinamentoDialog().getComercialSolutionCadastreForm().getSol();			
 				newTrainingSolutionItem(p);
-
-			} else {
-				TrainingSolution p = getCadastrarTreinamentoDialog().getComercialSolutionCadastreForm().getSol();
+				
+			}else{
+				TrainingSolution p = getCadastrarTreinamentoDialog().getComercialSolutionCadastreForm().getSol();			
 				int row = getTreinamentosList().getSelectedRow();
-				if (row >= 0)
-					try {
-						TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
-						editItemSolucao(ip, p);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+				if (row >= 0)try{
+					TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
+					editItemSolucao(ip,p);
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 				novoTreinamento = true;
 			}
-			getTreinamentosList().updateTable();
-		}
+			getTreinamentosList().updateTable();			
+		}		
 	}
-
+	
 	protected JButton getEditarTreinamentoButton() {
 		if (editarTreinamentoButton == null) {
 			editarTreinamentoButton = new JButton("Editar");
@@ -880,34 +878,31 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 		return editarTreinamentoButton;
 	}
-
-	private boolean novoTreinamento = true;
-
-	private class EditarProdutoLote extends AbstractAction {
+	
+	private boolean novoTreinamento=true;
+	private class EditarProdutoLote extends AbstractAction{
 		public void doAction(java.awt.event.ActionEvent e) {
 			int row = getTreinamentosList().getSelectedRow();
-			if (row >= 0)
-				try {
-					TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
-					TrainingSolution p = (TrainingSolution) ip.getTrainingSolution();
-					if (p != null) {
-						novoTreinamento = false;
-
-						CadastrarTrainingSolutionDialog c = getCadastrarTreinamentoDialog();
-						c.getComercialSolutionCadastreForm().editRegister(p);
-						c.setLocation(UIUtil.getScreenCenter(c));
-						c.setVisible(true);
-						getTreinamentosList().updateTable();
-						getErrorPanel().removeAllElements();
-						logErrorPanel.addAlert(
-								"Nao esqueï¿½a de atualizar o valor e a descriï¿½ï¿½o da formaï¿½ï¿½o! salve as alteraï¿½oes clicando no botï¿½o 'Atualizar Formaï¿½ï¿½o'");
-						logErrorPanel.updateErrorList();
-						logErrorPanel.setVisible(true);
-
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
+			if (row >= 0)try{
+				TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
+				TrainingSolution p = (TrainingSolution) ip.getTrainingSolution();
+				if (p != null){
+					novoTreinamento = false;
+					
+					CadastrarTrainingSolutionDialog c = getCadastrarTreinamentoDialog();				
+					c.getComercialSolutionCadastreForm().editRegister(p);
+					c.setLocation(UIUtil.getScreenCenter(c));
+					c.setVisible(true);					
+					getTreinamentosList().updateTable();
+					getErrorPanel().removeAllElements();
+					logErrorPanel.addAlert("Não esqueça de atualizar o valor e a descrição da formação! salve as alterações clicando no botão 'Atualizar Formação'");
+					logErrorPanel.updateErrorList();
+					logErrorPanel.setVisible(true);
+					
 				}
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 		}
 	}
 
@@ -919,70 +914,60 @@ public class FormacaoCadastreForm extends JPanel {
 			removeTreinamentoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/package_delete.png")));
 			removeTreinamentoButton.setLocation(new java.awt.Point(0, 40));
 			removeTreinamentoButton.addActionListener(new RemoverTreinamentoDeFormacao());
-
+		
 		}
 		return removeTreinamentoButton;
 	}
-
-	public void removerProduto() {
+	
+	public void removerProduto(){
 		int row = getTreinamentosList().getSelectedRow();
-		if (row >= 0)
-			try {
-				// String code = lote.getCodLote();
-				TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
-				String desc = "";
-				if (ip.getTrainingSolution().getNome() != null
-						&& ip.getTrainingSolution().getNome().length() > 40)
-					desc = ip.getTrainingSolution().getNome().substring(0, 40);
-				else if (ip.getTrainingSolution().getNome() != null)
-					desc = ip.getTrainingSolution().getNome();
-				if (desc != null) {
-					int resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this,
-							"Voce quer retirar o treinamento " + desc + " da formaï¿½ï¿½o " + formacao.getCodigo() + "?",
-							"Remover Treinamento da Formaï¿½ï¿½o", JOptionPane.YES_NO_OPTION);
-					if (resp == JOptionPane.YES_OPTION) {
-						try {
-							resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this,
-									"Apagar em definitivo o treinamento " + desc + "?", "Remover Treinamento da Base",
-									JOptionPane.YES_NO_OPTION);
-							if (resp == JOptionPane.YES_OPTION) {
-								RemoteTreinamentoService.getInstance()
-										.removeTrainingSolutionFromTrainingFormation(true, ip.getId());
-							} else {
-								RemoteTreinamentoService.getInstance()
-										.removeTrainingSolutionFromTrainingFormation(false, ip.getId());
-							}
-
-							getTreinamentosList().updateTable();
-							getErrorPanel().removeAllElements();
-							logErrorPanel.addAlert(
-									"Nao esqueï¿½a de atualizar o valor e a descriï¿½ï¿½o da formaï¿½ï¿½o! salve as alteraï¿½oes clicando no botï¿½o 'Atualizar Formaï¿½ï¿½o'");
-							logErrorPanel.updateErrorList();
-							logErrorPanel.setVisible(true);
-							JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "Operacao realizada com sucesso",
-									"Remover Produto", JOptionPane.INFORMATION_MESSAGE);
-
-						} catch (org.hibernate.exception.ConstraintViolationException ex) {
-							ex.printStackTrace();
-							JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "O treinamento nao foi removido," +
-									" pois esta sendo usado em outras formaï¿½oes!" + '\n' +
-									" ï¿½ permitido que voce remova somente o item da formaï¿½ï¿½o." + '\n'
-									+ " Favor repetir a operaï¿½ï¿½o.", "Problema ao remover treinamento",
-									JOptionPane.ERROR_MESSAGE);
-						} catch (Exception e1) {
-							e1.printStackTrace();
-							JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "O treinamento nao foi removido!",
-									"Problema ao remover treinamento", JOptionPane.ERROR_MESSAGE);
+		if (row >= 0)try{
+			//String code = lote.getCodLote();
+			TrainingFormationItem ip = formacao.getTrainingFormationItens().get(row);
+			String desc = "";
+			if (ip.getTrainingSolution().getNome() != null
+					&& ip.getTrainingSolution().getNome().length()>40)
+				desc = ip.getTrainingSolution().getNome().substring(0,40);
+			else if (ip.getTrainingSolution().getNome() != null) desc = ip.getTrainingSolution().getNome();
+			if (desc != null){
+				int resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this, "Você quer retirar o treinamento " + desc + " da formação " + formacao.getCodigo() + "?","Remover Treinamento da Formação",JOptionPane.YES_NO_OPTION);
+				if (resp == JOptionPane.YES_OPTION){					
+					try {
+						resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this, "Apagar em definitivo o treinamento " + desc + "?","Remover Treinamento da Base",JOptionPane.YES_NO_OPTION);
+						if (resp == JOptionPane.YES_OPTION){								
+							RemoteTreinamentoService.getInstance()
+								.removeTrainingSolutionFromTrainingFormation(true, ip.getId());
+						}else{
+							RemoteTreinamentoService.getInstance()
+								.removeTrainingSolutionFromTrainingFormation(false, ip.getId());
 						}
-					}
-
+						
+						getTreinamentosList().updateTable();						
+						getErrorPanel().removeAllElements();
+						logErrorPanel.addAlert("Não esqueça de atualizar o valor e a descrição da formação! salve as alterações clicando no botão 'Atualizar Formação'");
+						logErrorPanel.updateErrorList();
+						logErrorPanel.setVisible(true);
+						JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "Operação realizada com sucesso","Remover Produto",JOptionPane.INFORMATION_MESSAGE);
+							
+					} catch(org.hibernate.exception.ConstraintViolationException ex){
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "O treinamento não foi removido," +
+								" pois está sendo usado em outras formações!"+'\n'+
+								" É permitido que você remova somente o item da formação."+'\n'
+								+" Favor repetir a operação.","Problema ao remover treinamento",JOptionPane.ERROR_MESSAGE);												
+					} catch (Exception e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "O treinamento não foi removido!","Problema ao remover treinamento",JOptionPane.ERROR_MESSAGE);
+					}					
 				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+				
+			}			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
-
-	private class RemoverTreinamentoDeFormacao extends AbstractAction {
+	
+	private class RemoverTreinamentoDeFormacao extends AbstractAction{
 		public void doAction(java.awt.event.ActionEvent e) {
 			removerProduto();
 		}
@@ -1003,24 +988,22 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JButton getAtualizarFormacoesButton() {
 		if (atualizarFormacoesButton == null) {
-			atualizarFormacoesButton = new JButton("Atualizar Formaï¿½ï¿½o");
+			atualizarFormacoesButton = new JButton("Atualizar Formação");
 			atualizarFormacoesButton.setSize(new java.awt.Dimension(80, 22));
 			atualizarFormacoesButton.setEnabled(false);
 			atualizarFormacoesButton.setIcon(getIcon("/imgs/basket_save.png"));
 			atualizarFormacoesButton.setLocation(new java.awt.Point(0, 0));
-			atualizarFormacoesButton.addActionListener(new AbstractAction() {
-				public void doAction(ActionEvent evt) {
+			atualizarFormacoesButton.addActionListener(new AbstractAction(){
+				public void doAction(ActionEvent evt){
 					try {
-						cadastreFormacao();
+						cadastreFormacao();						
 						getErrorPanel().removeAllElements();
 						getErrorPanel().setVisible(false);
-
-						AdapitVirtualFrame.getInstance().showOperationSucess("Cadastro de formaï¿½oes",
-								"Operacao de cadastro realizada com sucesso!");
+						
+						AdapitVirtualFrame.getInstance().showOperationSucess("Cadastro de formações", "Operação de cadastro realizada com sucesso!");
 						editarFormacaoSelecionada();
 					} catch (Exception e) {
-						AdapitVirtualFrame.getInstance().showErrorDialog("Formulario de cadastro de formaï¿½oes",
-								messages.getMessage(e.getMessage()));
+						AdapitVirtualFrame.getInstance().showErrorDialog("Formulário de cadastro de formações",messages.getMessage(e.getMessage()));
 					}
 				}
 			});
@@ -1030,7 +1013,7 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JButton getNovaFormacaoButton() {
 		if (novaFormacaoButton == null) {
-			novaFormacaoButton = new JButton("Nova Formaï¿½ï¿½o");
+			novaFormacaoButton = new JButton("Nova Formação");
 			novaFormacaoButton.setSize(new java.awt.Dimension(80, 22));
 			novaFormacaoButton.setIcon(getIcon("/imgs/basket_add.png"));
 			novaFormacaoButton.setLocation(new java.awt.Point(0, 22));
@@ -1039,19 +1022,18 @@ public class FormacaoCadastreForm extends JPanel {
 					novaFormacao();
 				}
 			});
-
+			
 		}
 		return novaFormacaoButton;
 	}
-
-	public void novaFormacao() {
+	
+	public void novaFormacao(){
 		initializeFormacoes();
-		String last = "";
-		if (codigoComboBox.getItemCount() > 0) {
-			last = (String) codigoComboBox.getItemAt(codigoComboBox.getItemCount() - 1);
-			last = last.substring(0, last.length() - 1);
-		} else
-			last = "001";
+		String last ="";
+		if (codigoComboBox.getItemCount() > 0){
+			last = (String) codigoComboBox.getItemAt(codigoComboBox.getItemCount()-1);
+			last = last.substring(0, last.length()-1);
+		}else last="001";
 		codigoComboBox.setSelectedItem(last);
 		codigoComboBox.requestFocus();
 		atualizarFormacoesButton.setEnabled(false);
@@ -1059,7 +1041,7 @@ public class FormacaoCadastreForm extends JPanel {
 
 	protected JButton getRemoverFormacaoButton() {
 		if (removerFormacaoButton == null) {
-			removerFormacaoButton = new JButton("Remover Formaï¿½ï¿½o");
+			removerFormacaoButton = new JButton("Remover Formação");
 			removerFormacaoButton.setSize(new java.awt.Dimension(80, 22));
 			removerFormacaoButton.setIcon(getIcon("/imgs/basket_delete.png"));
 			removerFormacaoButton.setLocation(new java.awt.Point(0, 44));
@@ -1067,59 +1049,51 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 		return removerFormacaoButton;
 	}
-
+	
 	private RemoverFormacaoAction removerAction;
-
-	public RemoverFormacaoAction getRemoverAction() {
-		if (removerAction == null) {
+	public RemoverFormacaoAction getRemoverAction(){
+		if (removerAction == null){
 			removerAction = new RemoverFormacaoAction();
 		}
 		return removerAction;
 	}
-
-	public class RemoverFormacaoAction extends AbstractAction {
+	
+	public class RemoverFormacaoAction extends AbstractAction{
 		public void doAction(java.awt.event.ActionEvent e) {
 			FormacaoTreinamento l = formacoes.get(codigoComboBox.getSelectedItem());
-			if (l != null) {
-				int resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this,
-						"Apagar a formaï¿½ï¿½o " + l.getCodigo(), "Apagar Formaï¿½ï¿½o", JOptionPane.YES_NO_OPTION);
-				if (resp == JOptionPane.YES_OPTION) {
+			if (l != null){
+				int resp = JOptionPane.showConfirmDialog(FormacaoCadastreForm.this, "Apagar a formação " + l.getCodigo(),"Apagar Formação",JOptionPane.YES_NO_OPTION);
+				if (resp == JOptionPane.YES_OPTION){
 					try {
-
-						/*
-						 * Session s = LocalServicesUtility.getInstance().openSession();
-						 * try {
-						 * s.beginTransaction();
-						 * Leilao leilao = (Leilao) s.load(Leilao.class,
-						 * ((Leilao)leiloes.get(getDataLeilaoComboBox().getSelectedIndex())).getId());
-						 * l = (Lote) s.load(Lote.class,l.getId());
-						 * leilao.getLotes().remove(l);
-						 * Iterator<ItemProduto> it = l.getItensProduto().iterator();
-						 * while(it.hasNext()){
-						 * ItemProduto ip = it.next();
-						 * ip.setLote(null);
-						 * s.save(ip);
-						 * }
-						 * 
-						 * s.delete(l);
-						 * s.getTransaction().commit();
-						 * 
-						 * initializeLotes();
-						 * atualizarLoteButton.setEnabled(false);
-						 * JOptionPane.showMessageDialog(LoteCadastreForm.this,
-						 * "O lote foi removido com sucesso!","Apagar Lote",JOptionPane.
-						 * INFORMATION_MESSAGE);
-						 * 
-						 * } catch (Exception e1) {
-						 * e1.printStackTrace();
-						 * s.getTransaction().rollback();
-						 * JOptionPane.showMessageDialog(LoteCadastreForm.this,
-						 * "O lote nao foi removido!","Apagar Lote",JOptionPane.ERROR_MESSAGE);
-						 * }finally{
-						 * s.close();
-						 * }
-						 */
-
+						
+						/*Session s = LocalServicesUtility.getInstance().openSession();
+						try {
+							s.beginTransaction();
+							Leilao leilao = (Leilao) s.load(Leilao.class, ((Leilao)leiloes.get(getDataLeilaoComboBox().getSelectedIndex())).getId());
+							l = (Lote) s.load(Lote.class,l.getId());
+							leilao.getLotes().remove(l);
+							Iterator<ItemProduto> it = l.getItensProduto().iterator();
+							while(it.hasNext()){
+								ItemProduto ip = it.next();
+								ip.setLote(null);
+								s.save(ip);
+							}
+					
+							s.delete(l);
+							s.getTransaction().commit();
+							
+							initializeLotes();
+							atualizarLoteButton.setEnabled(false);
+							JOptionPane.showMessageDialog(LoteCadastreForm.this, "O lote foi removido com sucesso!","Apagar Lote",JOptionPane.INFORMATION_MESSAGE);
+							
+						} catch (Exception e1) {
+							e1.printStackTrace();
+							s.getTransaction().rollback();
+							JOptionPane.showMessageDialog(LoteCadastreForm.this, "O lote não foi removido!","Apagar Lote",JOptionPane.ERROR_MESSAGE);
+						}finally{
+							s.close();
+						}*/
+						
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -1128,87 +1102,78 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 	}
 
-	/**
-	 * This method initializes gerarDescButton
-	 * 
-	 * @return javax.swing.JButton
-	 */
-	/*
-	 * private JButton getGerarDescButton() {
-	 * if (gerarDescButton == null) {
-	 * gerarDescButton = new JButton();
-	 * gerarDescButton.setBounds(new Rectangle(523, 280, 95, 24));
-	 * gerarDescButton.setEnabled(false);
-	 * gerarDescButton.setIcon(new
-	 * ImageIcon(getClass().getResource("/imgs/wand.png")));
-	 * gerarDescButton.setText("Gerar");
-	 * gerarDescButton.addActionListener(new ActionListener(){
-	 * public void actionPerformed(ActionEvent evt){
-	 * int ne = getTreinamentosList().getRowCount();
-	 * if (ne > 0){
-	 * 
-	 * String str="";
-	 * for (int i=0; i < ne; i++){
-	 * int qtd = ((Integer)getTreinamentosList().getValueAt(i,3)).intValue();
-	 * if (qtd > 1) str+=qtd +" itens do tipo "+
-	 * (String)getTreinamentosList().getValueAt(i,1) +
-	 * " ["+((String)getTreinamentosList().getValueAt(i,0)).replaceAll("\n",",") +
-	 * "]"+'\n';
-	 * else str+=qtd +" item do tipo "+
-	 * (String)getTreinamentosList().getValueAt(i,1) +
-	 * " ["+((String)getTreinamentosList().getValueAt(i,0)).replaceAll("\n",",") +
-	 * "]"+'\n';
-	 * }
-	 * descricaoTextArea.setText(str);
-	 * }
-	 * }
-	 * });
-	 * }
-	 * return gerarDescButton;
-	 * }
-	 */
 
 	/**
-	 * This method initializes editarLoteButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes gerarDescButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	/*private JButton getGerarDescButton() {
+		if (gerarDescButton == null) {
+			gerarDescButton = new JButton();
+			gerarDescButton.setBounds(new Rectangle(523, 280, 95, 24));
+			gerarDescButton.setEnabled(false);
+			gerarDescButton.setIcon(new ImageIcon(getClass().getResource("/imgs/wand.png")));
+			gerarDescButton.setText("Gerar");
+			gerarDescButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt){
+					int ne = getTreinamentosList().getRowCount();
+					if (ne > 0){
+						
+						String str="";
+						for (int i=0; i < ne; i++){
+							int qtd = ((Integer)getTreinamentosList().getValueAt(i,3)).intValue();
+							if (qtd > 1) str+=qtd +" itens do tipo "+ (String)getTreinamentosList().getValueAt(i,1) + " ["+((String)getTreinamentosList().getValueAt(i,0)).replaceAll("\n",",") + "]"+'\n';
+							else str+=qtd +" item do tipo "+ (String)getTreinamentosList().getValueAt(i,1) + " ["+((String)getTreinamentosList().getValueAt(i,0)).replaceAll("\n",",") + "]"+'\n';
+						}
+						descricaoTextArea.setText(str);
+					}
+				}
+			});
+		}
+		return gerarDescButton;
+	}*/
+
+	/**
+	 * This method initializes editarLoteButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getEditarLoteButton() {
 		if (editarLoteButton == null) {
 			editarLoteButton = new JButton();
-			editarLoteButton.setText("Editar Formaï¿½ï¿½o");
+			editarLoteButton.setText("Editar Formação");
 			editarLoteButton.setBounds(new Rectangle(1, 25, 151, 24));
 			editarLoteButton.setIcon(new ImageIcon(getClass().getResource("/imgs/basket_edit.png")));
-			editarLoteButton.addActionListener(new AbstractAction() {
+			editarLoteButton.addActionListener(new AbstractAction(){
 				@Override
 				public void doAction(ActionEvent evt) {
 					editarFormacaoSelecionada();
-				}
+				}				
 			});
 		}
 		return editarLoteButton;
 	}
-
-	private void editarFormacaoSelecionada() {
+	
+	private void editarFormacaoSelecionada(){
 		try {
 			atualizarFormacoesButton.setEnabled(true);
 			addTreinamentosButton.setEnabled(true);
 			avaliacaoTextField.setEnabled(true);
 			descricaoTextArea.setEnabled(true);
-
-			if (codigoComboBox.getSelectedItem() != null) {
+			
+			if (codigoComboBox.getSelectedItem() != null){
 				if (formacao != null && formacao.getCodigo() != null
-						&& ((JComboBox) getCodigoComboBox()).getSelectedItem() != null
-						&& formacao.getCodigo().equals(((JComboBox) getCodigoComboBox()).getSelectedItem())) {
-
-				} else {
-					formacao = formacoes.get(codigoComboBox.getSelectedItem());
+					&&((JComboBox)getCodigoComboBox()).getSelectedItem() != null
+					&& formacao.getCodigo().equals(((JComboBox)getCodigoComboBox()).getSelectedItem())){
+					
+				}else{
+					formacao = formacoes.get(codigoComboBox.getSelectedItem());				
 				}
-				if (formacao != null)
-					editRegister(formacao);
-
-			} else {
-				System.out.println("Lote nao selecionado!");
+				if (formacao != null) editRegister(formacao);
+				
+			}else{
+				System.out.println("Lote não selecionado!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1216,46 +1181,41 @@ public class FormacaoCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes anexarButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes anexarButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
-	/*
-	 * private JButton getAnexarButton() {
-	 * if (anexarButton == null) {
-	 * anexarButton = new JButton();
-	 * anexarButton.setBounds(new Rectangle(523, 309, 95, 24));
-	 * anexarButton.setEnabled(false);
-	 * anexarButton.setIcon(new
-	 * ImageIcon(getClass().getResource("/imgs/attach.png")));
-	 * anexarButton.setText("Anexar");
-	 * anexarButton.addActionListener(new ActionListener(){
-	 * public void actionPerformed(ActionEvent evt){
-	 * int ne = getTreinamentosList().getRowCount();
-	 * if (ne > 0){
-	 * int row = getTreinamentosList().getSelectedRow();
-	 * if (row >= 0){
-	 * String str="";
-	 * 
-	 * int qtd = ((Integer)getTreinamentosList().getValueAt(row,3)).intValue();
-	 * 
-	 * str+=qtd +" itens do tipo " + (String)getTreinamentosList().getValueAt(row,1)
-	 * +
-	 * " ["+((String)getTreinamentosList().getValueAt(row,0)).replaceAll("\n",",")+
-	 * "]"+'\n';
-	 * 
-	 * descricaoTextArea.setText(descricaoTextArea.getText()+'\n'+str);
-	 * }
-	 * }
-	 * }
-	 * });
-	 * }
-	 * return anexarButton;
-	 * }
-	 */
+	/*private JButton getAnexarButton() {
+		if (anexarButton == null) {
+			anexarButton = new JButton();
+			anexarButton.setBounds(new Rectangle(523, 309, 95, 24));
+			anexarButton.setEnabled(false);
+			anexarButton.setIcon(new ImageIcon(getClass().getResource("/imgs/attach.png")));
+			anexarButton.setText("Anexar");
+			anexarButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt){
+					int ne = getTreinamentosList().getRowCount();
+					if (ne > 0){
+						int row = getTreinamentosList().getSelectedRow();
+						if (row >= 0){
+							String str="";
+						
+							int qtd = ((Integer)getTreinamentosList().getValueAt(row,3)).intValue();
+							
+							str+=qtd +" itens do tipo " + (String)getTreinamentosList().getValueAt(row,1) + " ["+((String)getTreinamentosList().getValueAt(row,0)).replaceAll("\n",",")+"]"+'\n';
+							
+							descricaoTextArea.setText(descricaoTextArea.getText()+'\n'+str);
+						}
+					}
+				}
+			});
+		}
+		return anexarButton;
+	}*/
 
+	
 	private JButton refreshLotesButton;
-
+	
 	private JButton getRefreshLotesButton() {
 		if (refreshLotesButton == null) {
 			refreshLotesButton = new JButton();
@@ -1269,29 +1229,33 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 		return refreshLotesButton;
 	}
-
-	public static String getFormatedDate(Date d) {
+	
+	public static String getFormatedDate(Date d){		
 		return AdapitVirtualFrame.getInstance().format(d).trim();
 	}
 
+
+	
+
+
+
 	@SuppressWarnings("unchecked")
-	public void updateFormacoesList() {
-		if (formacoes != null)
-			formacoes.clear();
-		else {
+	public void updateFormacoesList(){			
+		if (formacoes != null) formacoes.clear();
+		else{
 			initializeFormacoes();
 		}
 		codigoComboBox.removeAllItems();
-		refreshingCodTreinamentoComboBox = true;
-
+		refreshingCodTreinamentoComboBox=true;
+		
 		try {
-			Iterator<FormacaoTreinamento> it = RemoteTreinamentoService.getInstance().listAllTrainingFormations()
-					.iterator();
+			Iterator<FormacaoTreinamento> it = 
+				RemoteTreinamentoService.getInstance().listAllTrainingFormations().iterator();
 			{
-				int i = 0;
-				while (it.hasNext()) {
+				int i=0;
+				while(it.hasNext()){					
 					FormacaoTreinamento l = it.next();
-					formacoes.put(l.getCodigo(), l);
+					formacoes.put(l.getCodigo(),l);
 					codigoComboBox.addItem(l.getCodigo());
 					i++;
 				}
@@ -1299,48 +1263,47 @@ public class FormacaoCadastreForm extends JPanel {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		refreshingCodTreinamentoComboBox = false;
-
+		refreshingCodTreinamentoComboBox=false;
+					
 	}
 
-	private JLabel resumoLabel = null;
 
-	private JLabel getResumoLabel() {
-		if (resumoLabel == null) {
+	private JLabel resumoLabel = null;
+	
+	private JLabel getResumoLabel(){
+		if (resumoLabel == null){
 			resumoLabel = new JLabel();
 			resumoLabel.setBounds(new Rectangle(15, 216, 146, 22));
-			resumoLabel.setText("Tecnologia da Formaï¿½ï¿½o:");
+			resumoLabel.setText("Tecnologia da Formação:");
 		}
 		return resumoLabel;
 	}
 
 	private JComboBox technologyComboBox = null;
-
 	private JComboBox getTechnologyComboBox() {
 		if (technologyComboBox == null) {
 			technologyComboBox = new JComboBox();
 			technologyComboBox.setBounds(new Rectangle(165, 216, 352, 22));
 			Technologies vet[] = Technologies.values();
-			for (int i = 0; i < vet.length; i++) {
-				technologyComboBox.addItem(vet[i].name().replaceAll("_", " "));
+			for(int i=0; i < vet.length; i++){
+				technologyComboBox.addItem(vet[i].name().replaceAll("_", " "));				
 			}
 		}
 		return technologyComboBox;
 	}
-
+	
 	private JLabel nomeFormacaoLabel = null;
-
-	private JLabel getNomeFormacaoLabel() {
-		if (nomeFormacaoLabel == null) {
+	
+	private JLabel getNomeFormacaoLabel(){
+		if (nomeFormacaoLabel == null){
 			nomeFormacaoLabel = new JLabel();
 			nomeFormacaoLabel.setBounds(new Rectangle(15, 190, 146, 22));
-			nomeFormacaoLabel.setText("Nome da Formaï¿½ï¿½o:");
+			nomeFormacaoLabel.setText("Nome da Formação:");
 		}
 		return nomeFormacaoLabel;
 	}
 
 	private JTextField nomeFormacaoTextField = null;
-
 	private JTextField getNomeFormacaoTextField() {
 		if (nomeFormacaoTextField == null) {
 			nomeFormacaoTextField = new JTextField();
@@ -1354,7 +1317,7 @@ public class FormacaoCadastreForm extends JPanel {
 	private JButton buscarButton = null;
 
 	private JPanel imagePanel = null;
-
+	
 	private JPanel getImageMainPanel() {
 		if (imageMainPanel == null) {
 			imageMainPanel = new JPanel();
@@ -1363,14 +1326,14 @@ public class FormacaoCadastreForm extends JPanel {
 			imagemTitleLabel = new JLabel();
 			imagemTitleLabel.setBounds(new Rectangle(0, 0, 269, 20));
 			imagemTitleLabel.setText("Imagem para Propaganda:");
-
+					
 			imageMainPanel.add(imagemTitleLabel, null);
 			imageMainPanel.add(getBuscarButton(), null);
 			imageMainPanel.add(getImagePanel(), null);
 		}
 		return imageMainPanel;
 	}
-
+	
 	private JButton getBuscarButton() {
 		if (buscarButton == null) {
 			buscarButton = new JButton();
@@ -1379,101 +1342,96 @@ public class FormacaoCadastreForm extends JPanel {
 			buscarButton.setHorizontalTextPosition(SwingConstants.CENTER);
 			buscarButton.setVerticalTextPosition(SwingConstants.TOP);
 			buscarButton.setText("Buscar");
-			buscarButton.addActionListener(new ActionListener() {
+			buscarButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent arg0) {
-					if (formacao.getId() != 0) {
+					if (formacao.getId() != 0){
 						anexarImagem();
-					} else {
-						JOptionPane.showMessageDialog(FormacaoCadastreForm.this,
-								"Primeiro ï¿½ preciso cadastrar a formaï¿½ï¿½o!", "Adicionar imagem",
-								JOptionPane.WARNING_MESSAGE);
+					}
+					else{
+						JOptionPane.showMessageDialog(FormacaoCadastreForm.this, "Primeiro é preciso cadastrar a formação!","Adicionar imagem",JOptionPane.WARNING_MESSAGE);
 						getCadastramentoTabbedPane().setSelectedIndex(0);
 					}
-				}
+				}				
 			});
 		}
 		return buscarButton;
 	}
 
 	/**
-	 * This method initializes imagePanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes imagePanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getImagePanel() {
 		if (imagePanel == null) {
 			imagePanel = new JPanel();
 			imagePanel.setLayout(new BorderLayout());
 			imagePanel.setBounds(new Rectangle(128, 19, 140, 90));
-			imagePanel.add(getSmallLabelImage(), BorderLayout.CENTER);
+			imagePanel.add(getSmallLabelImage(),BorderLayout.CENTER);
 		}
 		return imagePanel;
 	}
 
 	private JLabel smallLabelImage;
-
+	
 	protected JLabel getSmallLabelImage() {
 		if (smallLabelImage == null) {
 			smallLabelImage = new JLabel();
 			smallLabelImage.setHorizontalTextPosition(SwingConstants.CENTER);
-			smallLabelImage.setHorizontalAlignment(SwingConstants.CENTER);
+			smallLabelImage.setHorizontalAlignment(SwingConstants.CENTER);						
 		}
 		return smallLabelImage;
 	}
-
+	
 	private JButton anexar;
-
-	public void anexarImagem() {
-		try {
-			if (anexar == null) {
-				anexar = new JButton("Anexar na formaï¿½ï¿½o");
-				anexar.addActionListener(new AnexarImagemActionListener());
+	public void anexarImagem(){		
+		try {				
+			if (anexar == null){				 
+				anexar = new JButton("Anexar na formação");
+				anexar.addActionListener(new AnexarImagemActionListener());	
 				anexar.setIcon(getIcon("/imgs/picture_link.png"));
-			}
-			AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel().add(anexar, 0);
+			}			
+			AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel().add(anexar,0);
 			AdapitVirtualFrame.getInstance().listImagens();
 		} catch (HeadlessException e) {
 			e.printStackTrace();
 		}
 	}
-
-	private class AnexarImagemActionListener implements ActionListener {
-
-		public AnexarImagemActionListener() {
-			AdapitVirtualFrame.getInstance().listImagens();
+	
+	private class AnexarImagemActionListener implements ActionListener{
+		
+		public AnexarImagemActionListener(){
+			AdapitVirtualFrame.getInstance().listImagens();		
 			ilf = AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm();
 			buttonsPanel = ilf.getButtonsPanel();
 		}
-
 		private ImageListForm ilf;
-
+		
 		@Override
 		public void actionPerformed(ActionEvent evt) {
-
+					
 			int rows[] = ilf.getBaseTable().getSelectedRows();
-			if (rows != null) {
+			if (rows != null){
 				try {
 					Imagem im = (Imagem) ilf.getBaseTable().getElements().get(rows[0]);
-					RemoteTurmaService.getInstance().mergeImageTrainingFormation(im.getId(), formacao.getId());
+					RemoteTurmaService.getInstance().mergeImageTrainingFormation(im.getId(),formacao.getId());
 					formacao.setImagem(im);
 					getSmallLabelImage().setIcon(im.getSmallImageIcon(false));
 					getSmallLabelImage().updateUI();
-					AdapitVirtualFrame.getInstance().showOperationSucess("Anexar Imagem em Formaï¿½ï¿½o",
-							"Imagem anexada com sucesso!");
+					AdapitVirtualFrame.getInstance().showOperationSucess("Anexar Imagem em Formação", "Imagem anexada com sucesso!");
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace();					
 				}
-				AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel()
-						.remove(anexar);
+				AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel().remove(anexar);								
 			}
 			AdapitVirtualFrame.getInstance().getListaImagensFrame().dispose();
 		}
 	}
 
 	/**
-	 * This method initializes outrasInformacoesPanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes outrasInformacoesPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getOutrasInformacoesPanel() {
 		if (outrasInformacoesPanel == null) {
@@ -1485,15 +1443,15 @@ public class FormacaoCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes cargaHorariaTextField
-	 * 
-	 * @return javax.swing.JTextField
+	 * This method initializes cargaHorariaTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
 	 */
 	private JTextField getCargaHorariaTextField() {
 		if (cargaHorariaTextField == null) {
 			cargaHorariaTextField = new JTextField();
 			this.binder.addBindProperty(this.formacao, this.cargaHorariaTextField,
-					"cargaHorariaTotal");
+			"cargaHorariaTotal");
 		}
 		return cargaHorariaTextField;
 	}
@@ -1530,17 +1488,17 @@ public class FormacaoCadastreForm extends JPanel {
 			e.printStackTrace();
 		} catch (java.lang.Exception e) {
 			e.printStackTrace();
-		} // end of catch block
+		}// end of catch block
 		return null;
 	}
-
-	private float soma = 0;
-
-	private int somaCarga = 0;
+	
+	private float soma=0;
+	
+	private int somaCarga=0;
 
 	private JPanel imageMainPanel = null;
 
-	private JPanel outrasInformacoesPanel = null; // @jve:decl-index=0:visual-constraint="727,389"
+	private JPanel outrasInformacoesPanel = null;  //  @jve:decl-index=0:visual-constraint="727,389"
 
 	private JLabel tempoLabel = null;
 
@@ -1584,59 +1542,59 @@ public class FormacaoCadastreForm extends JPanel {
 			updateTable();
 		}
 
-		public void updateTable() {
-			soma = 0;
-			somaCarga = 0;
-			try {
-
+		public void updateTable() {			
+			soma=0;
+			somaCarga=0;
+			try{
+				
 				List list = RemoteTreinamentoService.getInstance()
-						.getTrainingFormationItensByFormationId(formacao.getId());
+					.getTrainingFormationItensByFormationId(formacao.getId());
 				formacao.setTrainingFormationItens(new ArrayList<TrainingFormationItem>());
-				if (elements == null)
-					elements = new ArrayList();
+				if (elements == null) elements = new ArrayList();
 				elements.clear();
 				if (list != null && list.size() > 0) {
 					int ne = list.size();
 					java.util.Iterator<TrainingFormationItem> it = list.iterator();
 					java.lang.Object values[][] = new java.lang.Object[ne][6];
-					int i = 0;
-					while (it.hasNext()) {
+					int i = 0;					
+					while (it.hasNext()) {						
 						TrainingFormationItem ip = (TrainingFormationItem) it.next();
-
+						
 						Object[] prods = RemoteTreinamentoService.getInstance()
-								.getTrainingFormationItemPropertiesByItemId(ip.getId());
-						String catname = (String) prods[prods.length - 1];
+							.getTrainingFormationItemPropertiesByItemId(ip.getId());
+						String catname = (String) prods[prods.length-1];
 
 						values[i][0] = prods[2];
 						values[i][1] = catname;
-						values[i][2] = Moeda.getValorReal((Float) prods[3]);
-
-						soma += (Float) prods[3];
-
+						values[i][2] = Moeda.getValorReal((Float)  prods[3]);
+						
+						
+						soma += (Float)  prods[3];
+						
 						TrainingSolution prod = new TrainingSolution();
 						prod.setId((Integer) prods[0]);
-						prod.setCargaHoraria((Integer) prods[4]);
-						somaCarga += prod.getCargaHoraria();
-
+						prod.setCargaHoraria((Integer)prods[4]);
+						somaCarga+=prod.getCargaHoraria();
+						
 						values[i][3] = prod.getCargaHoraria();
-						prod.setAvaliacao((Float) prods[3]);
-						prod.setNome((String) prods[2]);
-						prod.setDataCriacao((Date) prods[1]);
-
+						prod.setAvaliacao((Float)prods[3]);
+						prod.setNome((String)prods[2]);
+						prod.setDataCriacao((Date)prods[1]);
+						
 						values[i][4] = AdapitVirtualFrame.formatDateTime(prod.getDataCriacao());
-
+						
 						values[i][5] = ip.getItemOrder();
-
+						
 						ip.setTrainingSolution(prod);
-
+						
 						if (formacao.getTrainingFormationItens() == null)
 							formacao.setTrainingFormationItens(new ArrayList());
 						formacao.getTrainingFormationItens().add(ip);
-
+											
 						i++;
 						elements.add(ip);
 					}
-
+								
 					setModel(new ProdutosListModel(values));
 					getColumnModel().getColumn(0).setPreferredWidth(100);
 					updateUI();
@@ -1645,24 +1603,23 @@ public class FormacaoCadastreForm extends JPanel {
 					getColumnModel().getColumn(0).setPreferredWidth(100);
 					updateUI();
 				}
-			} catch (Exception ex) {
+			}catch(Exception ex){
 				ex.printStackTrace();
 			}
 		}
 
 		private class ProdutosListModel extends DefaultTableModel {
 
-			Class types[] = new java.lang.Class[] { String.class, String.class, String.class,
+			Class types[] = new java.lang.Class[] { String.class,String.class,String.class,
 					Integer.class, String.class, Integer.class };
 
-			boolean canEdit[] = new boolean[] { false, false, false, false, false, false };
+			boolean canEdit[] = new boolean[] {false, false, false, false, false, false };
 
 			public ProdutosListModel(Object[][] values) {
 
 				super(
 						values,
-						new String[] { "Treinamento", "Categoria", "Valor Unitï¿½rio", "Carga Horaria", "Criado em",
-								"Ordem" });
+						new String[] {"Treinamento","Categoria","Valor Unitário","Carga Horária","Criado em","Ordem" });
 			}
 
 			public Class getColumnClass(int columnIndex) {
@@ -1689,7 +1646,7 @@ public class FormacaoCadastreForm extends JPanel {
 					try {
 						java.lang.Object obj = jt.getElements().get(row);
 						if (obj instanceof com.adapit.portal.entidades.ComercialSolutionItem) {
-
+							
 						}
 					} catch (java.lang.Exception ex) {
 						ex.printStackTrace();
@@ -1699,9 +1656,11 @@ public class FormacaoCadastreForm extends JPanel {
 		}
 
 	}
-
-	public void setSelectedFormacaoTreinamento(FormacaoTreinamento l) {
+	
+	public void setSelectedFormacaoTreinamento(FormacaoTreinamento l) {		
 		editRegister(l);
 	}
+	
+	
 
-} // @jve:decl-index=0:visual-constraint="10,10"
+}  //  @jve:decl-index=0:visual-constraint="10,10"

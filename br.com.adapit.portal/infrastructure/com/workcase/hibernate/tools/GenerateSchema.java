@@ -8,8 +8,6 @@
  * Open. You can then make changes to the template in the Source Editor.
  */
 
-package com.workcase.hibernate.tools;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import javax.imageio.stream.FileImageInputStream;

@@ -1,6 +1,7 @@
 package com.adapit.portal.entidades;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="Customer")
-public class Cliente extends Fornecedor{
+public class Cliente extends Fornecedor implements Serializable{
 
 	private static final long serialVersionUID = 432372357245457L;
 	

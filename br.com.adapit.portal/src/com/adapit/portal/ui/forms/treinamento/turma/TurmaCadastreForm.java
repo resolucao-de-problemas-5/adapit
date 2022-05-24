@@ -72,7 +72,7 @@ import com.workcase.gui.utils.SwingBinder;
 import com.workcase.gui.utils.UIUtil;
 import com.workcase.gui.utils.Validate;
 
-@SuppressWarnings({ "serial", "unchecked", "unused", "static-access" })
+@SuppressWarnings({"serial","unchecked","unused","static-access"})
 public class TurmaCadastreForm extends JPanel {
 
 	private JTabbedPane tabbedPane;
@@ -83,7 +83,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	private JComboBox instrutorComboBox;
 
-	private SwingBinder binder = new SwingBinder(); // @jve:decl-index=0:
+	private SwingBinder binder = new SwingBinder();  //  @jve:decl-index=0:
 
 	@SuppressWarnings("unchecked")
 	private Map hashComps = new java.util.HashMap();
@@ -112,7 +112,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	private JPanel dataHoraPanel;
 
-	private TurmaTreinamento turma = new TurmaTreinamento(); // @jve:decl-index=0:
+	private TurmaTreinamento turma = new TurmaTreinamento();  //  @jve:decl-index=0:
 
 	private DateHourChooser dataTreinamentoField;
 
@@ -134,7 +134,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	private JTextField descricaoCondicaoTextField;
 
-	private CondicaoParticipacaoTreinamento condPartLeilao = new CondicaoParticipacaoTreinamento(); // @jve:decl-index=0:
+	private CondicaoParticipacaoTreinamento condPartLeilao = new CondicaoParticipacaoTreinamento();  //  @jve:decl-index=0:
 
 	private JLabel descricaoCondicaoTextFieldLabel;
 
@@ -182,12 +182,12 @@ public class TurmaCadastreForm extends JPanel {
 
 	private JButton novoButton;
 
-	// private JButton removerButton;
+	//private JButton removerButton;
 
 	private JLabel localPresencialLabel = null;
 
 	private JComboBox executarComoComboBox = null;
-
+	
 	private JComboBox turnoTreinamentoComboBox = null;
 
 	private JComboBox enderecoComboBox = null;
@@ -230,17 +230,16 @@ public class TurmaCadastreForm extends JPanel {
 		condPartLeilao.setDescricao(null);
 		getDescricaoCondicaoTextField().setText("");
 		condicaoParticipacaoTextArea.setText("");
-
+		
 	}
-
 	protected JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane();
 			tabbedPane.setSize(new Dimension(639, 382));
 			tabbedPane.setLocation(new java.awt.Point(0, 3));
 			tabbedPane.add(getBaseTab(), "Dados do Treinamento");
-			tabbedPane.add(getCondPartTab(), "Instruï¿½oes de Participacao");
-			tabbedPane.add(getTreinamentoAgendasTab(), "Lista de Interessados");
+			tabbedPane.add(getCondPartTab(),"Instruções de Participação");
+			tabbedPane.add(getTreinamentoAgendasTab(),"Lista de Interessados");			
 		}
 		return tabbedPane;
 	}
@@ -250,7 +249,7 @@ public class TurmaCadastreForm extends JPanel {
 		if (baseTab == null) {
 			instrucoesAosParticipantesLabel = new JLabel();
 			instrucoesAosParticipantesLabel.setBounds(new Rectangle(11, 85, 334, 19));
-			instrucoesAosParticipantesLabel.setText("Instruï¿½oes aos Participantes:");
+			instrucoesAosParticipantesLabel.setText("Instruções aos Participantes:");
 			localPresencialLabel = new JLabel();
 			localPresencialLabel.setBounds(new Rectangle(11, 61, 104, 22));
 			localPresencialLabel.setText("Local:");
@@ -314,7 +313,7 @@ public class TurmaCadastreForm extends JPanel {
 			instrutorButtonsPanel = new JPanel();
 			instrutorButtonsPanel.setSize(new Dimension(235, 22));
 			instrutorButtonsPanel.setLocation(new Point(375, 0));
-			instrutorButtonsPanel.setLayout(new java.awt.GridLayout(1, 2));
+			instrutorButtonsPanel.setLayout(new java.awt.GridLayout(1,2));
 			instrutorButtonsPanel.add(getEditarInstrutorButton());
 			instrutorButtonsPanel.add(getNovoInstrutorButton());
 		}
@@ -328,7 +327,7 @@ public class TurmaCadastreForm extends JPanel {
 			editarInstrutorButton.setLocation(new java.awt.Point(0, 3));
 			editarInstrutorButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (instrutors != null && instrutors.size() > 0) {
+					if (instrutors != null && instrutors.size()>0){
 						int index = getInstrutorComboBox().getSelectedIndex();
 						Instrutor l = (Instrutor) instrutors.get(index);
 						AdapitVirtualFrame.getInstance().editarInstrutor(l);
@@ -345,12 +344,12 @@ public class TurmaCadastreForm extends JPanel {
 			novoInstrutorButton = new JButton("Novo Instrutor");
 			novoInstrutorButton.setSize(new java.awt.Dimension(150, 20));
 			novoInstrutorButton.setLocation(new java.awt.Point(0, 26));
-			novoInstrutorButton.addActionListener(new AbstractAction() {
+			novoInstrutorButton.addActionListener(new AbstractAction(){
 				@Override
 				public void doAction(ActionEvent evt) {
 					AdapitVirtualFrame.getInstance().cadastrarInstrutor();
 					updateInstrutorList();
-				}
+				}				
 			});
 		}
 		return novoInstrutorButton;
@@ -376,7 +375,7 @@ public class TurmaCadastreForm extends JPanel {
 			formacaoComboBox.setSize(new Dimension(230, 22));
 			formacaoComboBox.setEditable(true);
 			formacaoComboBox.setLocation(new java.awt.Point(105, 0));
-			AutoCompletion.enable(formacaoComboBox);
+			AutoCompletion.enable(formacaoComboBox);			
 			return formacaoComboBox;
 		}
 		return formacaoComboBox;
@@ -384,7 +383,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JLabel getFormacaoLabel() {
 		if (formacaoLabel == null) {
-			formacaoLabel = new JLabel("Formaï¿½ï¿½o:");
+			formacaoLabel = new JLabel("Formação:");
 			formacaoLabel.setSize(new Dimension(103, 22));
 			formacaoLabel.setLocation(new java.awt.Point(0, 0));
 			formacaoLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -397,7 +396,7 @@ public class TurmaCadastreForm extends JPanel {
 			formacaoButtonsPanel = new JPanel();
 			formacaoButtonsPanel.setSize(new Dimension(235, 22));
 			formacaoButtonsPanel.setLocation(new Point(375, 0));
-			formacaoButtonsPanel.setLayout(new java.awt.GridLayout(1, 2));
+			formacaoButtonsPanel.setLayout(new java.awt.GridLayout(1,2));
 			formacaoButtonsPanel.add(getEditarFormacaoButton());
 			formacaoButtonsPanel.add(getNovaFormacaoButton());
 		}
@@ -406,15 +405,15 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JButton getEditarFormacaoButton() {
 		if (editarFormacaoButton == null) {
-			editarFormacaoButton = new JButton("Editar Formaï¿½ï¿½o");
+			editarFormacaoButton = new JButton("Editar Formação");
 			editarFormacaoButton.setSize(new java.awt.Dimension(150, 20));
 			editarFormacaoButton.setLocation(new java.awt.Point(0, 3));
 			editarFormacaoButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (formacoes != null && formacoes.size() > 0) {
+					if (formacoes != null && formacoes.size()>0){
 						int index = getFormacaoComboBox().getSelectedIndex();
 						FormacaoTreinamento l = (FormacaoTreinamento) formacoes.get(index);
-						AdapitVirtualFrame.getInstance().editarFormacao(l);
+						AdapitVirtualFrame.getInstance().editarFormacao(l);						
 						updateFormacoesList();
 					}
 				}
@@ -425,7 +424,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JButton getNovaFormacaoButton() {
 		if (novaFormacaoButton == null) {
-			novaFormacaoButton = new JButton("Nova Formaï¿½ï¿½o");
+			novaFormacaoButton = new JButton("Nova Formação");
 			novaFormacaoButton.setSize(new java.awt.Dimension(150, 20));
 			novaFormacaoButton.setLocation(new java.awt.Point(0, 26));
 			novaFormacaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -445,10 +444,10 @@ public class TurmaCadastreForm extends JPanel {
 			dataFinalTreinamentoLabel.setText("Encerramento Previsto:");
 			numeroMinimoParticpantesLabel = new JLabel();
 			numeroMinimoParticpantesLabel.setBounds(new Rectangle(340, 25, 204, 20));
-			numeroMinimoParticpantesLabel.setText("Numero Minimo de Participantes:");
+			numeroMinimoParticpantesLabel.setText("Número Mínimo de Participantes:");
 			numeroMaxParticipantesLabel = new JLabel();
 			numeroMaxParticipantesLabel.setBounds(new Rectangle(340, 0, 204, 20));
-			numeroMaxParticipantesLabel.setText("Numero Mï¿½ximo de Participantes:");
+			numeroMaxParticipantesLabel.setText("Número Máximo de Participantes:");
 			dataHoraPanel = new JPanel();
 			dataHoraPanel.setSize(new Dimension(612, 107));
 			dataHoraPanel.setLocation(new Point(12, 201));
@@ -469,6 +468,8 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return dataHoraPanel;
 	}
+
+	
 
 	@SuppressWarnings("unchecked")
 	protected JComponent getDataTreinamentoField() {
@@ -517,19 +518,18 @@ public class TurmaCadastreForm extends JPanel {
 			classificacaoComboBox = new JComboBox();
 			classificacaoComboBox.setSize(new java.awt.Dimension(170, 22));
 			classificacaoComboBox.setLocation(new java.awt.Point(105, 0));
-			for (int i = 0; i < ClassificacaoTreinamento.values().length; i++) {
+			for (int i=0; i < ClassificacaoTreinamento.values().length;i++){
 				classificacaoComboBox.addItem(ClassificacaoTreinamento.values()[i].name().replace("_", " "));
 			}
-			classificacaoComboBox.addItemListener(new ItemListener() {
+			classificacaoComboBox.addItemListener(new ItemListener(){
 				@Override
 				public void itemStateChanged(ItemEvent evt) {
-					if (evt.getStateChange() == ItemEvent.SELECTED) {
-						updateSubclassificacaoLeilaoComboBox(ClassificacaoTreinamento
-								.valueOf(((String) classificacaoComboBox.getSelectedItem()).replace(" ", "_")));
+					if (evt.getStateChange() == ItemEvent.SELECTED){
+						updateSubclassificacaoLeilaoComboBox(ClassificacaoTreinamento.valueOf(((String)classificacaoComboBox.getSelectedItem()).replace(" ", "_")));
 					}
-				}
+				}				
 			});
-
+			
 			return classificacaoComboBox;
 		}
 		return classificacaoComboBox;
@@ -551,95 +551,94 @@ public class TurmaCadastreForm extends JPanel {
 			realizacaoComboBox = new JComboBox();
 			realizacaoComboBox.setSize(new java.awt.Dimension(230, 22));
 			realizacaoComboBox.setLocation(new java.awt.Point(380, 0));
-			for (int i = 0; i < TipoPacoteTreinamento.values().length; i++) {
+			for (int i=0; i < TipoPacoteTreinamento.values().length;i++){
 				realizacaoComboBox.addItem(TipoPacoteTreinamento.values()[i].name().replace("_", " "));
 			}
-
+			
 			return realizacaoComboBox;
 		}
 		return realizacaoComboBox;
 	}
-
-	private void updateSubclassificacaoLeilaoComboBox(ClassificacaoTreinamento proc) {
+	
+	private void updateSubclassificacaoLeilaoComboBox(ClassificacaoTreinamento proc){
 		realizacaoComboBox.removeAllItems();
-		if (proc == ClassificacaoTreinamento.In_Company) {
-			for (int i = 0; i < TipoPacoteTreinamento.values().length; i++) {
-				if (TipoPacoteTreinamento.values()[i] != TipoPacoteTreinamento.Formacao_Propria
-						&& TipoPacoteTreinamento.values()[i] != TipoPacoteTreinamento.Formacao_Empresa_Parceira)
+		if (proc == ClassificacaoTreinamento.In_Company){
+			for (int i=0; i < TipoPacoteTreinamento.values().length;i++){
+				if (TipoPacoteTreinamento.values()[i] != TipoPacoteTreinamento.Formação_Própria
+						&& TipoPacoteTreinamento.values()[i] != TipoPacoteTreinamento.Formação_Empresa_Parceira)
 					realizacaoComboBox.addItem(TipoPacoteTreinamento.values()[i].name().replace("_", " "));
 			}
-			getTabbedPane().add(getRequerimentoTreinamentoPanel(), "Requerimento de Treinamento");
+			getTabbedPane().add(getRequerimentoTreinamentoPanel(),"Requerimento de Treinamento");
 			try {
-				turnoTreinamentoComboBox.removeItem(TurnoTreinamento.Noite.name().replace("_", " "));
+				turnoTreinamentoComboBox.removeItem(TurnoTreinamento.Noite.name().replace("_"," "));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-			realizacaoComboBox.addItem(TipoPacoteTreinamento.Formacao_Propria.name());
-			realizacaoComboBox.addItem(TipoPacoteTreinamento.Formacao_Empresa_Parceira.name().replace("_", " "));
-			if (turnoTreinamentoComboBox.getItemCount() < 3)
-				turnoTreinamentoComboBox.addItem(TurnoTreinamento.Noite.name().replace("_", " "));
+		}else{
+			realizacaoComboBox.addItem(TipoPacoteTreinamento.Formação_Própria.name());
+			realizacaoComboBox.addItem(TipoPacoteTreinamento.Formação_Empresa_Parceira.name().replace("_", " "));
+			if (turnoTreinamentoComboBox.getItemCount()<3)
+				turnoTreinamentoComboBox.addItem(TurnoTreinamento.Noite.name().replace("_"," "));			
 			getTabbedPane().remove(getRequerimentoTreinamentoPanel());
 		}
 	}
-
-	private void updateRegraLeilao() {
-		if (turma.getTurno() == TurnoTreinamento.Noite) {
+	
+	private void updateRegraLeilao(){		
+		if (turma.getTurno() == TurnoTreinamento.Noite){			
 			updateDatasMaisQueUmLeilao();
-		} else if (turma.getTurno() == TurnoTreinamento.Tarde) {
+		}else if (turma.getTurno() == TurnoTreinamento.Tarde){			
 			updateDatasMaisQueUmLeilao();
-		} else {
+		}else{
 			updateDatasUmLeilao();
 		}
 	}
-
-	private void updateRegraTurmasByState() {
+	
+	private void updateRegraTurmasByState(){
 		String str = (String) turnoTreinamentoComboBox.getSelectedItem();
-		TurnoTreinamento regra = TurnoTreinamento.valueOf(str.replace(" ", "_"));
-		if (regra == TurnoTreinamento.Noite) {
+		TurnoTreinamento regra= TurnoTreinamento.valueOf(str.replace(" ", "_"));
+		if (regra == TurnoTreinamento.Noite){
 			updateDatasMaisQueUmLeilaoByState();
-		} else if (regra == TurnoTreinamento.Tarde) {
+		}else if (regra == TurnoTreinamento.Tarde){
 			updateDatasMaisQueUmLeilaoByState();
-		} else {
+		}else{
 			updateDatasUmLeilaoByState();
 		}
 	}
-
-	private void updateDatasUmLeilao() {
-		dataTreinamentoField.getCalendarButton().setEnabled(true);
+	
+	private void updateDatasUmLeilao(){
+		dataTreinamentoField.getCalendarButton().setEnabled(true);		
 	}
-
-	private void updateDatasUmLeilaoByState() {
+	
+	private void updateDatasUmLeilaoByState(){
 		String str = (String) executarComoComboBox.getSelectedItem();
-		TipoExecucaoTreinamento regra = TipoExecucaoTreinamento.valueOf(str.replace(" ", "_"));
-		dataTreinamentoField.getCalendarButton().setEnabled(true);
+		TipoExecucaoTreinamento regra= TipoExecucaoTreinamento.valueOf(str.replace(" ", "_"));
+		dataTreinamentoField.getCalendarButton().setEnabled(true);		
 	}
-
-	private void updateDatasMaisQueUmLeilao() {
-		dataTreinamentoField.getCalendarButton().setEnabled(true);
+	
+	private void updateDatasMaisQueUmLeilao(){
+		dataTreinamentoField.getCalendarButton().setEnabled(true);		
 	}
-
-	private void updateDatasMaisQueUmLeilaoByState() {
+	
+	private void updateDatasMaisQueUmLeilaoByState(){
 		String str = (String) executarComoComboBox.getSelectedItem();
-		TipoExecucaoTreinamento regra = TipoExecucaoTreinamento.valueOf(str.replace(" ", "_"));
-		dataTreinamentoField.getCalendarButton().setEnabled(true);
+		TipoExecucaoTreinamento regra= TipoExecucaoTreinamento.valueOf(str.replace(" ", "_"));
+		dataTreinamentoField.getCalendarButton().setEnabled(true);		
 	}
 
-	protected ProcessoRequerimentoTreinamentoPanel requerimentoTreinamentoPanel; // @jve:decl-index=0:visual-constraint="10,486"
-
-	public ProcessoRequerimentoTreinamentoPanel getRequerimentoTreinamentoPanel() {
-		if (requerimentoTreinamentoPanel == null) {
-			requerimentoTreinamentoPanel = new ProcessoRequerimentoTreinamentoPanel();
+	
+	protected ProcessoRequerimentoTreinamentoPanel requerimentoTreinamentoPanel;  //  @jve:decl-index=0:visual-constraint="10,486"
+	
+	public ProcessoRequerimentoTreinamentoPanel getRequerimentoTreinamentoPanel(){
+		if (requerimentoTreinamentoPanel == null){
+			requerimentoTreinamentoPanel = new ProcessoRequerimentoTreinamentoPanel();			
 			requerimentoTreinamentoPanel.setSize(new Dimension(487, 373));
 			requerimentoTreinamentoPanel.setTurma(turma);
 		}
-		if (turma.getProcesso() != null)
-			requerimentoTreinamentoPanel.editRegister(turma.getProcesso());
+		if (turma.getProcesso() != null) requerimentoTreinamentoPanel.editRegister(turma.getProcesso());
 		return requerimentoTreinamentoPanel;
 	}
-
+	
 	private JLabel turnoTreinamentos;
-
 	protected JLabel getRegrasComitentesLabel() {
 		if (turnoTreinamentos == null) {
 			turnoTreinamentos = new JLabel();
@@ -649,10 +648,11 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return turnoTreinamentos;
 	}
+	
 
 	protected JLabel getRealizacaoLabel() {
 		if (realizacaoLabel == null) {
-			realizacaoLabel = new JLabel("Realizaï¿½ï¿½o:");
+			realizacaoLabel = new JLabel("Realização:");
 			realizacaoLabel.setSize(new java.awt.Dimension(90, 22));
 			realizacaoLabel.setLocation(new java.awt.Point(282, 0));
 			realizacaoLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -673,7 +673,7 @@ public class TurmaCadastreForm extends JPanel {
 		if (condPartTab == null) {
 			condDesLabel = new JLabel();
 			condDesLabel.setBounds(new Rectangle(10, 10, 137, 22));
-			condDesLabel.setText("Selecione a Condicao:");
+			condDesLabel.setText("Selecione a Condição:");
 			condPartTab = new JPanel();
 			condPartTab.setSize(new java.awt.Dimension(575, 271));
 			condPartTab.setLocation(new java.awt.Point(0, 277));
@@ -703,7 +703,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JLabel getDescricaoCondicaoTextFieldLabel() {
 		if (descricaoCondicaoTextFieldLabel == null) {
-			descricaoCondicaoTextFieldLabel = new JLabel("Condicao:");
+			descricaoCondicaoTextFieldLabel = new JLabel("Condição:");
 			descricaoCondicaoTextFieldLabel.setSize(new Dimension(137, 20));
 			descricaoCondicaoTextFieldLabel.setLocation(new Point(10, 36));
 			descricaoCondicaoTextFieldLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -719,7 +719,7 @@ public class TurmaCadastreForm extends JPanel {
 
 			getCondicaoParticipacaoTextArea();
 			codicoesParticipacaoScrollPane.setViewportView(getCondicaoParticipacaoTextArea());
-
+			
 		}
 		return codicoesParticipacaoScrollPane;
 	}
@@ -732,7 +732,7 @@ public class TurmaCadastreForm extends JPanel {
 					122));
 			condicaoParticipacaoTextArea.setEnabled(false);
 			condicaoParticipacaoTextArea.setLocation(new java.awt.Point(0, 0));
-
+			
 			this.hashComps.put("texto", this.condicaoParticipacaoTextArea);
 			JWarningComponent warn = new JWarningComponent(
 					this.condicaoParticipacaoTextArea);
@@ -745,51 +745,48 @@ public class TurmaCadastreForm extends JPanel {
 	public TurmaTreinamento validateTurmaForm() throws Exception {
 		setErrorIcon(false);
 		clearErrorList();
-		boolean invalid = false;
+		boolean invalid=false;
 		Instrutor l = null;
-		if (instrutors.size() > 0)
-			l = (Instrutor) instrutors.get(getInstrutorComboBox().getSelectedIndex());
-		if (l == null) {
-			invalid = true;
-			reportInvalidField("turmaTreinamento.instrutor", "Voce deve selecionar um instrutor");
-		} else {
+		if (instrutors.size()>0) l = (Instrutor) instrutors.get(getInstrutorComboBox().getSelectedIndex());
+		if (l == null){
+			invalid=true;
+			reportInvalidField("turmaTreinamento.instrutor","Você deve selecionar um instrutor");
+		}
+		else{
 			try {
 				l = RemotePessoaService.getInstance().getInstrutor(l.getId());
 			} catch (Exception e1) {
 				e1.printStackTrace();
-			}
+			}			
 		}
 		FormacaoTreinamento c = null;
-		if (getFormacaoComboBox().getSelectedIndex() != -1) {
-			if (formacoes.size() > 0)
-				c = (FormacaoTreinamento) formacoes.get(getFormacaoComboBox().getSelectedIndex());
-		} else {
-			if (formacoes.size() > 0)
-				c = (FormacaoTreinamento) formacoes.get(0);
+		if (getFormacaoComboBox().getSelectedIndex() != -1){
+			if (formacoes.size()>0) c = (FormacaoTreinamento) formacoes.get(getFormacaoComboBox().getSelectedIndex());
+		}else{
+			if (formacoes.size()>0) c = (FormacaoTreinamento) formacoes.get(0);
 		}
-		if (c == null) {
-			invalid = true;
-			reportInvalidField("turmaTreinamento.formacao", "Voce deve selecionar uma formacao");
-		} else {
+		if (c == null){
+			invalid=true;
+			reportInvalidField("turmaTreinamento.formacao","Você deve selecionar uma formacao");
+		}else{
 			try {
 				c = RemoteTreinamentoService.getInstance().getFormacaoById(c.getId());
 			} catch (Exception e1) {
 				e1.printStackTrace();
-			}
-		}
+			}			
+		}		
 		Endereco e = null;
-		if (getEnderecoComboBox().getSelectedIndex() != -1) {
-			if (enderecos.size() > 0)
-				e = (Endereco) enderecos.get(getEnderecoComboBox().getSelectedIndex());
-		} else {
-			if (enderecos.size() > 0)
-				e = (Endereco) enderecos.get(0);
+		if (getEnderecoComboBox().getSelectedIndex() != -1){
+			if (enderecos.size() > 0) e = (Endereco) enderecos.get(getEnderecoComboBox().getSelectedIndex());
+		}else{
+			if (enderecos.size() > 0) e = (Endereco) enderecos.get(0);
 		}
-		if (e == null) {
-			invalid = true;
-			reportInvalidField("turmaTreinamento.endereco", "Voce deve selecionar um endereco");
+		if (e == null){
+			invalid=true;
+			reportInvalidField("turmaTreinamento.endereco","Você deve selecionar um endereço");
 
-		} else {
+		}
+		else{
 			try {
 				e = RemoteTurmaService.getInstance().loadAddress(e.getId());
 			} catch (Exception e1) {
@@ -797,67 +794,60 @@ public class TurmaCadastreForm extends JPanel {
 			}
 		}
 		CondicaoParticipacaoTreinamento cond = null;
-		if (getCondicoesCadastradasComboBox().getSelectedIndex() != -1) {
-			if (condicoes.size() > 0)
-				cond = (CondicaoParticipacaoTreinamento) condicoes
-						.get(getCondicoesCadastradasComboBox().getSelectedIndex());
-		} else {
-			if (condicoes.size() > 0)
-				cond = (CondicaoParticipacaoTreinamento) condicoes.get(0);
+		if (getCondicoesCadastradasComboBox().getSelectedIndex() != -1){
+			if (condicoes.size() >0) cond = (CondicaoParticipacaoTreinamento) condicoes.get(getCondicoesCadastradasComboBox().getSelectedIndex());
+		}else{
+			if (condicoes.size() >0) cond = (CondicaoParticipacaoTreinamento) condicoes.get(0);
 		}
-		if (cond == null) {
-			invalid = true;
-			reportInvalidField("turmaTreinamento.condicaoParticipacaoTreinamento",
-					"Voce deve selecionar uma condiï¿½ï¿½o de participaï¿½ï¿½o");
-
-		} else {
+		if (cond == null){
+			invalid=true;
+			reportInvalidField("turmaTreinamento.condicaoParticipacaoTreinamento","Você deve selecionar uma condição de participação");
+			
+		}
+		else{
 			try {
-				cond = RemoteTurmaService.getInstance()
-						.loadTrainingClassParticipationConditionByTrainingClassId(cond.getId());
+				cond = RemoteTurmaService.getInstance().loadTrainingClassParticipationConditionByTrainingClassId(cond.getId());
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
-
+		
 		turma.setInstrutor(l);
 		turma.setFormacao(c);
 		turma.setEnderecoPresencial(e);
 		turma.setCondicaoParticipacao(cond);
-
-		ClassificacaoTreinamento cls = ClassificacaoTreinamento
-				.valueOf(((String) getClassificacaoComboBox().getSelectedItem()).replace(" ", "_"));
-		TipoPacoteTreinamento sub = TipoPacoteTreinamento
-				.valueOf(((String) getRealizacaoComboBox().getSelectedItem()).replace(" ", "_"));
-		TipoExecucaoTreinamento tipo = TipoExecucaoTreinamento
-				.valueOf(((String) getExecutarComoComboBox().getSelectedItem()).replace(" ", "_"));
-		TurnoTreinamento regra = TurnoTreinamento
-				.valueOf(((String) getTurnoTreinamentoComboBox().getSelectedItem()).replace(" ", "_"));
-
+		
+		ClassificacaoTreinamento cls = ClassificacaoTreinamento.valueOf(((String)getClassificacaoComboBox().getSelectedItem()).replace(" ", "_"));
+		TipoPacoteTreinamento sub = TipoPacoteTreinamento.valueOf(((String)getRealizacaoComboBox().getSelectedItem()).replace(" ", "_"));
+		TipoExecucaoTreinamento tipo = TipoExecucaoTreinamento.valueOf(((String) getExecutarComoComboBox().getSelectedItem()).replace(" ", "_"));
+		TurnoTreinamento regra = TurnoTreinamento.valueOf(((String) getTurnoTreinamentoComboBox().getSelectedItem()).replace(" ", "_"));
+		
 		turma.setClassificacao(cls);
 		turma.setSubClassificacao(sub);
 		turma.setTipoExecucao(tipo);
 		turma.setTurno(regra);
-
-		Date presencial1 = ((DateHourChooser) getDataTreinamentoField()).getDate();
-		if (presencial1 == null) {
-			invalid = true;
-			reportInvalidField("dataTreinamento", "A data do treinamento ï¿½ um campo obrigatï¿½rio");
-		}
+		
+		Date presencial1 = ((DateHourChooser)getDataTreinamentoField()).getDate();
+		if (presencial1 == null){
+			invalid=true;
+			reportInvalidField("dataTreinamento","A data do treinamento é um campo obrigatório");
+		}	
 		turma.setDataTreinamento(presencial1);
-
+			
+		
 		turma.setInstrucoesParticipantes(instrucoesParticipantesTextPane.getText());
 		turma.setNumeroMaximoParticipantes(Integer.parseInt(numeroParticipantesTextField.getText()));
-		turma.setNumeroMinimoParticipantes(Integer.parseInt(numeroMinimoParticipantesTextField.getText()));
+		turma.setNumeroMinimoParticipantes(Integer.parseInt(numeroMinimoParticipantesTextField.getText()));		
 		turma.setDataTreinamento(dataTreinamentoField.getDate());
 		turma.setDataEncerramento(encerramentoPrevistoField.getDate());
-
-		if (turma.getDataEncerramento() == null || turma.getDataTreinamento() == null) {
-			invalid = true;
-			reportInvalidField("dataTreinamento", "A data do treinamento ï¿½ um campo obrigatï¿½rio");
-			reportInvalidField("dataEncerramento", "A data de encerramento ï¿½ um campo obrigatï¿½rio");
+		
+		if (turma.getDataEncerramento() == null || turma.getDataTreinamento() == null){
+			invalid=true;
+			reportInvalidField("dataTreinamento","A data do treinamento é um campo obrigatório");
+			reportInvalidField("dataEncerramento","A data de encerramento é um campo obrigatório");
 		}
-
-		if (invalid) {
+		
+		if (invalid){
 			showErrorList();
 			throw new Exception("Bean Not Validated!");
 		}
@@ -865,7 +855,7 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	public TurmaTreinamento cadastreTurma() throws Exception {
-		TurmaTreinamento l = validateTurmaForm();
+		TurmaTreinamento l = validateTurmaForm();		
 		try {
 			TurmaTreinamento turma = RemoteTurmaService.getInstance().saveOrUpdate(l);
 			l.setId(turma.getId());
@@ -875,45 +865,45 @@ public class TurmaCadastreForm extends JPanel {
 		return l;
 	}
 
-	private void showErrorList() {
+	private void showErrorList(){		
 		getErrorPanel().updateErrorList();
 		getErrorPanel().setVisible(true);
 	}
-
-	private void clearErrorList() {
+	
+	private void clearErrorList(){
 		getErrorPanel().removeAllElements();
 		getErrorPanel().setVisible(false);
 	}
-
-	private void reportInvalidField(String name, String errorMsg) {
+	
+	private void reportInvalidField(String name, String errorMsg){
 		JComponent comp = (JComponent) this.hashComps.get(name);
 		if (comp != null) {
 			comp.firePropertyChange("warnBorder", false, true);
-			String msg = "turmaTreinamento." + name;
+			String msg = "turmaTreinamento."+name;
 			try {
 				getErrorPanel()
-						.addError(messages.getMessage(msg) + " " + errorMsg, comp);
-				comp.setToolTipText(messages.getMessage(msg) + " " + errorMsg);
+							.addError(messages.getMessage(msg)+" " + errorMsg, comp);
+				comp.setToolTipText(messages.getMessage(msg)+" " + errorMsg);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		} else {
-			String msg = "turmaTreinamento." + name;
+			}			
+		}else{
+			String msg = "turmaTreinamento."+name;
 			try {
-				getErrorPanel().addError(messages.getMessage(msg) + " " + errorMsg);
+				getErrorPanel().addError(messages.getMessage(msg)+" " + errorMsg);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-
+	
 	public CondicaoParticipacaoTreinamento validateCondicaoParticipacaoLeilaoForm()
 			throws Exception {
 		setErrorIcon(false);
-
+		
 		condPartLeilao.setDescricao(getDescricaoCondicaoTextField().getText());
 		condPartLeilao.setTexto(condicaoParticipacaoTextArea.getText());
-
+		
 		if (!validateCondicaoParticipacaoLeilaoBean())
 			throw new Exception("Bean Not Validated!");
 		return condPartLeilao;
@@ -980,7 +970,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	public void newRegister() {
 		// Nunca definir um novo objeto entidade!!!
-
+		
 		turma.setInstrutor(null);
 		turma.setComitente(null);
 		turma.setFormacao(null);
@@ -995,23 +985,23 @@ public class TurmaCadastreForm extends JPanel {
 		turma.setInstrucoesParticipantes(null);
 
 		binder.reverseBind(this.turma);
-
+		
 		condPartLeilao.setId(0);
 		condPartLeilao.setTexto(null);
 		condPartLeilao.setDescricao(null);
 
 		binder.reverseBind(this.condPartLeilao);
-
+		
 		try {
 			tabbedPane.remove(getTreinamentoAgendasTab());
-		} catch (Exception e) {
-		}
-
+		} catch (Exception e) {}
+		
 		this.setErrorIcon(false);
 
 		classificacaoComboBox.setSelectedIndex(1);
 		updateSubclassificacaoLeilaoComboBox(ClassificacaoTreinamento.Turma_Fechada);
-
+		
+		
 		updateUI();
 	}
 
@@ -1020,21 +1010,20 @@ public class TurmaCadastreForm extends JPanel {
 		try {
 			condPartLeilao.setId(objCondicao.getId());
 			condicaoParticipacaoTextArea.setText(objCondicao.getTexto());
-			descricaoCondicaoTextField.setText(objCondicao.getDescricao());
+			descricaoCondicaoTextField.setText(objCondicao.getDescricao());			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+				
 		binder.reverseBind(this.condPartLeilao);
-
+		
 		this.setErrorIcon(false);
 	}
-
-	private void editRegister() {
+	
+	private void editRegister(){
 		try {
 			tabbedPane.remove(getTreinamentoAgendasTab());
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		tabbedPane.add(getTreinamentoAgendasTab(), "Treinamentos da Agenda");
 		updateSubclassificacaoLeilaoComboBox(turma.getClassificacao());
 		updateRegraLeilao();
@@ -1042,27 +1031,26 @@ public class TurmaCadastreForm extends JPanel {
 		realizacaoComboBox.setSelectedItem(turma.getSubClassificacao().name().replaceAll("_", " "));
 		executarComoComboBox.setSelectedItem(turma.getTipoExecucao().name().replaceAll("_", " "));
 		turnoTreinamentoComboBox.setSelectedItem(turma.getTurno().name().replaceAll("_", " "));
-
+		
 		encerramentoPrevistoField.setDate(turma.getDataEncerramento());
 		dataTreinamentoField.setDate(turma.getDataTreinamento());
-		numeroMinimoParticipantesTextField.setText("" + turma.getNumeroMinimoParticipantes());
-		numeroParticipantesTextField.setText("" + turma.getNumeroMaximoParticipantes());
+		numeroMinimoParticipantesTextField.setText(""+turma.getNumeroMinimoParticipantes());
+		numeroParticipantesTextField.setText(""+turma.getNumeroMaximoParticipantes());
 		instrucoesParticipantesTextPane.setText(turma.getInstrucoesParticipantes());
 	}
-
-	public void editRegister(TurmaTreinamento objTurma) {
+		
+	public void editRegister(TurmaTreinamento objTurma){		
 		try {
 			objTurma = RemoteTurmaService.getInstance().loadTrainingClassCascading(objTurma);
 			getInstrutorComboBox().setSelectedItem(objTurma.getInstrutor().getNome());
 			getFormacaoComboBox().setSelectedItem(objTurma.getFormacao().getNome());
-			getEnderecoComboBox().setSelectedItem(objTurma.getEnderecoPresencial().getCidade() + " ("
-					+ objTurma.getEnderecoPresencial().getRua() + ")");
+			getEnderecoComboBox().setSelectedItem(objTurma.getEnderecoPresencial().getCidade()+" ("+objTurma.getEnderecoPresencial().getRua()+")");
 			getCondicoesCadastradasComboBox().setSelectedItem(objTurma.getCondicaoParticipacao().getDescricao());
-
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+		
 		turma.setInstrutor(objTurma.getInstrutor());
 		turma.setFormacao(objTurma.getFormacao());
 		turma.setEnderecoPresencial(objTurma.getEnderecoPresencial());
@@ -1074,18 +1062,18 @@ public class TurmaCadastreForm extends JPanel {
 		turma.setId(objTurma.getId());
 		turma.setProcesso(objTurma.getProcesso());
 		turma.setTurno(objTurma.getTurno());
-
+		
 		turma.setDataEncerramento(objTurma.getDataEncerramento());
 		turma.setDataTreinamento(objTurma.getDataTreinamento());
 		turma.setNumeroMaximoParticipantes(objTurma.getNumeroMaximoParticipantes());
 		turma.setNumeroMinimoParticipantes(objTurma.getNumeroMinimoParticipantes());
 		turma.setInstrucoesParticipantes(objTurma.getInstrucoesParticipantes());
-
+		
 		if (objTurma.getDataTreinamento() != null && dataTreinamentoField != null)
 			dataTreinamentoField.setDate(objTurma.getDataTreinamento());
-
+		
 		getSalvarCondicaoButton().setText("Atualizar");
-
+		
 		editRegister();
 	}
 
@@ -1099,14 +1087,14 @@ public class TurmaCadastreForm extends JPanel {
 
 	public void setErrorIcon(boolean bool) {
 
-		this.condicaoParticipacaoTextArea.firePropertyChange("warnBorder", !bool, bool);
+		this.condicaoParticipacaoTextArea.firePropertyChange("warnBorder",!bool, bool);
 
 		this.getErrorPanel().setVisible(false);
 	}
 
 	protected JLabel getCondicaoParticipacaoTextAreaLabel() {
 		if (condicaoParticipacaoTextAreaLabel == null) {
-			condicaoParticipacaoTextAreaLabel = new JLabel("Condicao de Participacao");
+			condicaoParticipacaoTextAreaLabel = new JLabel("Condição de Participação");
 			condicaoParticipacaoTextAreaLabel.setSize(new java.awt.Dimension(
 					272, 20));
 			condicaoParticipacaoTextAreaLabel.setLocation(new java.awt.Point(0,
@@ -1131,7 +1119,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JButton getNovaCondicaoButton() {
 		if (novaCondicaoButton == null) {
-			novaCondicaoButton = new JButton("Nova Condicao");
+			novaCondicaoButton = new JButton("Nova Condição");
 			novaCondicaoButton.setSize(new java.awt.Dimension(150, 20));
 			novaCondicaoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/script_add.png")));
 			novaCondicaoButton.setLocation(new java.awt.Point(0, 26));
@@ -1144,6 +1132,7 @@ public class TurmaCadastreForm extends JPanel {
 					newCondicaoParticipacao();
 				}
 
+				
 			});
 		}
 		return novaCondicaoButton;
@@ -1151,7 +1140,7 @@ public class TurmaCadastreForm extends JPanel {
 
 	protected JButton getSalvarCondicaoButton() {
 		if (salvarCondicaoButton == null) {
-			salvarCondicaoButton = new JButton("Atualizar Condicao");
+			salvarCondicaoButton = new JButton("Atualizar Condição");
 			salvarCondicaoButton.setSize(new java.awt.Dimension(150, 20));
 			salvarCondicaoButton.setEnabled(false);
 			salvarCondicaoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/script_save.png")));
@@ -1167,11 +1156,10 @@ public class TurmaCadastreForm extends JPanel {
 						descricaoCondicaoTextField.setEnabled(false);
 						updateCondicaoParticipacaoList();
 						getCondicoesCadastradasComboBox().setSelectedItem(condPartLeilao.getDescricao());
-
+						
 					} catch (Exception e1) {
 						e1.printStackTrace();
-						AdapitVirtualFrame.getInstance().showErrorDialog("Cadastro de Condicoes",
-								"Problema ao cadastrar a condiï¿½ï¿½o");
+						AdapitVirtualFrame.getInstance().showErrorDialog("Cadastro de Condições", "Problema ao cadastrar a condição");						
 					}
 				}
 			});
@@ -1189,7 +1177,7 @@ public class TurmaCadastreForm extends JPanel {
 			treinamentoAgendasTab.add(getAgendasTurmaPanel());
 			treinamentoAgendasTab.add(getTreinamentosSearchButtonsPanel());
 			treinamentoAgendasTab.add(getListarTreinamentosButton(), null);
-			treinamentoAgendasTab.add(getListPanel(), null);
+			treinamentoAgendasTab.add(getListPanel(), null);			
 		}
 		getAgendasTurmasTable().listAll();
 		return treinamentoAgendasTab;
@@ -1222,36 +1210,37 @@ public class TurmaCadastreForm extends JPanel {
 	protected AgendasTurmaTable getAgendasTurmasTable() {
 		if (agendasTurmasTable == null) {
 			agendasTurmasTable = new AgendasTurmaTable();
-			agendasTurmasTable.addFocusListener(new FocusAdapter() {
+			agendasTurmasTable.addFocusListener(new FocusAdapter(){
 				@Override
 				public void focusGained(FocusEvent evt) {
 					enableButtons(true);
-				}
+				}				
 			});
 			return agendasTurmasTable;
 		}
 		return agendasTurmasTable;
 	}
-
-	private void enableButtons(boolean b) {
+	
+	private void enableButtons(boolean b){
 		getEditarLoteButton().setEnabled(b);
 		getRemoveLoteButton().setEnabled(b);
 	}
+	
 
 	protected JPanel getLotesEmLeilaoButtonsListPanel() {
 		if (lotesEmLeilaoButtonsListPanel == null) {
 			lotesEmLeilaoButtonsListPanel = new JPanel();
 			lotesEmLeilaoButtonsListPanel.setSize(new Dimension(96, 160));
 			lotesEmLeilaoButtonsListPanel.setLocation(new Point(520, 14));
-			lotesEmLeilaoButtonsListPanel.setLayout(new GridLayout(6, 1));
-
+			lotesEmLeilaoButtonsListPanel.setLayout(new GridLayout(6,1));
+			
 			lotesEmLeilaoButtonsListPanel.add(getAddlotesemleilaoButton());
 			lotesEmLeilaoButtonsListPanel.add(getRemoveLoteButton());
 			lotesEmLeilaoButtonsListPanel.add(getEditarLoteButton());
 			lotesEmLeilaoButtonsListPanel.add(getListarTodosButton(), null);
-			lotesEmLeilaoButtonsListPanel.add(getAnexarButton(), null);
+			lotesEmLeilaoButtonsListPanel.add(getAnexarButton(), null);	
 			lotesEmLeilaoButtonsListPanel.add(getListarNulosButton(), null);
-
+					
 		}
 		return lotesEmLeilaoButtonsListPanel;
 	}
@@ -1264,13 +1253,11 @@ public class TurmaCadastreForm extends JPanel {
 			novoLoteButton.setLocation(new java.awt.Point(0, 23));
 			novoLoteButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-
-					AdapitVirtualFrame.getInstance().novoTreinamento();
-					AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm()
-							.setSelectedTurma(turma);
-					AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm()
-							.novoTreinamento();
-
+					
+						AdapitVirtualFrame.getInstance().novoTreinamento();
+						AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().setSelectedTurma(turma);
+						AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().novoTreinamento();
+					
 				}
 			});
 		}
@@ -1291,46 +1278,36 @@ public class TurmaCadastreForm extends JPanel {
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							int row = getAgendasTurmasTable().getSelectedRow();
-							if (row >= 0) {
+							if (row >=0){
 								Treinamento l = (Treinamento) getAgendasTurmasTable().getElements().get(row);
-								if (AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame != null) {
-									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-											.getTreinamentoCadastreForm().setSelectedTurma(turma);
-									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-											.getTreinamentoCadastreForm().setSelectedTreinamento(l);
-									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-											.getTreinamentoCadastreForm().getRemoverAction().doAction(e);
+								if (AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame != null){
+									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().setSelectedTurma(turma);
+									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().setSelectedTreinamento(l);
+									AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().getRemoverAction().doAction(e);
 									getAgendasTurmasTable().getElements().remove(row);
 									getAgendasTurmasTable().updateTable();
-								} else if (l != null) {
-									int resp = JOptionPane.showConfirmDialog(TurmaCadastreForm.this,
-											"Apagar o treinamento " + l.getCodigo(), "Apagar Treinamento",
-											JOptionPane.YES_NO_OPTION);
-									if (resp == JOptionPane.YES_OPTION) {
+								}
+								else if (l != null){
+									int resp = JOptionPane.showConfirmDialog(TurmaCadastreForm.this, "Apagar o treinamento " + l.getCodigo(),"Apagar Treinamento",JOptionPane.YES_NO_OPTION);
+									if (resp == JOptionPane.YES_OPTION){
 										try {
 											try {
-												RemoteTurmaService.getInstance()
-														.removeScheduledTrainingFromTrainingClass(l, turma);
-												JOptionPane.showMessageDialog(TurmaCadastreForm.this,
-														"O treinamento foi removido com sucesso!", "Apagar Treinamento",
-														JOptionPane.INFORMATION_MESSAGE);
+												RemoteTurmaService.getInstance().removeScheduledTrainingFromTrainingClass(l, turma);
+												JOptionPane.showMessageDialog(TurmaCadastreForm.this, "O treinamento foi removido com sucesso!","Apagar Treinamento",JOptionPane.INFORMATION_MESSAGE);
 												getAgendasTurmasTable().getElements().remove(row);
 												getAgendasTurmasTable().updateTable();
 											} catch (Exception e1) {
 												e1.printStackTrace();
-												JOptionPane.showMessageDialog(TurmaCadastreForm.this,
-														"O treinamento nao foi removido!", "Apagar Treinamento",
-														JOptionPane.ERROR_MESSAGE);
+												JOptionPane.showMessageDialog(TurmaCadastreForm.this, "O treinamento não foi removido!","Apagar Treinamento",JOptionPane.ERROR_MESSAGE);
 											}
-
+																						
 										} catch (Exception e1) {
 											e1.printStackTrace();
 										}
 									}
 								}
-
-								AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-										.getTreinamentoCadastreForm().novoTreinamento();
+									
+								AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().novoTreinamento();
 							}
 						}
 					});
@@ -1351,16 +1328,14 @@ public class TurmaCadastreForm extends JPanel {
 			editarLoteButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int row = getAgendasTurmasTable().getSelectedRow();
-					if (row >= 0) {
+					if (row >=0){
 						Treinamento l = (Treinamento) getAgendasTurmasTable().getElements().get(row);
-						if (AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame != null) {
-							AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-									.getTreinamentoCadastreForm().setSelectedTurma(turma);
+						if (AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame != null){
+							AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().setSelectedTurma(turma);
 							AdapitVirtualFrame.getInstance().editarTreinamento(l);
-						} else {
+						}else{
 							AdapitVirtualFrame.getInstance().novoTreinamento();
-							AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame
-									.getTreinamentoCadastreForm().setSelectedTurma(turma);
+							AdapitVirtualFrame.getInstance().lastCadastroTreinamentoInternalFrame.getTreinamentoCadastreForm().setSelectedTurma(turma);
 							AdapitVirtualFrame.getInstance().editarTreinamento(l);
 						}
 					}
@@ -1390,11 +1365,9 @@ public class TurmaCadastreForm extends JPanel {
 			listarTreinamentosButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					enableButtons(false);
-					if (getPendentesAgendaRadioButton().isSelected())
-						getAgendasTurmasTable().listPendentesDeAgenda();
-					else if (getPendentesAprovacaoRadioButton().isSelected())
-						getAgendasTurmasTable().listPendentesAprovacao();
-
+					if (getPendentesAgendaRadioButton().isSelected()) getAgendasTurmasTable().listPendentesDeAgenda();
+					else if (getPendentesAprovacaoRadioButton().isSelected()) getAgendasTurmasTable().listPendentesAprovacao();
+					
 				}
 			});
 		}
@@ -1429,21 +1402,19 @@ public class TurmaCadastreForm extends JPanel {
 		if (cadastrarButton == null) {
 			cadastrarButton = new JButton("Cadastrar");
 			cadastrarButton.setSize(new java.awt.Dimension(80, 22));
-			// cadastrarButton.setIcon(getIcon("/imgs/database_save.png"));
+			//cadastrarButton.setIcon(getIcon("/imgs/database_save.png"));
 			cadastrarButton.setIcon(new ImageIcon(getClass().getResource("/imgs/date_save.png")));
 			cadastrarButton.setLocation(new java.awt.Point(0, 0));
 			cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					try {
 						cadastreTurma();
-						AdapitVirtualFrame.getInstance().showOperationSucess("Cadastro de Turma",
-								"Turma cadastrada com sucesso!");
+						AdapitVirtualFrame.getInstance().showOperationSucess("Cadastro de Turma", "Turma cadastrada com sucesso!");
 						cadastrarButton.setText("Atualizar");
 						editRegister();
 					} catch (Exception e1) {
 						e1.printStackTrace();
-						AdapitVirtualFrame.getInstance().showErrorDialog("Cadastro de Turma",
-								"A turma nao foi cadastrada!");
+						AdapitVirtualFrame.getInstance().showErrorDialog("Cadastro de Turma", "A turma não foi cadastrada!");
 					}
 				}
 			});
@@ -1462,63 +1433,65 @@ public class TurmaCadastreForm extends JPanel {
 					newRegister();
 				}
 			});
-
+			
 		}
 		return novoButton;
 	}
 
+
+
 	/**
-	 * This method initializes executarComoList
-	 * 
-	 * @return javax.swing.JList
+	 * This method initializes executarComoList	
+	 * 	
+	 * @return javax.swing.JList	
 	 */
 	private JComboBox getExecutarComoComboBox() {
 		if (executarComoComboBox == null) {
 			executarComoComboBox = new JComboBox();
-			for (int i = 0; i < TipoExecucaoTreinamento.values().length; i++) {
+			for (int i=0; i < TipoExecucaoTreinamento.values().length;i++){
 				executarComoComboBox.addItem(TipoExecucaoTreinamento.values()[i].name().replaceAll("_", " "));
 			}
 			executarComoComboBox.setSelectedIndex(3);
 			executarComoComboBox.setBounds(new Rectangle(105, 75, 170, 22));
-			executarComoComboBox.addItemListener(new ItemListener() {
+			executarComoComboBox.addItemListener(new ItemListener(){
 				@Override
 				public void itemStateChanged(ItemEvent evt) {
-					if (evt.getStateChange() == ItemEvent.SELECTED) {
-						// updateRegraLeilao();
+					if (evt.getStateChange() == ItemEvent.SELECTED){
+						//updateRegraLeilao();
 						updateRegraTurmasByState();
 					}
 				}
 			});
-
+			
 		}
 		return executarComoComboBox;
 	}
-
+	
 	private JComboBox getTurnoTreinamentoComboBox() {
 		if (turnoTreinamentoComboBox == null) {
 			turnoTreinamentoComboBox = new JComboBox();
-			for (int i = 0; i < TurnoTreinamento.values().length; i++) {
+			for (int i=0; i < TurnoTreinamento.values().length;i++){
 				turnoTreinamentoComboBox.addItem(TurnoTreinamento.values()[i].name().replaceAll("_", " "));
 			}
 			turnoTreinamentoComboBox.setSelectedIndex(1);
 			turnoTreinamentoComboBox.setBounds(new Rectangle(380, 75, 230, 22));
-			turnoTreinamentoComboBox.addItemListener(new ItemListener() {
+			turnoTreinamentoComboBox.addItemListener(new ItemListener(){
 				@Override
 				public void itemStateChanged(ItemEvent evt) {
-					if (evt.getStateChange() == ItemEvent.SELECTED) {
-						// updateRegraLeilao();
+					if (evt.getStateChange() == ItemEvent.SELECTED){
+						//updateRegraLeilao();
 						updateRegraTurmasByState();
 					}
-				}
+				}				
 			});
 		}
 		return turnoTreinamentoComboBox;
 	}
 
 	/**
-	 * This method initializes enderecoComboBox
-	 * 
-	 * @return javax.swing.JComboBox
+	 * This method initializes enderecoComboBox	
+	 * 	
+	 * @return javax.swing.JComboBox	
 	 */
 	private JComboBox getEnderecoComboBox() {
 		if (enderecoComboBox == null) {
@@ -1531,14 +1504,14 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes enderecoButtonsPanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes enderecoButtonsPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getEnderecoButtonsPanel() {
 		if (enderecoButtonsPanel == null) {
 			enderecoButtonsPanel = new JPanel();
-			enderecoButtonsPanel.setLayout(new GridLayout(1, 2));
+			enderecoButtonsPanel.setLayout(new GridLayout(1,2));
 			enderecoButtonsPanel.setBounds(new Rectangle(386, 61, 234, 22));
 			enderecoButtonsPanel.add(getEditarLocalButton(), null);
 			enderecoButtonsPanel.add(getNovoLocalButton(), null);
@@ -1547,9 +1520,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes editarLocalButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes editarLocalButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getEditarLocalButton() {
 		if (editarLocalButton == null) {
@@ -1558,7 +1531,7 @@ public class TurmaCadastreForm extends JPanel {
 			editarLocalButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					EnderecoCadastreDialog end = new EnderecoCadastreDialog(AddressType.Presencial);
-					int index = getEnderecoComboBox().getSelectedIndex();
+					int index  = getEnderecoComboBox().getSelectedIndex();
 					Endereco ender = (Endereco) enderecos.get(index);
 					end.editRegister(ender);
 					end.setVisible(true);
@@ -1570,9 +1543,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes novoLocalButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes novoLocalButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getNovoLocalButton() {
 		if (novoLocalButton == null) {
@@ -1591,9 +1564,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes refreshInstrutorButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes refreshInstrutorButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getRefreshInstrutorButton() {
 		if (refreshInstrutorButton == null) {
@@ -1609,20 +1582,19 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return refreshInstrutorButton;
 	}
-
 	@SuppressWarnings("unchecked")
-	private List instrutors = new ArrayList(); // @jve:decl-index=0:
+	private List instrutors = new ArrayList();  //  @jve:decl-index=0:
 
 	/**
-	 * This method initializes refreshComitenteButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes refreshComitenteButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getRefreshFormacoesButton() {
 		if (refreshFormacoesButton == null) {
 			refreshFormacoesButton = new JButton();
 			refreshFormacoesButton.setBounds(new Rectangle(340, 0, 22, 22));
-			refreshFormacoesButton.setToolTipText("Atualizar a lista de formaï¿½oes");
+			refreshFormacoesButton.setToolTipText("Atualizar a lista de formações");
 			refreshFormacoesButton.setIcon(new ImageIcon(getClass().getResource("/imgs/action_refresh_blue.gif")));
 			refreshFormacoesButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1632,69 +1604,62 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return refreshFormacoesButton;
 	}
-
-	/*
-	 * @SuppressWarnings("unchecked")
-	 * private List<ContatoTreinamento> contatos = new ArrayList();
-	 * // @jve:decl-index=0:
-	 * 
-	 * @SuppressWarnings("unchecked")
-	 * public void updateContatosList(){
-	 * getComarcaComboBox().removeAllItems();
-	 * contatos.clear();
-	 * try {
-	 * Iterator<ContatoTreinamento> it =
-	 * RemoteContatoService.getInstance().listAllContatos().iterator();
-	 * {
-	 * while(it.hasNext()){
-	 * ContatoTreinamento l = it.next();
-	 * contatos.add(l);
-	 * getComarcaComboBox().addItem(l.getNome());
-	 * }
-	 * }
-	 * } catch (Exception e1) {
-	 * e1.printStackTrace();
-	 * }
-	 * if (contatos == null || contatos.size() == 0)
-	 * getEditarContatoButton().setEnabled(false);
-	 * else getEditarContatoButton().setEnabled(true);
-	 * }
-	 */
-
+	
+/*	@SuppressWarnings("unchecked")
+	private List<ContatoTreinamento> contatos = new ArrayList();  //  @jve:decl-index=0:
+	
 	@SuppressWarnings("unchecked")
-	private List<FormacaoTreinamento> formacoes = new ArrayList(); // @jve:decl-index=0:
-
+	public void updateContatosList(){
+		getComarcaComboBox().removeAllItems();
+		contatos.clear();
+		try {
+			Iterator<ContatoTreinamento> it = RemoteContatoService.getInstance().listAllContatos().iterator();
+			{
+				while(it.hasNext()){
+					ContatoTreinamento l = it.next();
+					contatos.add(l);
+					getComarcaComboBox().addItem(l.getNome());
+				}
+			}
+		} catch (Exception e1) { 
+			e1.printStackTrace();
+		}
+		if (contatos == null || contatos.size() == 0) getEditarContatoButton().setEnabled(false);
+		else getEditarContatoButton().setEnabled(true);
+	}*/
+	
 	@SuppressWarnings("unchecked")
-	public void updateFormacoesList() {
+	private List<FormacaoTreinamento> formacoes = new ArrayList();  //  @jve:decl-index=0:
+	
+	@SuppressWarnings("unchecked")
+	public void updateFormacoesList(){
 		getFormacaoComboBox().removeAllItems();
 		formacoes.clear();
 		try {
-			Iterator<FormacaoTreinamento> it = RemoteTreinamentoService.getInstance().listAllTrainingFormations()
-					.iterator();
+			Iterator<FormacaoTreinamento> it = RemoteTreinamentoService.getInstance().listAllTrainingFormations().iterator();
 			{
-				while (it.hasNext()) {
+				while(it.hasNext()){
 					FormacaoTreinamento l = it.next();
 					formacoes.add(l);
 					getFormacaoComboBox().addItem(l.getNome());
 				}
 			}
-		} catch (Exception e1) {
+		} catch (Exception e1) { 
 			e1.printStackTrace();
 		}
-		if (formacoes == null || formacoes.size() == 0)
-			getEditarFormacaoButton().setEnabled(false);
-		else
-			getEditarFormacaoButton().setEnabled(true);
+		if (formacoes == null || formacoes.size() == 0) getEditarFormacaoButton().setEnabled(false);
+		else getEditarFormacaoButton().setEnabled(true);
 	}
-
-	@SuppressWarnings("unchecked")
-	public void updateInstrutorList() {
+	
+	@SuppressWarnings("unchecked")	
+	public void updateInstrutorList(){
 		getInstrutorComboBox().removeAllItems();
 		instrutors.clear();
 		try {
-			Iterator<Instrutor> it = RemoteTurmaService.getInstance().listAllInstructors().iterator();
+			Iterator<Instrutor> it = 
+				RemoteTurmaService.getInstance().listAllInstructors().iterator();
 			{
-				while (it.hasNext()) {
+				while(it.hasNext()){
 					Instrutor l = it.next();
 					instrutors.add(l);
 					getInstrutorComboBox().addItem(l.getNome());
@@ -1703,77 +1668,70 @@ public class TurmaCadastreForm extends JPanel {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
-		if (instrutors == null || instrutors.size() == 0)
-			getEditarInstrutorButton().setEnabled(false);
-		else
-			getEditarInstrutorButton().setEnabled(true);
+		
+		if (instrutors == null || instrutors.size() == 0) getEditarInstrutorButton().setEnabled(false);
+		else getEditarInstrutorButton().setEnabled(true);
 	}
-
 	@SuppressWarnings("unchecked")
-	public void updateCondicaoParticipacaoList() {
+	public void updateCondicaoParticipacaoList(){
 		getCondicoesCadastradasComboBox().removeAllItems();
 		condicoes.clear();
 		try {
-			Iterator<CondicaoParticipacaoTreinamento> it = RemoteTurmaService.getInstance()
-					.listTrainingClassParticipationConditions().iterator();
+			Iterator<CondicaoParticipacaoTreinamento> it = 
+				RemoteTurmaService.getInstance().listTrainingClassParticipationConditions().iterator();
 			{
-				while (it.hasNext()) {
+				while(it.hasNext()){
 					CondicaoParticipacaoTreinamento l = it.next();
 					condicoes.add(l);
 					getCondicoesCadastradasComboBox().addItem(l.getDescricao());
 				}
-			}
+			}			
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			e1.printStackTrace();			
 		}
-
-		if (condicoes == null || condicoes.size() == 0)
-			getEditarCondicaoButton().setEnabled(false);
-		else {
+		
+		if (condicoes == null || condicoes.size() == 0) getEditarCondicaoButton().setEnabled(false);
+		else{
 			getEditarCondicaoButton().setEnabled(true);
 			getCondicoesCadastradasComboBox().setSelectedIndex(0);
 		}
 		salvarCondicaoButton.setEnabled(false);
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	private List condicoes = new ArrayList(); // @jve:decl-index=0:
-
+	private List condicoes = new ArrayList();  //  @jve:decl-index=0:
+	
 	@SuppressWarnings("unchecked")
-	public void updateEnderecoList() {
+	public void updateEnderecoList(){
 		getEnderecoComboBox().removeAllItems();
 		enderecos.clear();
 		try {
-			Iterator<Endereco> it = RemoteTurmaService.getInstance().listAddressesByAddressType(AddressType.Presencial)
-					.iterator();
+			Iterator<Endereco> it = RemoteTurmaService.getInstance().listAddressesByAddressType(AddressType.Presencial).iterator();
 			{
-				while (it.hasNext()) {
+				while(it.hasNext()){
 					Endereco l = it.next();
 					enderecos.add(l);
-					getEnderecoComboBox().addItem(l.getCidade() + " (" + l.getRua() + ")");
+					getEnderecoComboBox().addItem(l.getCidade()+" ("+l.getRua()+")");
 				}
-			}
+			}			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
-		if (enderecos == null || enderecos.size() == 0)
-			getEditarLocalButton().setEnabled(false);
-		else
-			getEditarLocalButton().setEnabled(true);
+		
+		if (enderecos == null || enderecos.size() == 0) getEditarLocalButton().setEnabled(false);
+		else getEditarLocalButton().setEnabled(true);
 	}
 
 	/**
-	 * This method initializes refreshEnderecoButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes refreshEnderecoButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getRefreshEnderecoButton() {
 		if (refreshEnderecoButton == null) {
 			refreshEnderecoButton = new JButton();
 			refreshEnderecoButton.setBounds(new Rectangle(351, 61, 22, 22));
-			refreshEnderecoButton.setToolTipText("Atualizar a lista de enderï¿½os");
+			refreshEnderecoButton.setToolTipText("Atualizar a lista de enderços");
 			refreshEnderecoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/action_refresh_blue.gif")));
 			refreshEnderecoButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1783,9 +1741,9 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return refreshEnderecoButton;
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	private List enderecos = new ArrayList(); // @jve:decl-index=0:
+	private List enderecos = new ArrayList();  //  @jve:decl-index=0:
 
 	private JLabel condDesLabel = null;
 
@@ -1838,9 +1796,9 @@ public class TurmaCadastreForm extends JPanel {
 	private JPanel imagePanel = null;
 
 	/**
-	 * This method initializes condicoesCadastradasComboBox
-	 * 
-	 * @return javax.swing.JComboBox
+	 * This method initializes condicoesCadastradasComboBox	
+	 * 	
+	 * @return javax.swing.JComboBox	
 	 */
 	private JComboBox getCondicoesCadastradasComboBox() {
 		if (condicoesCadastradasComboBox == null) {
@@ -1851,9 +1809,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes atualizarCondicaoPartButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes atualizarCondicaoPartButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getAtualizarCondicaoPartButton() {
 		if (atualizarCondicaoPartButton == null) {
@@ -1865,14 +1823,14 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes editarCondicaoButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes editarCondicaoButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getEditarCondicaoButton() {
 		if (editarCondicaoButton == null) {
 			editarCondicaoButton = new JButton();
-			editarCondicaoButton.setText("Editar o Prï¿½-Requisito");
+			editarCondicaoButton.setText("Editar o Pré-Requisito");
 			editarCondicaoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/script_edit.png")));
 			editarCondicaoButton.setEnabled(false);
 			editarCondicaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1894,23 +1852,23 @@ public class TurmaCadastreForm extends JPanel {
 		}
 		return editarCondicaoButton;
 	}
-
-	public static Participante getParticipanteByUsuario(Usuario user) {
+	
+	public static Participante getParticipanteByUsuario(Usuario user){		
 		try {
 			user = (Usuario) RemoteUserService.getInstance().getUserByLogin(user.getLogin());
 			Participante p = (Participante) RemotePessoaService.getInstance()
-					.getParticipante(user.getDadosPessoais().getId());
+			.getParticipante(user.getDadosPessoais().getId());
 			return p;
-		} catch (Exception e1) {
+		} catch (Exception e1) { 
 			e1.printStackTrace();
 		}
-		return null;
+		return null;			
 	}
 
 	/**
-	 * This method initializes listarTodosButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes listarTodosButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getListarTodosButton() {
 		if (listarTodosButton == null) {
@@ -1928,9 +1886,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes anexarButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes anexarButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getAnexarButton() {
 		if (anexarButton == null) {
@@ -1942,13 +1900,13 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes listarNulosButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes listarNulosButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getListarNulosButton() {
 		if (listarRelatoriosButton == null) {
-			listarRelatoriosButton = new JButton("Relatorios");
+			listarRelatoriosButton = new JButton("Relatórios");
 			listarRelatoriosButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					enableButtons(false);
@@ -1960,9 +1918,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes encaminharLotesButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes encaminharLotesButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getEncaminharLotesButton() {
 		if (encaminharLotesButton == null) {
@@ -1975,9 +1933,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes listPanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes listPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getListPanel() {
 		if (listPanel == null) {
@@ -1988,8 +1946,8 @@ public class TurmaCadastreForm extends JPanel {
 			listPanel.setLayout(flowLayout);
 			listPanel.setBounds(new Rectangle(83, 292, 537, 22));
 			listPanel.add(getPendentesAgendaRadioButton(), null);
-			listPanel.add(getPendentesAprovacaoRadioButton(), null);
-
+			listPanel.add(getPendentesAprovacaoRadioButton(), null);			
+			
 			ButtonGroup bg = new ButtonGroup();
 			bg.add(getPendentesAgendaRadioButton());
 			bg.add(getPendentesAprovacaoRadioButton());
@@ -1997,23 +1955,25 @@ public class TurmaCadastreForm extends JPanel {
 		return listPanel;
 	}
 
+
+
 	/**
-	 * This method initializes comLancesRadioButton
-	 * 
-	 * @return javax.swing.JRadioButton
+	 * This method initializes comLancesRadioButton	
+	 * 	
+	 * @return javax.swing.JRadioButton	
 	 */
 	private JRadioButton getPendentesAprovacaoRadioButton() {
 		if (pendentesAprovacaoRadioButton == null) {
 			pendentesAprovacaoRadioButton = new JRadioButton();
-			pendentesAprovacaoRadioButton.setText("Pendentes de aprovacao");
+			pendentesAprovacaoRadioButton.setText("Pendentes de aprovação");
 		}
 		return pendentesAprovacaoRadioButton;
 	}
 
 	/**
-	 * This method initializes pendentesAgendaRadioButton
-	 * 
-	 * @return javax.swing.JRadioButton
+	 * This method initializes pendentesAgendaRadioButton	
+	 * 	
+	 * @return javax.swing.JRadioButton	
 	 */
 	private JRadioButton getPendentesAgendaRadioButton() {
 		if (pendentesAgendaRadioButton == null) {
@@ -2025,39 +1985,39 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes verDadosLancesLoteButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes verDadosLancesLoteButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getCriarPorFormacaoButton() {
 		if (criarPorFormacaoButton == null) {
 			criarPorFormacaoButton = new JButton();
-			criarPorFormacaoButton.setText("Criar Pela Formaï¿½ï¿½o");
+			criarPorFormacaoButton.setText("Criar Pela Formação");
 			criarPorFormacaoButton.setIcon(new ImageIcon(getClass().getResource("/imgs/table_mode.png")));
-			// criarPorFormacaoButton.setEnabled(false);
-			criarPorFormacaoButton.addActionListener(new ActionListener() {
+			//criarPorFormacaoButton.setEnabled(false);
+			criarPorFormacaoButton.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					FormacaoTreinamento f = formacoes.get(getFormacaoComboBox().getSelectedIndex());
 					try {
 						List<Treinamento> treinamentos = RemoteTreinamentoService.getInstance()
-								.createTrainemantosByFormacaoIdAndTurmaId(f.getId(), turma.getId());
+							.createTrainemantosByFormacaoIdAndTurmaId(f.getId(), turma.getId());
 						getAgendasTurmasTable().setElements(treinamentos);
 						getAgendasTurmasTable().updateTable();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
-
+				
 			});
 		}
 		return criarPorFormacaoButton;
 	}
 
 	/**
-	 * This method initializes numeroParticipantesTextField
-	 * 
-	 * @return javax.swing.JTextField
+	 * This method initializes numeroParticipantesTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
 	 */
 	private JComponent getNumeroParticipantesTextField() {
 		if (numeroParticipantesTextField == null) {
@@ -2074,9 +2034,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes numeroMinimoParticipantesTextField
-	 * 
-	 * @return javax.swing.JTextField
+	 * This method initializes numeroMinimoParticipantesTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
 	 */
 	private JComponent getNumeroMinimoParticipantesTextField() {
 		if (numeroMinimoParticipantesTextField == null) {
@@ -2093,12 +2053,12 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes encerramentoPrevistoField
-	 * 
-	 * @return javax.swing.JTextField
+	 * This method initializes encerramentoPrevistoField	
+	 * 	
+	 * @return javax.swing.JTextField	
 	 */
 	private JComponent getEncerramentoPrevistoField() {
-		if (encerramentoPrevistoField == null) {
+		if (encerramentoPrevistoField == null) {			
 			encerramentoPrevistoField = new DateHourChooser(messages
 					.getCurrentLocale(), true, true, false);
 			encerramentoPrevistoField.setSize(new Dimension(134, 22));
@@ -2114,9 +2074,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes instrucoesParticipantesScrollPane
-	 * 
-	 * @return javax.swing.JScrollPane
+	 * This method initializes instrucoesParticipantesScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
 	 */
 	private JScrollPane getInstrucoesParticipantesScrollPane() {
 		if (instrucoesParticipantesScrollPane == null) {
@@ -2128,9 +2088,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes instrucoesParticipantesTextPane
-	 * 
-	 * @return javax.swing.JTextPane
+	 * This method initializes instrucoesParticipantesTextPane	
+	 * 	
+	 * @return javax.swing.JTextPane	
 	 */
 	private JComponent getInstrucoesParticipantesTextPane() {
 		if (instrucoesParticipantesTextPane == null) {
@@ -2146,9 +2106,9 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes imageMainPanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes imageMainPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getImageMainPanel() {
 		if (imageMainPanel == null) {
@@ -2166,41 +2126,41 @@ public class TurmaCadastreForm extends JPanel {
 	}
 
 	/**
-	 * This method initializes buscarButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes buscarButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getBuscarButton() {
 		if (buscarButton == null) {
 			buscarButton = new JButton();
 			buscarButton.setBounds(new Rectangle(6, 44, 111, 41));
 			buscarButton.setText("Buscar");
-			buscarButton.addActionListener(new ActionListener() {
+			buscarButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent arg0) {
-					if (turma.getId() != 0) {
+					if (turma.getId() != 0){
 						anexarImagem();
-					} else {
-						JOptionPane.showMessageDialog(TurmaCadastreForm.this, "Primeiro ï¿½ preciso cadastrar a turma!",
-								"Adicionar imagem", JOptionPane.WARNING_MESSAGE);
+					}
+					else{
+						JOptionPane.showMessageDialog(TurmaCadastreForm.this, "Primeiro é preciso cadastrar a turma!","Adicionar imagem",JOptionPane.WARNING_MESSAGE);
 						getTabbedPane().setSelectedIndex(0);
 					}
-				}
+				}				
 			});
 		}
 		return buscarButton;
 	}
 
 	/**
-	 * This method initializes imagePanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes imagePanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getImagePanel() {
 		if (imagePanel == null) {
 			imagePanel = new JPanel();
 			imagePanel.setLayout(new BorderLayout());
 			imagePanel.setBounds(new Rectangle(128, 19, 140, 90));
-			imagePanel.add(getSmallLabelImage(), BorderLayout.CENTER);
+			imagePanel.add(getSmallLabelImage(),BorderLayout.CENTER);
 		}
 		return imagePanel;
 	}
@@ -2219,6 +2179,7 @@ public class TurmaCadastreForm extends JPanel {
 		}).run();
 	}
 
+	
 	@SuppressWarnings("unused")
 	private static Icon getIcon(String name) {
 		try {
@@ -2244,12 +2205,12 @@ public class TurmaCadastreForm extends JPanel {
 	private class AgendasTurmaTable extends JTable {
 		@SuppressWarnings("unchecked")
 		private List elements;
-
 		@SuppressWarnings("unchecked")
 		public void setElements(List elements) {
 			this.elements = elements;
 		}
 
+		
 		@SuppressWarnings("unchecked")
 		public List getElements() {
 			return this.elements;
@@ -2261,7 +2222,6 @@ public class TurmaCadastreForm extends JPanel {
 			this.setModel(new AgendasTurmaTableModel(null));
 			this.addPropertyChangeListener(new LotesEmLeilaoListPropertyChangeListener());
 		}
-
 		@SuppressWarnings("unchecked")
 		public AgendasTurmaTable(List elements) {
 			super();
@@ -2283,16 +2243,14 @@ public class TurmaCadastreForm extends JPanel {
 						com.adapit.portal.entidades.Treinamento lote = (com.adapit.portal.entidades.Treinamento) obj;
 						values[i][0] = lote.getCodigo();
 						values[i][1] = lote.getResumo();
-						if (lote.getStatus() != null)
-							values[i][2] = lote.getStatus();
-						else
-							values[i][2] = "Cadastro";
+						if (lote.getStatus() != null) values[i][2] = lote.getStatus();
+						else values[i][2] = "Cadastro";
 						i++;
 					}
-				} // End of while Loop
+				}// End of while Loop
 				setModel(new AgendasTurmaTableModel(values));
 				getColumnModel().getColumn(1).setPreferredWidth(200);
-
+				
 				updateUI();
 			} else {
 				setModel(new AgendasTurmaTableModel(null));
@@ -2321,7 +2279,7 @@ public class TurmaCadastreForm extends JPanel {
 							if (col == 1)
 								lote.setResumo(((java.lang.String) jt
 										.getValueAt(row, col)));
-
+							
 						}
 					} catch (java.lang.Exception ex) {
 						ex.printStackTrace();
@@ -2329,7 +2287,6 @@ public class TurmaCadastreForm extends JPanel {
 			}
 
 		}
-
 		@SuppressWarnings("unchecked")
 		private class AgendasTurmaTableModel extends DefaultTableModel {
 
@@ -2342,8 +2299,8 @@ public class TurmaCadastreForm extends JPanel {
 
 				super(
 						values,
-						new String[] { "Numero da Agenda",
-								"Resumo", "Status" });
+						new String[] {"Número da Agenda",
+								"Resumo","Status"});
 			}
 
 			public Class getColumnClass(int columnIndex) {
@@ -2357,6 +2314,8 @@ public class TurmaCadastreForm extends JPanel {
 			}
 
 		}
+
+
 
 		public void listPendentesAprovacao() {
 			try {
@@ -2395,65 +2354,62 @@ public class TurmaCadastreForm extends JPanel {
 		}
 
 	}
-
+	
 	private JButton anexar;
-
-	public void anexarImagem() {
-		try {
-			if (anexar == null) {
+	public void anexarImagem(){		
+		try {				
+			if (anexar == null){				 
 				anexar = new JButton("Anexar na turma");
-				anexar.addActionListener(new AnexarImagemActionListener());
+				anexar.addActionListener(new AnexarImagemActionListener());	
 				anexar.setIcon(getIcon("/imgs/picture_link.png"));
-			}
-			AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel().add(anexar, 0);
+			}			
+			AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm().getButtonsPanel().add(anexar,0);
 			AdapitVirtualFrame.getInstance().listImagens();
 		} catch (HeadlessException e) {
 			e.printStackTrace();
 		}
 	}
-
-	private class AnexarImagemActionListener implements ActionListener {
-
-		public AnexarImagemActionListener() {
-			AdapitVirtualFrame.getInstance().listImagens();
+	
+	private class AnexarImagemActionListener implements ActionListener{
+		
+		public AnexarImagemActionListener(){
+			AdapitVirtualFrame.getInstance().listImagens();		
 			ilf = AdapitVirtualFrame.getInstance().getListaImagensFrame().getImageListForm();
 			buttonsPanel = ilf.getButtonsPanel();
 		}
-
 		private ImageListForm ilf;
 		private JPanel buttonsPanel;
-
+		
 		@Override
 		public void actionPerformed(ActionEvent evt) {
-
+					
 			int rows[] = ilf.getBaseTable().getSelectedRows();
-			if (rows != null) {
+			if (rows != null){
 				try {
 					Imagem im = (Imagem) ilf.getBaseTable().getElements().get(rows[0]);
-					RemoteTurmaService.getInstance().mergeImageTrainingClass(im.getId(), turma.getId());
+					RemoteTurmaService.getInstance().mergeImageTrainingClass(im.getId(),turma.getId());
 					turma.setImagem(im);
 					getSmallLabelImage().setIcon(im.getSmallImageIcon(false));
 					getSmallLabelImage().updateUI();
-					AdapitVirtualFrame.getInstance().showOperationSucess("Anexar Imagem em Turma",
-							"Imagem anexada com sucesso!");
+					AdapitVirtualFrame.getInstance().showOperationSucess("Anexar Imagem em Turma", "Imagem anexada com sucesso!");
 				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				buttonsPanel.remove(anexar);
+					e.printStackTrace();					
+				}				
+				buttonsPanel.remove(anexar);				
 			}
 			AdapitVirtualFrame.getInstance().getListaImagensFrame().dispose();
 		}
 	}
-
+	
 	private JLabel smallLabelImage;
-
+	
 	protected JLabel getSmallLabelImage() {
 		if (smallLabelImage == null) {
 			smallLabelImage = new JLabel();
 			smallLabelImage.setHorizontalTextPosition(SwingConstants.CENTER);
-			smallLabelImage.setHorizontalAlignment(SwingConstants.CENTER);
+			smallLabelImage.setHorizontalAlignment(SwingConstants.CENTER);						
 		}
 		return smallLabelImage;
 	}
 
-} // @jve:decl-index=0:visual-constraint="10,10"
+}  //  @jve:decl-index=0:visual-constraint="10,10"

@@ -1,5 +1,7 @@
 package com.adapit.portal.entidades;
 
+
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,134 +27,149 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@SequenceGenerator(sequenceName = "CommercialSolutionSeq", name = "comercialSolution_generator", initialValue = 1, allocationSize = 1)
-@Table(name = "CommercialSolution")
-public class ComercialSolution implements Serializable {
+@Inheritance(strategy=InheritanceType.JOINED)
+@SequenceGenerator(sequenceName="CommercialSolutionSeq",
+			name="comercialSolution_generator",initialValue=1,allocationSize=1)
+@Table(name="CommercialSolution")
+public class ComercialSolution implements Serializable{
 
 	private static final long serialVersionUID = 99846124124673457L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comercialSolution_generator")
+	
+	@Id	
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="comercialSolution_generator")
 	private int id;
-
-	@Column(nullable = false, length = 2048, name = "description")
+	
+	@Column(nullable=false,length=2048,name="description")
 	private String descricao;
-
-	@Column(nullable = false, name = "price")
+	
+	@Column(nullable=false,name="price")
 	private float avaliacao;
-
-	@Column(name = "creation_date")
+	
+	@Column(name="creation_date")
 	private Date dataCriacao;
-
-	@OrderBy(value = "indice")
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SOLUTION_IMAGE", joinColumns = { @JoinColumn(name = "SOLUTION_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "IMAGE_ID") })
+	
+	@OrderBy(value="indice")
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="SOLUTION_IMAGE"
+			,joinColumns={@JoinColumn(name="SOLUTION_ID")}
+			,inverseJoinColumns={@JoinColumn(name="IMAGE_ID")}
+	)
 	private List<Imagem> imagens = new ArrayList<Imagem>();
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SOLUTION_FILE", joinColumns = { @JoinColumn(name = "SOLUTION_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "FILE_ID") })
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="SOLUTION_FILE"
+			,joinColumns={@JoinColumn(name="SOLUTION_ID")}
+			,inverseJoinColumns={@JoinColumn(name="FILE_ID")}
+	)
 	private List<Arquivo> arquivos = new ArrayList<Arquivo>();
-
-	@OneToOne(targetEntity = Categoria.class, cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinColumn(name = "solution_cat_id")
-	private Categoria categoria;
-
-	@Column(name = "use_web_formater")
-	private boolean utilizarFormatador = false;
-
-	@Column(name = "name")
+	
+	@OneToOne (targetEntity=Categoria.class
+			,cascade={CascadeType.REFRESH},fetch=FetchType.LAZY)
+	@JoinColumn(name="solution_cat_id")
+	private Categoria categoria;	
+	
+	@Column(name="use_web_formater")
+	private boolean utilizarFormatador=false;
+	
+	@Column(name="name")
 	private String nome;
-
-	@Column(length = 5000, name = "abstract")
+	
+	@Column(length=5000,name="abstract")
 	private String resumo;
-
-	@Column(name = "keys_words")
+	
+	@Column(name="keys_words")
 	private String keyWords;
-
-	private CommercialSolutionType solutionType = CommercialSolutionType.Outros_servicos;
-
-	@Column(name = "publish_to_customer")
-	private boolean publicar = false;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	private CommercialSolutionType solutionType = CommercialSolutionType.Outros_serviços;
+	
+	@Column(name="publish_to_customer")
+	private boolean publicar=false;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	private CssDefinition cssDefinition;
 
+	
 	public ComercialSolution() {
 		super();
 		setDataCriacao(new Date());
 	}
-
-	public ComercialSolution(int id) {
+	
+	public ComercialSolution(int id){
 		super();
-		this.id = id;
+		this.id=id;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 
-	public Categoria getCategoria() {
+	public void setCategoria(Categoria categoria ){
+		this.categoria=categoria;		
+	}
+	
+	
+	
+	public Categoria getCategoria(){
 		return this.categoria;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	
+	public void setId(int id ){
+		this.id=id;
 	}
 
-	public int getId() {
+	
+	public int getId(){
 		return this.id;
 	}
-
 	/**
 	 * @spring.validator arg0resource="comercialSolution.descricao" type="required"
 	 */
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricao(String descricao ){
+		this.descricao=descricao;
 	}
-
-	public String getDescricao() {
+	
+	
+	public String getDescricao(){
 		return this.descricao;
 	}
-
+	
 	/**
 	 * 
 	 * @spring.validator arg0resource="comercialSolution.avaliacao" type="float"
 	 */
-	public void setAvaliacao(float avaliacao) {
-		this.avaliacao = avaliacao;
+	public void setAvaliacao(float avaliacao ){
+		this.avaliacao=avaliacao;
 	}
-
-	public float getAvaliacao() {
+	
+	
+	public float getAvaliacao(){
 		return this.avaliacao;
 	}
+
 
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
+
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
+	
 	@Transient
 	public String getFormatedDescricao() {
 		String str = "<table border=0 cellpadding=0 cellspacing=0 width=\"100%\" style=\"background-color:transparent;\">";
-		// String title = getCategoria().getNome();
+		//String title = getCategoria().getNome();
 		try {
 			String content = getDescricao();
 
-			/*
-			 * if (title != null && !title.equals("")) {
-			 * str += "<tr><td><b>"+title+ "</b></td></tr>";
-			 * }
-			 */
-			if (content != null && !content.equals("") && utilizarFormatador) {
+			/*if (title != null && !title.equals("")) {
+				str += "<tr><td><b>"+title+ "</b></td></tr>";
+			}*/
+			if (content != null && !content.equals("") && utilizarFormatador){
 				String dados[] = content.split("\n");
 				for (int j = 0; j < dados.length; j++) {
-					str += "<tr bgcolor=\"" + ((j % 2 > 0) ? "#f5f5f5" : "e8e8e8") + "\">";
+					str += "<tr bgcolor=\""+((j%2>0)?"#f5f5f5":"e8e8e8")+"\">";
 					String dado = dados[j];
 					String attval[] = dado.split(":");
 					if (attval != null && attval.length == 2) {
@@ -160,49 +177,52 @@ public class ComercialSolution implements Serializable {
 						str += "<td><b>" + att + ":</b></td>";
 						String val = attval[1];
 						str += "<td>" + val + "</td>";
-					} else {
+					}else{
 						str += "<td>" + dado + "</td>";
 					}
 					str += "</tr>";
 				}
-			} else if (content != null && !content.equals("")) {
+			}else if(content != null && !content.equals("")){
 				str += "<tr>";
-				str += "<td>" + content + "</td>";
+				str += "<td>" + content + "</td>";				
 				str += "</tr>";
-			} else {
+			}else{
 				str += "<tr>";
-				str += "<td>Sem informacoesdo produto/servico</td>";
+				str += "<td>Sem informações do produto/serviço</td>";				
 				str += "</tr>";
 			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		str += "</table>";
+		str+="</table>";
 		return str;
 	}
+	
 
 	public List<Imagem> getImagens() {
 		return imagens;
 	}
 
+
 	public void setImagens(List<Imagem> imagens) {
 		this.imagens = imagens;
 	}
 
+	
 	public boolean getUtilizarFormatador() {
 		return utilizarFormatador;
 	}
 
-	/*
-	 * public boolean isUtilizarFormatador() {
-	 * return utilizarFormatador;
-	 * }
-	 */
+/*	public boolean isUtilizarFormatador() {
+		return utilizarFormatador;
+	}
+*/
 
 	public void setUtilizarFormatador(boolean utilizarFormatador) {
 		this.utilizarFormatador = utilizarFormatador;
 	}
+
 
 	/**
 	 * @return the nome
@@ -211,6 +231,7 @@ public class ComercialSolution implements Serializable {
 		return nome;
 	}
 
+
 	/**
 	 * @spring.validator arg0resource="comercialSolution.nome" type="required"
 	 */
@@ -218,9 +239,12 @@ public class ComercialSolution implements Serializable {
 		this.nome = nome;
 	}
 
+
+	
 	public String getResumo() {
 		return resumo;
 	}
+
 
 	/**
 	 * @spring.validator arg0resource="comercialSolution.resumo" type="required"
@@ -229,12 +253,14 @@ public class ComercialSolution implements Serializable {
 		this.resumo = resumo;
 	}
 
+
 	/**
 	 * @return the keyWords
 	 */
 	public String getKeyWords() {
 		return keyWords;
 	}
+
 
 	/**
 	 * @spring.validator arg0resource="comercialSolution.keyWords" type="required"
@@ -243,6 +269,7 @@ public class ComercialSolution implements Serializable {
 		this.keyWords = keyWords;
 	}
 
+
 	/**
 	 * @return the solutionType
 	 */
@@ -250,17 +277,20 @@ public class ComercialSolution implements Serializable {
 		return solutionType;
 	}
 
+
 	/**
-	 * @spring.validator arg0resource="comercialSolution.solutionType"
-	 *                   type="required"
+	 * @spring.validator arg0resource="comercialSolution.solutionType" type="required"
 	 */
 	public void setSolutionType(CommercialSolutionType solutionType) {
 		this.solutionType = solutionType;
 	}
 
+
+
 	public List<Arquivo> getArquivos() {
 		return arquivos;
 	}
+
 
 	/**
 	 * @param arquivos the arquivos to set
@@ -269,12 +299,14 @@ public class ComercialSolution implements Serializable {
 		this.arquivos = arquivos;
 	}
 
+
 	/**
 	 * @return the publicar
 	 */
 	public boolean isPublicar() {
 		return publicar;
 	}
+
 
 	/**
 	 * @param publicar the publicar to set
@@ -301,9 +333,9 @@ public class ComercialSolution implements Serializable {
 		this.resumo = solution.getResumo();
 		this.solutionType = solution.getSolutionType();
 		this.utilizarFormatador = solution.getUtilizarFormatador();
-		if (solution.getCategoria() != null)
+		if(solution.getCategoria() != null)
 			this.categoria = solution.getCategoria();
-		if (solution instanceof SoftwareSolution) {
+		if(solution instanceof SoftwareSolution){
 			SoftwareSolution ss = (SoftwareSolution) solution;
 			SoftwareSolution curr = (SoftwareSolution) this;
 			curr.setLicencaUso(ss.getLicencaUso());
@@ -314,5 +346,6 @@ public class ComercialSolution implements Serializable {
 			curr.setUrlProjeto(ss.getUrlProjeto());
 		}
 	}
+
 
 }

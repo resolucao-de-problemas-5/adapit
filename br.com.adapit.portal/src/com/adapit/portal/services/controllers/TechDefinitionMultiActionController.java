@@ -1,5 +1,7 @@
 package com.adapit.portal.services.controllers;
 
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,18 +15,22 @@ import com.adapit.portal.entidades.TechDefinition;
 import com.adapit.portal.services.TechDefinitionService;
 import com.adapit.portal.services.validation.FieldMsgValidationException;
 import com.adapit.portal.services.validation.ValidationException;
+import com.workcase.utils.DatePropertyEditor;
+
 
 //@Controller
-public class TechDefinitionMultiActionController extends MultiActionController {
-
-	// @Resource(name="fakeDateEditor")
-	// private DatePropertyEditor datePropertyEditor;
-
+public class TechDefinitionMultiActionController extends MultiActionController{
+	
+	//@Resource(name="fakeDateEditor")
+	//private DatePropertyEditor datePropertyEditor;
+	
 	/**
-	 * @spring.property ref="techDefinitionService" singleton="true"
-	 */
+	* @spring.property ref="techDefinitionService" singleton="true"
+	*/
 	private TechDefinitionService techDefinitionService;
 
+
+	
 	public TechDefinitionService getTechDefinitionService() {
 		return techDefinitionService;
 	}
@@ -33,56 +39,53 @@ public class TechDefinitionMultiActionController extends MultiActionController {
 		this.techDefinitionService = techDefinitionService;
 	}
 
-	// @RequestMapping("/showTechDefinitionMaintenanceForm.html")
-	public ModelAndView showTechDefinitionMaintenanceForm(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(getClass() + ".showTechDefinitionMaintenanceForm");
-		try {
-			if (request.getParameter("techDefinition.id") != null) {
-				int id = Integer.parseInt(request.getParameter("techDefinition.id"));
-				if (id > 0)
-					try {
-						TechDefinition techDefinition = new TechDefinition();
-						techDefinition.setId(id);
-						request.setAttribute("techDefinition", techDefinition);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+	//@RequestMapping("/showTechDefinitionMaintenanceForm.html")
+	public ModelAndView showTechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".showTechDefinitionMaintenanceForm");
+		try{
+			if(request.getParameter("techDefinition.id")!=null){
+				int id  = Integer.parseInt(request.getParameter("techDefinition.id"));
+				if (id>0)try{
+					TechDefinition techDefinition = new TechDefinition();
+					techDefinition.setId(id);
+					request.setAttribute("techDefinition", techDefinition);
+				}catch(Exception ex){ex.printStackTrace();}
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
-
-	public TechDefinition bindTechDefinition(HttpServletRequest request) throws Exception {
+	
+	public TechDefinition bindTechDefinition(HttpServletRequest request ) throws Exception{
 		TechDefinition techDefinition = new TechDefinition();
-		if (com.adapit.web.NumberUtil.isNumeric(request.getParameter("techDefinition.id")))
+		if(com.adapit.web.NumberUtil.isNumeric(request.getParameter("techDefinition.id")))
 			techDefinition.setId(java.lang.Integer.parseInt(request.getParameter("techDefinition.id")));
 		techDefinition.setContent(request.getParameter("techDefinition.content"));
 		techDefinition.setKeywords(request.getParameter("techDefinition.keywords"));
 		return techDefinition;
 	}
-
-	public void reverseBindTechDefinition(HttpServletRequest request) throws Exception {
+	
+	public void reverseBindTechDefinition(HttpServletRequest request ) throws Exception{
 
 	}
-
-	// @RequestMapping("/saveTechDefinitionAction_TechDefinitionMaintenanceForm.html")
-	public ModelAndView saveTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".saveTechDefinitionAction_TechDefinitionMaintenanceForm");
-		try {
-			TechDefinition techDefinition = bindTechDefinition(request);
+	
+	//@RequestMapping("/saveTechDefinitionAction_TechDefinitionMaintenanceForm.html")
+	public ModelAndView saveTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".saveTechDefinitionAction_TechDefinitionMaintenanceForm");
+		try{
+			TechDefinition techDefinition=bindTechDefinition(request);
 			techDefinitionService.saveOrUpdate(techDefinition);
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.SucessDialog;
 			request.setAttribute("msg", "SucessDialogMessage");
 			request.setAttribute("kind", kind);
 			request.setAttribute("title", "SucessDialogTitle");
-			// Dados para editar o formulario
-			request.setAttribute("techDefinition", techDefinition);
+			//Dados para editar o formulário
+					request.setAttribute("techDefinition", techDefinition);
 			reverseBindTechDefinition(request);
-		} catch (FieldMsgValidationException ex1) {
+		}
+		catch(FieldMsgValidationException ex1){
 			ex1.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
@@ -90,31 +93,36 @@ public class TechDefinitionMultiActionController extends MultiActionController {
 			request.setAttribute("title", "ErrorDialogTitle");
 			request.setAttribute("errorFields", ex1.getErrorFields());
 			request.setAttribute("errorMessages", ex1.getErrorMessages());
-		} catch (ValidationException ex2) {
+		}
+		catch(ValidationException ex2){
 			ex2.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
 			request.setAttribute("kind", kind);
 			request.setAttribute("title", "ErrorDialogTitle");
-		} catch (NonUniqueObjectException ex3) {
+		}
+		catch(NonUniqueObjectException ex3){
 			ex3.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
 			request.setAttribute("kind", kind);
 			request.setAttribute("title", "ErrorDialogTitle");
-		} catch (ConstraintViolationException ex4) {
+		}
+		catch(ConstraintViolationException ex4){
 			ex4.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
 			request.setAttribute("kind", kind);
 			request.setAttribute("title", "ErrorDialogTitle");
-		} catch (DataException ex5) {
+		}
+		catch(DataException ex5){
 			ex5.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
 			request.setAttribute("kind", kind);
 			request.setAttribute("title", "ErrorDialogTitle");
-		} catch (Exception ex6) {
+		}
+		catch(Exception ex6){
 			ex6.printStackTrace();
 			com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 			request.setAttribute("msg", "ErrorDialogMessage");
@@ -123,80 +131,72 @@ public class TechDefinitionMultiActionController extends MultiActionController {
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
+	
+	//@RequestMapping("/deleteTechDefinitionAction_TechDefinitionMaintenanceForm.html")
+	public ModelAndView deleteTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".deleteTechDefinitionAction_TechDefinitionMaintenanceForm");
 
-	// @RequestMapping("/deleteTechDefinitionAction_TechDefinitionMaintenanceForm.html")
-	public ModelAndView deleteTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".deleteTechDefinitionAction_TechDefinitionMaintenanceForm");
+		try{
+			int id  = Integer.parseInt(request.getParameter("techDefinition.id"));
+			if (id > 0 )try{
+				TechDefinition techDefinition = new TechDefinition();
+				techDefinition.setId(id);
+				techDefinitionService.delete(techDefinition);
+				com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.SucessDialog;
+				request.setAttribute("msg", "SucessDialogMessage");
+				request.setAttribute("kind", kind);
+				request.setAttribute("title", "SucessDialogTitle");
+			}catch(Exception ex){
+				com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
+				request.setAttribute("msg", "ErrorDialogMessage");
+				request.setAttribute("kind", kind);
+				request.setAttribute("title", "ErrorDialogTitle");
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
+	}
+	
+	//@RequestMapping("/filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm.html")
+	public ModelAndView filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm");
 
-		try {
-			int id = Integer.parseInt(request.getParameter("techDefinition.id"));
-			if (id > 0)
-				try {
+		try{
+			if(request.getParameter("techDefinition.id")!=null){
+				int id  = Integer.parseInt(request.getParameter("techDefinition.id"));
+				if (id>0)try{
 					TechDefinition techDefinition = new TechDefinition();
 					techDefinition.setId(id);
-					techDefinitionService.delete(techDefinition);
-					com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.SucessDialog;
-					request.setAttribute("msg", "SucessDialogMessage");
-					request.setAttribute("kind", kind);
-					request.setAttribute("title", "SucessDialogTitle");
-				} catch (Exception ex) {
-					com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
-					request.setAttribute("msg", "ErrorDialogMessage");
-					request.setAttribute("kind", kind);
-					request.setAttribute("title", "ErrorDialogTitle");
-				}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
-	}
-
-	// @RequestMapping("/filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm.html")
-	public ModelAndView filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".filterTechDefinitionByKeyword_TechDefinitionMaintenanceForm");
-
-		try {
-			if (request.getParameter("techDefinition.id") != null) {
-				int id = Integer.parseInt(request.getParameter("techDefinition.id"));
-				if (id > 0)
-					try {
-						TechDefinition techDefinition = new TechDefinition();
-						techDefinition.setId(id);
-						request.setAttribute("techDefinition", techDefinition);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+					request.setAttribute("techDefinition", techDefinition);
+				}catch(Exception ex){ex.printStackTrace();}
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
-		try {
+		try{
 			String arg0 = null;
 			String arg0Str = request.getParameter("techDefinition.keywords");
-			if (arg0Str != null && !arg0Str.trim().equals("")) {
+			if(arg0Str != null && ! arg0Str.trim().equals("")){
 				arg0 = arg0Str;
 			}
-			java.util.Collection<TechDefinition> techDefinitionList = techDefinitionService
-					.filterTechDefinitionByKeyword(arg0);
+			java.util.Collection<TechDefinition> techDefinitionList = techDefinitionService.filterTechDefinitionByKeyword(arg0);
 			request.setAttribute("techDefinitionList", techDefinitionList);
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
-
-	// @RequestMapping("/loadTechDefinitionAction_TechDefinitionMaintenanceForm.html")
+	
+	//@RequestMapping("/loadTechDefinitionAction_TechDefinitionMaintenanceForm.html")
 	@SuppressWarnings("unchecked")
-	public ModelAndView loadTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".loadTechDefinitionAction_TechDefinitionMaintenanceForm");
+	public ModelAndView loadTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".loadTechDefinitionAction_TechDefinitionMaintenanceForm");
 
-		try {
-			java.util.Enumeration parNames = request.getParameterNames();
-			TechDefinition techDefinition = new TechDefinition();
-			while (parNames.hasMoreElements()) {
+		try{
+			java.util.Enumeration parNames= request.getParameterNames();
+			TechDefinition techDefinition= new TechDefinition();
+			while(parNames.hasMoreElements()){
 				String name = (String) parNames.nextElement();
 				String val = request.getParameter(name);
 				if (name.indexOf("techDefinition") == 0) {
@@ -205,61 +205,55 @@ public class TechDefinitionMultiActionController extends MultiActionController {
 				}
 			}
 			try {
-				// screen initialization parameters
+			   //screen initialization parameters
 				techDefinition = techDefinitionService.loadTechDefinition(techDefinition.getId());
-				request.setAttribute("techDefinition", techDefinition);
-				reverseBindTechDefinition(request);
-			} catch (Exception ex) {
+					request.setAttribute("techDefinition", techDefinition);
+			reverseBindTechDefinition(request);
+			}catch(Exception ex){
 				ex.printStackTrace();
 			}
 
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
+	
+	//@RequestMapping("/showListAllTechDefinitionView_TechDefinitionMaintenanceForm.html")
+	public ModelAndView showListAllTechDefinitionView_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".showListAllTechDefinitionView_TechDefinitionMaintenanceForm");
 
-	// @RequestMapping("/showListAllTechDefinitionView_TechDefinitionMaintenanceForm.html")
-	public ModelAndView showListAllTechDefinitionView_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".showListAllTechDefinitionView_TechDefinitionMaintenanceForm");
-
-		try {
-			if (request.getParameter("techDefinition.id") != null) {
-				int id = Integer.parseInt(request.getParameter("techDefinition.id"));
-				if (id > 0)
-					try {
-						TechDefinition techDefinition = new TechDefinition();
-						techDefinition.setId(id);
-						request.setAttribute("techDefinition", techDefinition);
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+		try{
+			if(request.getParameter("techDefinition.id")!=null){
+				int id  = Integer.parseInt(request.getParameter("techDefinition.id"));
+				if (id>0)try{
+					TechDefinition techDefinition = new TechDefinition();
+					techDefinition.setId(id);
+					request.setAttribute("techDefinition", techDefinition);
+				}catch(Exception ex){ex.printStackTrace();}
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 
-		try {
+		try{
 			java.util.Collection<TechDefinition> techDefinitionList = techDefinitionService.listAll();
 			request.setAttribute("techDefinitionList", techDefinitionList);
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
-
-	// @RequestMapping("/loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm.html")
+	
+	//@RequestMapping("/loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm.html")
 	@SuppressWarnings("unchecked")
-	public ModelAndView loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm(
-			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(getClass()
-				+ ".loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm");
+	public ModelAndView loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".loadTechDefinitionFromeditselectionTechDefinitionButtonAction_TechDefinitionMaintenanceForm");
 
-		try {
-			java.util.Enumeration parNames = request.getParameterNames();
-			TechDefinition techDefinition = new TechDefinition();
-			while (parNames.hasMoreElements()) {
+		try{
+			java.util.Enumeration parNames= request.getParameterNames();
+			TechDefinition techDefinition= new TechDefinition();
+			while(parNames.hasMoreElements()){
 				String name = (String) parNames.nextElement();
 				String val = request.getParameter(name);
 				if (name.indexOf("techDefinition") == 0) {
@@ -268,68 +262,66 @@ public class TechDefinitionMultiActionController extends MultiActionController {
 				}
 			}
 			try {
-				// screen initialization parameters
+			   //screen initialization parameters
 				techDefinition = techDefinitionService.loadTechDefinition(techDefinition.getId());
-				request.setAttribute("techDefinition", techDefinition);
-				reverseBindTechDefinition(request);
-			} catch (Exception ex) {
+					request.setAttribute("techDefinition", techDefinition);
+			reverseBindTechDefinition(request);
+			}catch(Exception ex){
 				ex.printStackTrace();
 			}
 
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
-
-	// @RequestMapping("/deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm.html")
+	
+	//@RequestMapping("/deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm.html")
 	@SuppressWarnings("unchecked")
-	public ModelAndView deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println(getClass() + ".deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm");
-		try {
-			java.util.Enumeration parNames = request.getParameterNames();
+	public ModelAndView deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm(HttpServletRequest request ,HttpServletResponse response ){
+		System.out.println(getClass()+".deleteManyTechDefinitionAction_TechDefinitionMaintenanceForm");
+		try{
+			java.util.Enumeration parNames= request.getParameterNames();
 			java.util.ArrayList<TechDefinition> remList = new java.util.ArrayList<TechDefinition>();
-			while (parNames.hasMoreElements()) {
+			while(parNames.hasMoreElements()){
 				String name = (String) parNames.nextElement();
 				String val = request.getParameter(name);
-				if (name.indexOf("techDefinition") == 0)
-					try {
-						int id = (java.lang.Integer.parseInt(val));
+				if(name.indexOf("techDefinition")==0) try {
+					int id = (java.lang.Integer.parseInt(val));
 						java.util.Collection<TechDefinition> arr = techDefinitionService.listAll();
-						if (arr != null && arr.size() > 0) {
-							for (TechDefinition techDefinition : arr) {
-								if (id > 0 && (id == techDefinition.getId())) {
+						if(arr != null && arr.size()>0){
+							for(TechDefinition techDefinition: arr){
+								if (id > 0  && (id ==  techDefinition.getId() )){
 									remList.add(techDefinition);
 									break;
 								}
 							}
 						}
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+				}catch(Exception ex){ex.printStackTrace();}
 			}
-			if (remList != null && remList.size() > 0) {
+			if(remList != null && remList.size()>0){
 				try {
 					techDefinitionService.deleteMany(remList);
-					// SUCESS FORM
+					//SUCESS FORM
 					com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.SucessDialog;
 					request.setAttribute("msg", "SucessDialogMessage");
 					request.setAttribute("kind", kind);
 					request.setAttribute("title", "SucessDialogTitle");
-				} catch (Exception ex) {
+				}catch(Exception ex){
 					ex.printStackTrace();
-					// ERROR FORM
+					//ERROR FORM
 					com.adapit.web.DialogKind kind = com.adapit.web.DialogKind.ErrorDialog;
 					request.setAttribute("msg", "ErrorDialogMessage");
 					request.setAttribute("kind", kind);
 					request.setAttribute("title", "ErrorDialogTitle");
 				}
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return new ModelAndView("techdefinition/TechDefinitionMaintenanceForm");
 	}
+
+
 
 }

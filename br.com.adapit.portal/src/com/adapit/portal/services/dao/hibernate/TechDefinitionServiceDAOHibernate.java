@@ -14,6 +14,7 @@ import com.adapit.portal.entidades.TechDefinition;
 import com.adapit.portal.services.TechDefinitionService;
 import com.adapit.portal.services.validation.FieldMsgValidationException;
 import com.adapit.portal.services.validation.ValidationException;
+import com.workcase.hibernate.GenericDAO;
 import com.workcase.hibernate.GenericDAOHibernate;
 
 
@@ -21,7 +22,7 @@ import com.workcase.hibernate.GenericDAOHibernate;
 * @spring.bean id="techDefinitionServiceDAOHibernate" singleton="true"
 * @@org.springframework.transaction.interceptor.DefaultTransactionAttribute(propagationBehaviorName="PROPAGATION_REQUIRED")
 */
-public class TechDefinitionServiceDAOHibernate extends GenericDAOHibernate implements TechDefinitionService{
+public class TechDefinitionServiceDAOHibernate extends GenericDAOHibernate implements TechDefinitionService, GenericDAO{
 	
 	private SessionFactory sessionFactory;
 	
@@ -33,7 +34,7 @@ public class TechDefinitionServiceDAOHibernate extends GenericDAOHibernate imple
 
 	}
 	/**
- *Filtra definiï¿½ï¿½es por palavra chave informada
+ *Filtra definições por palavra chave informada
 	*@param arg0 techDefinition.keywords a palavra chave contida em keywords
  **/
 	public Collection<TechDefinition> filterTechDefinitionByKeyword(java.lang.String arg0 ) throws Exception{

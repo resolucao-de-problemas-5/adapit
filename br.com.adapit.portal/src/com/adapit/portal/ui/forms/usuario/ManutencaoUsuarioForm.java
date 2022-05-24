@@ -73,7 +73,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 		substituirSenhaLabel.setBounds(new Rectangle(32, 9, 246, 28));
 		substituirSenhaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		substituirSenhaLabel.setFont(new Font("Arial", Font.BOLD, 12));
-		substituirSenhaLabel.setText("Manutencao de Dados de Usuario");
+		substituirSenhaLabel.setText("Manutenção de Dados de Usuário");
 		this.setSize(new Dimension(311, 255));
 		setLocation(new java.awt.Point(0, 0));
 		setLayout(null);
@@ -109,11 +109,11 @@ public class ManutencaoUsuarioForm extends JPanel {
 		return loginTextField;
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings( { "unchecked", "deprecation" })
 	public Usuario validateUsuarioForm() throws Exception {
 		setErrorIcon(false);
 		if (usuario.getLogin() == null)
-			throw new Exception("Login de usuario nao pode ser nulo");
+			throw new Exception("Login de usuário não pode ser nulo");
 		usuario.setPassword(((JPasswordField) getPasswordPasswordField())
 				.getText());
 		usuario.setPasswordConf(((JPasswordField) getRepeticaoPasswordField())
@@ -129,13 +129,13 @@ public class ManutencaoUsuarioForm extends JPanel {
 
 	public Usuario updateUsuario() throws Exception {
 		Usuario user = validateUsuarioForm();
-		user.setPassword(Usuario.encrypt(user.getPassword()));
+		user.setPassword(Usuario.encript(user.getPassword()));
 		return RemoteUserService.getInstance().updateUsuario(user);
 		/*
 		 * Session s = null; try{ s =
 		 * LocalServicesUtility.getInstance().openSession();
 		 * s.beginTransaction();
-		 * user.setPassword(Usuario.encrypt(user.getPassword()));
+		 * user.setPassword(Usuario.encript(user.getPassword()));
 		 * s.createQuery("update Usuario user set " + "user.password=:pwd, " +
 		 * "user.active=:active, " + "user.autenticado=:aut " + "where
 		 * user.login=:login") .setParameter("pwd", user.getPassword())
@@ -147,7 +147,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 		 */
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings( { "unchecked", "deprecation" })
 	public boolean validateUsuarioBean() {
 		getErrorPanel().removeAllElements();
 		try {
@@ -220,13 +220,13 @@ public class ManutencaoUsuarioForm extends JPanel {
 				getRepeticaoPasswordField().firePropertyChange("warnBorder",
 						false, true);
 				try {
-					getErrorPanel().addError("As senhas nao conferem!",
+					getErrorPanel().addError("As senhas não conferem!",
 							getRepeticaoPasswordField());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				getRepeticaoPasswordField().setToolTipText(
-						"As senhas devem ser idï¿½nticas");
+						"As senhas devem ser idênticas");
 			}
 			if (passwordPasswordField.getText().length() < 6
 					|| passwordPasswordField.getText().length() > 8) {
@@ -309,8 +309,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 			loginTextFieldLabel = new JLabel(
 					"* "
 							+ messages
-									.getMessage(
-											"com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.Login"));
+									.getMessage("com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.Login"));
 			loginTextFieldLabel.setSize(new Dimension(94, 20));
 			loginTextFieldLabel.setLocation(new Point(6, 53));
 			loginTextFieldLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -343,8 +342,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 			passwordPasswordFieldLabel = new JLabel(
 					"* "
 							+ messages
-									.getMessage(
-											"com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.Senha"));
+									.getMessage("com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.Senha"));
 			passwordPasswordFieldLabel.setSize(new Dimension(93, 20));
 			passwordPasswordFieldLabel.setLocation(new Point(7, 76));
 			passwordPasswordFieldLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -378,8 +376,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 			repeticaoPasswordFieldLabel = new JLabel(
 					"* "
 							+ messages
-									.getMessage(
-											"com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.RepitaaSenha"));
+									.getMessage("com.adapit.portal.ui.forms.manutencaousuario.AdminUserDataForm.RepitaaSenha"));
 			repeticaoPasswordFieldLabel.setSize(new Dimension(93, 20));
 			repeticaoPasswordFieldLabel.setLocation(new Point(7, 99));
 			repeticaoPasswordFieldLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -408,8 +405,8 @@ public class ManutencaoUsuarioForm extends JPanel {
 					} catch (Exception e1) {
 						AdapitVirtualFrame
 								.getInstance()
-								.showErrorDialog("Modificacao de senha",
-										"Nao foi possivel modificar a senha do usuario");
+								.showErrorDialog("Modificação de senha",
+										"Não foi possível modificar a senha do usuário");
 					}
 				}
 			});
@@ -478,7 +475,7 @@ public class ManutencaoUsuarioForm extends JPanel {
 			e.printStackTrace();
 		} catch (java.lang.Exception e) {
 			e.printStackTrace();
-		} // end of catch block
+		}// end of catch block
 		return null;
 	}
 

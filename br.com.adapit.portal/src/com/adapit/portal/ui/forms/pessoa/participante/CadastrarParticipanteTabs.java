@@ -57,20 +57,20 @@ import com.workcase.gui.utils.SpringResourceMessage;
 import com.workcase.gui.utils.SwingBinder;
 
 @SuppressWarnings("serial")
-public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeListener, BindHandler {
-
+public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeListener, BindHandler{
+	
 	private JTabbedPane tabbedPane;
-
+	
 	private JPanel userDataPanel;
-
+	
 	private AdminUserDataForm adminUserDataForm;
-
+	
 	private JPanel dadosPessoaisPanel;
-
+	
 	private ParticipanteDadosPessoaFisicaPanel cadastrarDadosPessoaFisicaPanel;
-
+		
 	protected SwingBinder binder = new SwingBinder();
-
+	
 	public SwingBinder getBinder() {
 		return binder;
 	}
@@ -79,83 +79,81 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		return hashComps;
 	}
 
-	protected Map hashComps = new java.util.HashMap(); // @jve:decl-index=0:
-
+	protected Map hashComps = new java.util.HashMap();  //  @jve:decl-index=0:
+	
 	protected ResourceMessage messages = SpringResourceMessage.getInstance();
-
+	
 	private AdminEnderecoCadastreForm adminEnderecoCadastreForm;
-
+	
 	private JPanel cadastreButtonsPanel;
-
+	
 	private JButton insertButton;
-
+	
 	private JButton newButton;
-
+	
 	private JButton listarUsuariosButton;
 
 	public Participante comitente;
-
-	public PersonType personType = PersonType.Fisica; // @jve:decl-index=0:
-
-	private ApresentacaoParticipante apresentacaoParticipante = null;
-
-	public CadastrarParticipanteTabs(PersonType pt) {
+	
+	public PersonType personType = PersonType.Fisica;  //  @jve:decl-index=0:
+	
+	private ApresentacaoParticipante apresentacaoParticipante=null;
+	
+	public CadastrarParticipanteTabs(PersonType pt){
 		super();
-		apresentacaoParticipante = new ApresentacaoParticipante(this);
+		apresentacaoParticipante= new ApresentacaoParticipante(this);
 		this.personType = pt;
 		initialize();
 	}
-
+	
 	public CadastrarParticipanteTabs() {
 		super();
-		apresentacaoParticipante = new ApresentacaoParticipante(this);
+		apresentacaoParticipante= new ApresentacaoParticipante(this);
 	}
 
-	private void initialize() {
+	private void initialize(){
 		setSize(new Dimension(564, 434));
-		setLocation(new java.awt.Point(0, 0));
+		setLocation(new java.awt.Point(0,0));
 		setLayout(new BorderLayout());
-		add(getTabbedPane(), BorderLayout.CENTER);
-		add(getCadastreButtonsPanel(), BorderLayout.SOUTH);
+		add(getTabbedPane(),BorderLayout.CENTER);
+		add(getCadastreButtonsPanel(),BorderLayout.SOUTH);
 		add(getHelpButton(), BorderLayout.NORTH);
 	}
-
-	protected JTabbedPane getTabbedPane() {
-		if (tabbedPane == null) {
+	
+	protected JTabbedPane getTabbedPane(){
+		if(tabbedPane == null){
 			tabbedPane = new JTabbedPane();
 			tabbedPane.setSize(new Dimension(559, 340));
 			tabbedPane.setLocation(new Point(3, 27));
-			tabbedPane.add(getUserDataPanel(), "Dados de Usuario");
-			tabbedPane.add(getDadosPessoaisPanel(), "Dados Pessoais");
-			tabbedPane.add(getDadosComitentePanel(), "Fotografia");
-			tabbedPane.add(getAdminEnderecoCadastreForm(), "Endereco");
-			tabbedPane.add(apresentacaoParticipante, "Apresentaï¿½ï¿½o");
+			tabbedPane.add(getUserDataPanel(),"Dados de Usuário");
+			tabbedPane.add(getDadosPessoaisPanel(),"Dados Pessoais");
+			tabbedPane.add(getDadosComitentePanel(),"Fotografia");
+			tabbedPane.add(getAdminEnderecoCadastreForm(),"Endereço");
+			tabbedPane.add(apresentacaoParticipante,"Apresentação");
 		}
 		return tabbedPane;
 	}
+	
+	protected DateHourChooser tempDateFieldChooser = new DateHourChooser(messages.getCurrentLocale(), true, true, false);
 
-	protected DateHourChooser tempDateFieldChooser = new DateHourChooser(messages.getCurrentLocale(), true, true,
-			false);
+	protected JPanel getUserDataPanel(){
 
-	protected JPanel getUserDataPanel() {
-
-		if (userDataPanel == null) {
+		if(userDataPanel == null){
 			userDataPanel = new JPanel();
-			userDataPanel.setSize(new java.awt.Dimension(350, 230));
-			userDataPanel.setLocation(new java.awt.Point(0, 0));
-			userDataPanel.setLayout(/* new BorderLayout() */null);
-			userDataPanel.add(getAdminUserDataForm()/* ,BorderLayout.CENTER */);
+			userDataPanel.setSize(new java.awt.Dimension(350,230));
+			userDataPanel.setLocation(new java.awt.Point(0,0));
+			userDataPanel.setLayout(/*new BorderLayout()*/null);
+			userDataPanel.add(getAdminUserDataForm()/*,BorderLayout.CENTER*/);
 		}
 		return userDataPanel;
 	}
-
-	protected AdminUserDataForm getAdminUserDataForm() {
-		if (adminUserDataForm == null) {
+	
+	protected AdminUserDataForm getAdminUserDataForm(){
+		if(adminUserDataForm == null){
 			adminUserDataForm = new AdminUserDataForm(this);
 			adminUserDataForm.setLayout(null);
 			adminUserDataForm.setBounds(new Rectangle(15, 0, 520, 296));
-			((JComboBox) adminUserDataForm.getRoleComboBox())
-					.setSelectedItem(UserCadastreType.Cliente.name().replace("_", " "));
+			((JComboBox)adminUserDataForm.getRoleComboBox()).setSelectedItem(UserCadastreType.Cliente.name().replace("_"," "));
 			adminUserDataForm.add(getInativoRadioButton(), null);
 			adminUserDataForm.add(getAtivoRadioButton(), null);
 			ButtonGroup bg = new ButtonGroup();
@@ -164,56 +162,53 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		}
 		return adminUserDataForm;
 	}
-
-	protected JPanel getDadosPessoaisPanel() {
-		if (dadosPessoaisPanel == null) {
+	
+	protected JPanel getDadosPessoaisPanel(){
+		if(dadosPessoaisPanel == null){
 			dadosPessoaisPanel = new JPanel();
-			dadosPessoaisPanel.setSize(new java.awt.Dimension(307, 192));
-			dadosPessoaisPanel.setLocation(new java.awt.Point(0, 230));
+			dadosPessoaisPanel.setSize(new java.awt.Dimension(307,192));
+			dadosPessoaisPanel.setLocation(new java.awt.Point(0,230));
 			dadosPessoaisPanel.setLayout(null);
-			if (personType == PersonType.Fisica)
-				dadosPessoaisPanel.add(getComitenteDadosPessoaFisicaPanel());
-			else
-				dadosPessoaisPanel.add(getComitenteDadosPessoaJuridicaPanel());
-
+			if (personType == PersonType.Fisica) dadosPessoaisPanel.add(getComitenteDadosPessoaFisicaPanel());
+			else dadosPessoaisPanel.add(getComitenteDadosPessoaJuridicaPanel());
+			
 		}
 		return dadosPessoaisPanel;
 	}
-
-	protected ParticipanteDadosPessoaFisicaPanel getComitenteDadosPessoaFisicaPanel() {
-		if (cadastrarDadosPessoaFisicaPanel == null) {
+	
+	protected ParticipanteDadosPessoaFisicaPanel getComitenteDadosPessoaFisicaPanel(){
+		if(cadastrarDadosPessoaFisicaPanel == null){
 			cadastrarDadosPessoaFisicaPanel = new ParticipanteDadosPessoaFisicaPanel(this);
 			cadastrarDadosPessoaFisicaPanel.setLayout(null);
 			cadastrarDadosPessoaFisicaPanel.setBounds(new Rectangle(15, 20, 520, 340));
 		}
 		return cadastrarDadosPessoaFisicaPanel;
 	}
-
+	
 	private ParticipanteDadosPessoaJuridicaPanel comitenteDadosPessoaJuridicaPanel;
-
-	protected ParticipanteDadosPessoaJuridicaPanel getComitenteDadosPessoaJuridicaPanel() {
-		if (comitenteDadosPessoaJuridicaPanel == null) {
+	
+	protected ParticipanteDadosPessoaJuridicaPanel getComitenteDadosPessoaJuridicaPanel(){
+		if (comitenteDadosPessoaJuridicaPanel == null){
 			comitenteDadosPessoaJuridicaPanel = new ParticipanteDadosPessoaJuridicaPanel(this);
 			comitenteDadosPessoaJuridicaPanel.setBounds(new Rectangle(15, 20, 520, 340));
 		}
 		return comitenteDadosPessoaJuridicaPanel;
 	}
-
-	protected AdminEnderecoCadastreForm getAdminEnderecoCadastreForm() {
-		if (adminEnderecoCadastreForm == null) {
+		
+	protected AdminEnderecoCadastreForm getAdminEnderecoCadastreForm(){
+		if(adminEnderecoCadastreForm == null){
 			adminEnderecoCadastreForm = new AdminEnderecoCadastreForm();
-			adminEnderecoCadastreForm.setSize(new java.awt.Dimension(150, 20));
-			adminEnderecoCadastreForm.setLocation(new java.awt.Point(15, 422));
-			adminEnderecoCadastreForm.getEnderecoPanel().setLocation(120,
-					(int) adminEnderecoCadastreForm.getEnderecoPanel().getLocation().getY());
+			adminEnderecoCadastreForm.setSize(new java.awt.Dimension(150,20));
+			adminEnderecoCadastreForm.setLocation(new java.awt.Point(15,422));
+			adminEnderecoCadastreForm.getEnderecoPanel().setLocation(120,(int) adminEnderecoCadastreForm.getEnderecoPanel().getLocation().getY());
 			adminEnderecoCadastreForm.setLayout(null);
 		}
 		return adminEnderecoCadastreForm;
 	}
+	
+	protected JPanel getCadastreButtonsPanel(){
 
-	protected JPanel getCadastreButtonsPanel() {
-
-		if (cadastreButtonsPanel == null) {
+		if(cadastreButtonsPanel == null){
 			cadastreButtonsPanel = new JPanel();
 			cadastreButtonsPanel.setSize(new Dimension(559, 52));
 			cadastreButtonsPanel.setLocation(new Point(2, 371));
@@ -225,106 +220,100 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		}
 		return cadastreButtonsPanel;
 	}
-
+	
 	private JButton deactivateButton;
 
-	protected JButton getDeactivateButton() {
+	protected JButton getDeactivateButton(){
 
-		if (deactivateButton == null) {
+		if(deactivateButton == null){
 			deactivateButton = new JButton("Desativar");
-			deactivateButton.setSize(new java.awt.Dimension(80, 22));
-			deactivateButton.setLocation(new java.awt.Point(0, 0));
-			deactivateButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_deactive.png", 18, 18));
-			deactivateButton.addActionListener(new ActionListener() {
+			deactivateButton.setSize(new java.awt.Dimension(80,22));
+			deactivateButton.setLocation(new java.awt.Point(0,0));
+			deactivateButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_deactive.png",18,18));
+			deactivateButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent arg0) {
 					DesativarUsuarioDialog d = getDesativarUsuarioDialog();
 					List<DeactivationReason> list = null;
-					try {
+					try{
 						list = RemoteUserService.getInstance()
-								.listDeactivationReasonByUserLogin(usuario.getLogin());
+							.listDeactivationReasonByUserLogin(usuario.getLogin());
 						usuario.setDeactivationReasonList(list);
-					} catch (Exception ex) {
+					}catch(Exception ex){
 						ex.printStackTrace();
 					}
-					if (usuario != null && usuario.getDeactivationReasonList() != null
-							&& usuario.getDeactivationReasonList().size() > 0) {
-						if (deactivateButton.getText().equals("Desativar")) {
+					if (usuario != null && usuario.getDeactivationReasonList() != null && usuario.getDeactivationReasonList().size()>0){
+						if (deactivateButton.getText().equals("Desativar")){
 							try {
 								d.getDeactivationReasonCadastreForm().newRegister(usuario);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						} else
-							d.getDeactivationReasonCadastreForm().editRegister(usuario);
-					} else if (usuario != null) {
-						if (deactivateButton.getText().equals("Desativar")) {
-							try {
-								d.getDeactivationReasonCadastreForm().newRegister(usuario);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						} else
-							d.getDeactivationReasonCadastreForm().editRegister(usuario);
+						}
+						else d.getDeactivationReasonCadastreForm().editRegister(usuario);
 					}
-					d.setVisible(true);
+					else if (usuario != null){
+						if (deactivateButton.getText().equals("Desativar")){
+							try {
+								d.getDeactivationReasonCadastreForm().newRegister(usuario);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}						
+						}else d.getDeactivationReasonCadastreForm().editRegister(usuario);
+					}					
+					d.setVisible(true);					
 				}
-
+				
 			});
 		}
 		return deactivateButton;
 	}
-
+	
 	protected DesativarUsuarioDialog desativarUsuarioDialog;
-
-	protected DesativarUsuarioDialog getDesativarUsuarioDialog() {
-		if (desativarUsuarioDialog == null) {
+	
+	protected DesativarUsuarioDialog getDesativarUsuarioDialog(){
+		if (desativarUsuarioDialog == null){
 			desativarUsuarioDialog = new DesativarUsuarioDialog();
-			desativarUsuarioDialog.getDeactivationReasonCadastreForm().getConfirmarButton()
-					.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							usuario.setActive(desativarUsuarioDialog.getDeactivationReasonCadastreForm().getUsuario()
-									.getActive());
-							// editRegister();
-							getDeactivateButton().setText("Ativar");
-							getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png", 18, 18));
-						}
-					});
-			desativarUsuarioDialog.getDeactivationReasonCadastreForm().getActivateButton()
-					.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							usuario.setActive(desativarUsuarioDialog.getDeactivationReasonCadastreForm().getUsuario()
-									.getActive());
-							getDeactivateButton().setText("Desativar");
-							getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png", 18, 18));
-						}
-					});
-
+			desativarUsuarioDialog.getDeactivationReasonCadastreForm().getConfirmarButton().addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt) {
+					usuario.setActive(desativarUsuarioDialog.getDeactivationReasonCadastreForm().getUsuario().getActive());
+					//editRegister();
+					getDeactivateButton().setText("Ativar");
+					getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png",18,18));
+				}				
+			});
+			desativarUsuarioDialog.getDeactivationReasonCadastreForm().getActivateButton().addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt) {
+					usuario.setActive(desativarUsuarioDialog.getDeactivationReasonCadastreForm().getUsuario().getActive());
+					getDeactivateButton().setText("Desativar");
+					getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png",18,18));
+				}				
+			});
+			
 		}
 		return desativarUsuarioDialog;
 	}
+	
+	protected JButton getInsertButton(){
 
-	protected JButton getInsertButton() {
-
-		if (insertButton == null) {
+		if(insertButton == null){
 			insertButton = new JButton(messages.getMessage("Cadastrar"));
-			insertButton.setSize(new java.awt.Dimension(80, 22));
-			insertButton.setLocation(new java.awt.Point(0, 0));
-			insertButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_save.png", 18, 18));
+			insertButton.setSize(new java.awt.Dimension(80,22));
+			insertButton.setLocation(new java.awt.Point(0,0));
+			insertButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_save.png",18,18));
 			insertButton.addActionListener(new CadastrarAction());
 		}
 		return insertButton;
 	}
+	
+	protected JButton getNewButton(){
 
-	protected JButton getNewButton() {
-
-		if (newButton == null) {
-			newButton = new JButton(
-					messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.CadastrarUsuarioAdmin.Novo"));
-			newButton.setSize(new java.awt.Dimension(80, 22));
-			newButton.setLocation(new java.awt.Point(0, 22));
-			newButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_add.png", 18, 18));
-			newButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
+		if(newButton == null){
+			newButton = new JButton(messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.CadastrarUsuarioAdmin.Novo"));
+			newButton.setSize(new java.awt.Dimension(80,22));
+			newButton.setLocation(new java.awt.Point(0,22));
+			newButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_add.png",18,18));
+			newButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent evt){					
 					getTabbedPane().setIconAt(2, null);
 					getTabbedPane().setIconAt(1, null);
 					getTabbedPane().setIconAt(0, null);
@@ -335,33 +324,33 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		return newButton;
 	}
 
-	protected JButton getListarUsuariosButton() {
+	
+	protected JButton getListarUsuariosButton(){
 
-		if (listarUsuariosButton == null) {
-			listarUsuariosButton = new JButton(
-					messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.CadastrarUsuarioAdmin.Cancelar"));
-			listarUsuariosButton.setSize(new java.awt.Dimension(80, 22));
-			listarUsuariosButton.setText("Listar Usuarios");
-			listarUsuariosButton.setLocation(new java.awt.Point(0, 66));
-			listarUsuariosButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_go.png", 18, 18));
+		if(listarUsuariosButton == null){
+			listarUsuariosButton = new JButton(messages.getMessage("com.adapit.portal.ui.forms.manutencaousuario.CadastrarUsuarioAdmin.Cancelar"));
+			listarUsuariosButton.setSize(new java.awt.Dimension(80,22));
+			listarUsuariosButton.setText("Listar Usuários");
+			listarUsuariosButton.setLocation(new java.awt.Point(0,66));
+			listarUsuariosButton.setIcon(AdapitVirtualFrame.getIcon("/imgs/user_go.png",18,18));
 			listarUsuariosButton.addActionListener(new ListarUsuariosAction());
 		}
 		return listarUsuariosButton;
 	}
-
-	private class ListarUsuariosAction extends AbstractAction {
+	
+	private class ListarUsuariosAction extends AbstractAction{
 
 		@Override
 		protected void doAction(ActionEvent e) {
 			AdapitVirtualFrame.getInstance().listarUsuarios();
 		}
-
+		
 	}
-
+	
 	/**
-	 * This method initializes ativoRadioButton
-	 * 
-	 * @return javax.swing.JRadioButton
+	 * This method initializes ativoRadioButton	
+	 * 	
+	 * @return javax.swing.JRadioButton	
 	 */
 	public JRadioButton getAtivoRadioButton() {
 		if (ativoRadioButton == null) {
@@ -374,9 +363,9 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 	}
 
 	/**
-	 * This method initializes inativoRadioButton
-	 * 
-	 * @return javax.swing.JRadioButton
+	 * This method initializes inativoRadioButton	
+	 * 	
+	 * @return javax.swing.JRadioButton	
 	 */
 	public JRadioButton getInativoRadioButton() {
 		if (inativoRadioButton == null) {
@@ -394,11 +383,11 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 	private JLabel caminhoImgTextFieldLabel;
 
 	private JLabel imgLabelImage;
-
+	
 	/**
-	 * This method initializes apresentacaoPanel
-	 * 
-	 * @return javax.swing.JPanel
+	 * This method initializes apresentacaoPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
 	 */
 	protected JPanel getDadosComitentePanel() {
 		if (dadosDivulgacaoPanel == null) {
@@ -407,11 +396,11 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 			dadosDivulgacaoPanel.add(getBuscarImagemButton(), null);
 			dadosDivulgacaoPanel.add(getCaminhoImgTextFieldLabel(), null);
 			dadosDivulgacaoPanel.add(getCaminhoImgTextField(), null);
-			dadosDivulgacaoPanel.add(getImageMainPanel(), null);
+			dadosDivulgacaoPanel.add(getImageMainPanel(), null);			
 		}
 		return dadosDivulgacaoPanel;
 	}
-
+	
 	JPanel imgPanelImage;
 
 	protected JPanel getImageMainPanel() {
@@ -464,19 +453,20 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		return jfc;
 	}
 
+
 	/**
-	 * This method initializes descricaoComitenteTextField
-	 * 
-	 * @return javax.swing.JTextField
+	 * This method initializes descricaoComitenteTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
 	 */
 	@SuppressWarnings("unchecked")
 	public JComponent getDescricaoComitenteTextField() {
 		if (descricaoComitenteTextField == null) {
 			descricaoComitenteTextField = new JTextField();
 			descricaoComitenteTextField.setBounds(new Rectangle(81, 11, 458, 20));
-			this.binder.addBindProperty(this.getParticipante(), this.descricaoComitenteTextField, "descricao");
+			this.binder.addBindProperty(this.getParticipante(),this.descricaoComitenteTextField, "descricao");			
 			this.hashComps.put("descricao", this.descricaoComitenteTextField);
-			JWarningComponent warn = new JWarningComponent(this.descricaoComitenteTextField);
+			JWarningComponent warn = new JWarningComponent( this.descricaoComitenteTextField);
 			warn.setBounds(81, 11, 458, 20);
 			return warn;
 		}
@@ -484,19 +474,19 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 	}
 
 	/**
-	 * This method initializes tipoComitenteComboBox
-	 * 
-	 * @return javax.swing.JComboBox
+	 * This method initializes tipoComitenteComboBox	
+	 * 	
+	 * @return javax.swing.JComboBox	
 	 */
 	@SuppressWarnings("unchecked")
 	public JComponent getTipoComitenteComboBox() {
 		if (tipoComitenteComboBox == null) {
 			tipoComitenteComboBox = new JComboBox();
 			tipoComitenteComboBox.setBounds(new Rectangle(81, 38, 221, 20));
-			tipoComitenteComboBox.addItem(TipoComitente.Individual_participante.name());
-			this.binder.addBindProperty(this.getParticipante(), this.tipoComitenteComboBox, "tipoComitente");
+			tipoComitenteComboBox.addItem(TipoComitente.Individual_participante.name());			
+			this.binder.addBindProperty(this.getParticipante(),this.tipoComitenteComboBox, "tipoComitente");			
 			this.hashComps.put("tipoComitente", this.tipoComitenteComboBox);
-			JWarningComponent warn = new JWarningComponent(this.tipoComitenteComboBox);
+			JWarningComponent warn = new JWarningComponent( this.tipoComitenteComboBox);
 			warn.setBounds(81, 38, 221, 20);
 			return warn;
 		}
@@ -504,9 +494,9 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 	}
 
 	/**
-	 * This method initializes helpButton
-	 * 
-	 * @return javax.swing.JButton
+	 * This method initializes helpButton	
+	 * 	
+	 * @return javax.swing.JButton	
 	 */
 	private JButton getHelpButton() {
 		if (helpButton == null) {
@@ -521,7 +511,8 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		return helpButton;
 	}
 
-	protected static Icon getIcon(String name) {
+
+	protected static Icon getIcon(String name ){
 		try {
 			java.net.URL imURL = java.lang.Class.class.getResource(name);
 			if (imURL != null) {
@@ -533,23 +524,22 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 				}
 			}
 		} catch (java.lang.StackOverflowError e) {
-			e.printStackTrace();
-		} catch (java.lang.Exception e) {
-			e.printStackTrace();
-		} // end of catch block
+			e.printStackTrace(); 
+		} catch (java.lang.Exception e) { 
+			e.printStackTrace(); 
+		}//end of catch block
 		return null;
 	}
 
 	private CommonData commonData;
-
-	private CommonData getCommonData() {
-		if (commonData == null) {
-			commonData = new CommonData(tabbedPane, comitente, usuario);
+	private CommonData getCommonData(){
+		if(commonData == null){
+			commonData = new CommonData(tabbedPane,comitente,usuario);
 		}
 		return commonData;
 	}
-
-	public void newRegister() {
+	
+	public void newRegister(){
 		getAtivoRadioButton().setSelected(true);
 		getAtivoRadioButton().setVisible(true);
 		getInativoRadioButton().setVisible(true);
@@ -560,30 +550,30 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		getAdminEnderecoCadastreForm().newRegister();
 		getAdminUserDataForm().newRegister();
 		getCommonData().removeTabs();
-
+		
 		try {
-			if (personType == PersonType.Fisica) {
-				getComitenteDadosPessoaFisicaPanel().newRegister();
+			if (personType == PersonType.Fisica){
+				getComitenteDadosPessoaFisicaPanel().newRegister();	
 				apresentacaoParticipante.bind(getComitenteDadosPessoaFisicaPanel().getComitente());
-			} else {
-				getComitenteDadosPessoaJuridicaPanel().newRegister();
+			}
+			else{
+				getComitenteDadosPessoaJuridicaPanel().newRegister();	
 				apresentacaoParticipante.bind(getComitenteDadosPessoaJuridicaPanel().getComitente());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
-	public void editRegister() {
+	
+	public void editRegister(){
 		getInsertButton().setText(messages.getMessage("Atualizar"));
 		getAtivoRadioButton().setVisible(false);
 		getInativoRadioButton().setVisible(false);
 		getAdminUserDataForm().getUsuario().setNewUser(false);
 		try {
-			comitente = (Participante) RemotePessoaService.getInstance()
-					.initializeParticipante(usuario.getDadosPessoais().getId());
-
+			comitente = (Participante) RemotePessoaService.getInstance().initializeParticipante(usuario.getDadosPessoais().getId());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -594,25 +584,26 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		if (ender != null)
+		if (ender != null )
 			getAdminEnderecoCadastreForm().editRegister(ender);
-
+		
 		getAdminUserDataForm().editRegister(usuario);
 		getDeactivateButton().setEnabled(true);
-		if (usuario.getActive()) {
+		if (usuario.getActive()){			
 			getDeactivateButton().setText("Desativar");
-			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png", 18, 18));
-		} else {
+			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png",18,18));
+		}else{
 			getDeactivateButton().setText("Ativar");
-			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png", 18, 18));
+			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png",18,18));
 		}
-
-		if (personType == PersonType.Fisica) {
+		
+		if (personType == PersonType.Fisica){
 			Object[] objs = getComitenteDadosPessoaFisicaPanel().editRegister(usuario.getDadosPessoais());
-		} else {
+		}
+		else{
 			Object[] objs = getComitenteDadosPessoaJuridicaPanel().editRegister(usuario.getDadosPessoais());
 		}
-
+		
 		try {
 			editRegister(comitente);
 		} catch (Exception e) {
@@ -620,14 +611,14 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		}
 		getCommonData().addTabs(comitente);
 	}
-
-	public void editRegister(PessoaEmDivulgacao com) throws Exception {
+	
+	public void editRegister(PessoaEmDivulgacao com) throws Exception{
 		imageable.setNullImage();
-		imageable.updateImage(true);
+		imageable.updateImage(true);	
 		apresentacaoParticipante.bind(comitente);
 	}
-
-	protected Usuario usuario; // @jve:decl-index=0:
+	
+	protected Usuario usuario;  //  @jve:decl-index=0:
 
 	private JRadioButton ativoRadioButton = null;
 
@@ -635,65 +626,63 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 
 	private JPanel dadosDivulgacaoPanel = null;
 
+
 	private JTextField descricaoComitenteTextField = null;
 
 	protected JComboBox tipoComitenteComboBox = null;
 
-	private class CadastrarAction extends AbstractAction {
+	
+	private class CadastrarAction extends AbstractAction{
 		@Override
 		protected void doAction(ActionEvent e) {
 			try {
 				cadastrar();
 			} catch (Exception e1) {
 			}
-		}
+		}		
 	}
-
+	
 	@SuppressWarnings("unused")
-	private class RemoverAction extends AbstractAction {
+	private class RemoverAction extends AbstractAction{
 		@Override
 		protected void doAction(ActionEvent e) {
 			remover();
-		}
+		}		
 	}
-
-	public void remover() {
+	
+	public void remover(){
 
 	}
-
+	
 	private Icon warn = getIcon("/imgs/warn.png");
 	private StringBuffer errorMsgs = null;
 
 	private JButton helpButton = null;
-
-	private Pessoa validatePessoaData() {
+	
+	private Pessoa validatePessoaData(){
 		Pessoa p = null;
 		try {
-			if (personType == PersonType.Fisica)
-				p = getComitenteDadosPessoaFisicaPanel().cadastrePessoa();
-			else
-				p = getComitenteDadosPessoaJuridicaPanel().cadastrePessoa();
-			if (p instanceof PessoaEmDivulgacao) {
+			if (personType == PersonType.Fisica) p = getComitenteDadosPessoaFisicaPanel().cadastrePessoa();
+			else p = getComitenteDadosPessoaJuridicaPanel().cadastrePessoa();
+			if(p instanceof PessoaEmDivulgacao){
 				PessoaEmDivulgacao ped = apresentacaoParticipante.reverseBind();
-				if (ped != p) {
-					((PessoaEmDivulgacao) p).setSoftDevExp(ped.isSoftDevExp());
-					((PessoaEmDivulgacao) p).setApresentacao(ped.getApresentacao());
-					((PessoaEmDivulgacao) p).setDescricao(ped.getDescricao());
-					((PessoaEmDivulgacao) p).setSaleExp(ped.isSaleExp());
-					((PessoaEmDivulgacao) p).setResearchExp(ped.isResearchExp());
-					((PessoaEmDivulgacao) p).setDivulgavel(ped.isDivulgavel());
-					((PessoaEmDivulgacao) p).setTrainExp(ped.isTrainExp());
-					((PessoaEmDivulgacao) p).setManagerExp(ped.isManagerExp());
+				if(ped != p){
+					((PessoaEmDivulgacao)p).setSoftDevExp(ped.isSoftDevExp());
+					((PessoaEmDivulgacao)p).setApresentacao(ped.getApresentacao());
+					((PessoaEmDivulgacao)p).setDescricao(ped.getDescricao());
+					((PessoaEmDivulgacao)p).setSaleExp(ped.isSaleExp());
+					((PessoaEmDivulgacao)p).setResearchExp(ped.isResearchExp());
+					((PessoaEmDivulgacao)p).setDivulgavel(ped.isDivulgavel());
+					((PessoaEmDivulgacao)p).setTrainExp(ped.isTrainExp());
+					((PessoaEmDivulgacao)p).setManagerExp(ped.isManagerExp());
 				}
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
-			if (tipoComitenteComboBox != null && tipoComitenteComboBox.getSelectedItem() == null)
-				getTabbedPane().setIconAt(2, warn);
-			else {
+			//e.printStackTrace();
+			if (tipoComitenteComboBox != null && tipoComitenteComboBox.getSelectedItem() == null) getTabbedPane().setIconAt(2, warn);
+			else{
 				getTabbedPane().setIconAt(1, warn);
-				if (errorMsgs == null)
-					errorMsgs = new StringBuffer();
+				if (errorMsgs == null) errorMsgs=  new StringBuffer();
 				errorMsgs.append(e.getMessage());
 				AdapitVirtualFrame.getInstance().displayErrorMsg(e.getMessage());
 				AdapitVirtualFrame.getInstance().appendErrorMsg(e.getMessage());
@@ -701,225 +690,194 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		}
 		return p;
 	}
-
-	private Usuario validateUsuarioData() {
+	
+	private Usuario validateUsuarioData(){
 		try {
 			Usuario user = getAdminUserDataForm().cadastreUsuario();
 			usuario = user;
-			if (getAtivoRadioButton().isVisible()) {
+			if (getAtivoRadioButton().isVisible()){
 				user.setActive(getAtivoRadioButton().isSelected());
 				user.setAutenticado(getAtivoRadioButton().isSelected());
 			}
 			return user;
 		} catch (Exception e) {
-			// e.printStackTrace();
+			//e.printStackTrace();
 			getTabbedPane().setIconAt(0, warn);
-			if (errorMsgs == null)
-				errorMsgs = new StringBuffer();
+			if (errorMsgs == null) errorMsgs=  new StringBuffer();
 			errorMsgs.append(e.getMessage());
 			AdapitVirtualFrame.getInstance().displayErrorMsg(e.getMessage());
 			AdapitVirtualFrame.getInstance().appendErrorMsg(e.getMessage());
 		}
 		return null;
 	}
-
-	private Endereco validateEnderecoData() {
+	
+	private Endereco validateEnderecoData(){
 		try {
 			Endereco ender = getAdminEnderecoCadastreForm().cadastreEndereco();
 			return ender;
 		} catch (Exception e) {
-			// e.printStackTrace();
+			//e.printStackTrace();
 			getTabbedPane().setIconAt(3, warn);
-			if (errorMsgs == null)
-				errorMsgs = new StringBuffer();
+			if (errorMsgs == null) errorMsgs=  new StringBuffer();
 			errorMsgs.append(e.getMessage());
 			AdapitVirtualFrame.getInstance().displayErrorMsg(e.getMessage());
 			AdapitVirtualFrame.getInstance().appendErrorMsg(e.getMessage());
 		}
-		return null;
+		return null;		
 	}
-
-	public void saveData(Usuario user, Pessoa p, Endereco ender) {
-		if (user != null)
-			try {
-				RemotePessoaService pessoaService = RemotePessoaService.getInstance();
-				try {
-					user = pessoaService.saveOrUpdate(user, p, ender);
-
-					usuario = RemoteUserService.getInstance().getUserByLoginAndPassword(user.getLogin(),
-							user.getPassword());
-					// editRegister();
-
-					if (!usuario.getActive()) {
-						AdapitVirtualFrame.getInstance().showOperationSucess("Envio de email",
-								"Enviando email para o usuario autenticar o seu cadastro");
-						RemoteAdapitAutenticateUserService.getInstance().sendAutenticateUserMsg(user);
-					}
-					AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-					AdapitVirtualFrame.getInstance()
-							.setOperationMessage("Usuario cadastrado com sucesso. Feche a tela e edite o usuario.");
-					AdapitVirtualFrame.getInstance().showOperationSucess();
-
-				} catch (FieldMsgValidationException ex) {
-					Hashtable<String, String> ht = ex.getErrors();
-					if (ht != null && ht.size() > 0) {
-						for (String key : ht.keySet()) {
-							if (personType == PersonType.Fisica)
-								getComitenteDadosPessoaFisicaPanel().reportWarning(key, ht.get(key));
-							else
-								getComitenteDadosPessoaJuridicaPanel().reportWarning(key, ht.get(key));
-							// getCadastrarLeiloeiroPanel().reportWarning(key,ht.get(key));
-						}
-					}
-					getTabbedPane().setIconAt(1, warn);
-				} catch (org.hibernate.exception.ConstraintViolationException ex) {
-					ex.printStackTrace();
-					boolean cpfExists = pessoaService.cpfExists(((Fisica) p.getTipoPessoa()).getCpf());
-					boolean rgExists = pessoaService.cpfExists(((Fisica) p.getTipoPessoa()).getRg());
-					boolean emailExists = pessoaService.cpfExists(p.getEmail());
-					if (cpfExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("cpf");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("cpf");
-					}
-					if (rgExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("rg");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("rg");
-					}
-					if (emailExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("email");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("email");
-					}
-					if (cpfExists || rgExists || emailExists) {
-						getTabbedPane().setIconAt(1, warn);
-						AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-						AdapitVirtualFrame.getInstance()
-								.setOperationMessage("Problemas ao cadastrar o usuario!" + '\n'
-										+ "Verifique se jï¿½ nao existe alguï¿½m " + '\n'
-										+ "cadastrado com o mesmo cpf, rg ou email");
-						AdapitVirtualFrame.getInstance().showErrorDialog("Dados duplicados o usuario",
-								"Nao foi possivel cadastrar o usuario pois jï¿½ existem registros com os mesmos dados");
-					} else {
-						AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-						AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuario!" + '\n'
-								+ "Um erro inesperado ocorreu! Verifique com o desenvolvedor do sistema");
-						AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuario",
-								"Nao foi possivel cadastrar o usuario por um erro inesperado");
-					}
-				} catch (org.hibernate.exception.DataException ex) {
-					ex.printStackTrace();
-					boolean cpfExists = pessoaService.cpfExists(((Fisica) p.getTipoPessoa()).getCpf());
-					boolean rgExists = pessoaService.cpfExists(((Fisica) p.getTipoPessoa()).getRg());
-					boolean emailExists = pessoaService.cpfExists(p.getEmail());
-					if (cpfExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("cpf");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("cpf");
-					}
-					if (rgExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("rg");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("rg");
-					}
-					if (emailExists) {
-						if (personType == PersonType.Fisica)
-							getComitenteDadosPessoaFisicaPanel().reportWarning("email");
-						else
-							getComitenteDadosPessoaJuridicaPanel().reportWarning("email");
-					}
-					if (cpfExists || rgExists || emailExists) {
-						getTabbedPane().setIconAt(1, warn);
-						AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-						AdapitVirtualFrame.getInstance()
-								.setOperationMessage("Problemas ao cadastrar o usuario!" + '\n'
-										+ "Verifique se jï¿½ nao existe alguï¿½m " + '\n'
-										+ "cadastrado com o mesmo cpf, rg ou email");
-						AdapitVirtualFrame.getInstance().showErrorDialog("Dados duplicados o usuario",
-								"Nao foi possivel cadastrar o usuario pois jï¿½ existem registros com os mesmos dados");
-					} else {
-						AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-						AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuario!" + '\n'
-								+ "Um erro inesperado ocorreu! Verifique com o desenvolvedor do sistema");
-						AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuario",
-								"Nao foi possivel cadastrar o usuario por um erro inesperado");
-					}
-				} catch (org.hibernate.NonUniqueObjectException ex) {
-					ex.printStackTrace();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				} finally {
+	
+	public void saveData(Usuario user, Pessoa p, Endereco ender){
+		if (user!= null)try {
+			RemotePessoaService pessoaService = RemotePessoaService.getInstance();
+			try{
+				user = pessoaService.saveOrUpdate(user, p, ender);	
+				
+				usuario = RemoteUserService.getInstance().getUserByLoginAndPassword(user.getLogin(), user.getPassword());
+				//editRegister();		
+				
+				if (!usuario.getActive()){
+					AdapitVirtualFrame.getInstance().showOperationSucess("Envio de email", "Enviando email para o usuário autenticar o seu cadastro");
+					RemoteAdapitAutenticateUserService.getInstance().sendAutenticateUserMsg(user);
 				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
-				AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuario");
-				AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuario",
-						"Nao foi possivel cadastrar o usuario por um erro inesperado");
+				AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+				AdapitVirtualFrame.getInstance().setOperationMessage("Usuário cadastrado com sucesso. Feche a tela e edite o usuário.");
+				AdapitVirtualFrame.getInstance().showOperationSucess();
+				
+			}catch(FieldMsgValidationException ex){
+				Hashtable<String,String> ht = ex.getErrors();
+				if (ht != null && ht.size() > 0){
+					for(String key : ht.keySet()){
+						if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning(key,ht.get(key));
+						else getComitenteDadosPessoaJuridicaPanel().reportWarning(key,ht.get(key));
+						//getCadastrarLeiloeiroPanel().reportWarning(key,ht.get(key));
+					}
+				}
+				getTabbedPane().setIconAt(1, warn);
+			}catch(org.hibernate.exception.ConstraintViolationException ex){
+				ex.printStackTrace();
+				boolean cpfExists = pessoaService.cpfExists(((Fisica)p.getTipoPessoa()).getCpf());
+				boolean rgExists = pessoaService.cpfExists(((Fisica)p.getTipoPessoa()).getRg());
+				boolean emailExists = pessoaService.cpfExists(p.getEmail());
+				if (cpfExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("cpf");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("cpf");
+				}
+				if (rgExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("rg");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("rg");
+				}
+				if (emailExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("email");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("email");
+				}
+				if (cpfExists || rgExists || emailExists){
+					getTabbedPane().setIconAt(1, warn);
+					AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+					AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuário!"+'\n'+"Verifique se já não existe alguém "+'\n'+"cadastrado com o mesmo cpf, rg ou email");
+					AdapitVirtualFrame.getInstance().showErrorDialog("Dados duplicados o usuário", "Não foi possível cadastrar o usuário pois já existem registros com os mesmos dados");
+				}else{
+					AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+					AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuário!"+'\n'+"Um erro inesperado ocorreu! Verifique com o desenvolvedor do sistema");
+					AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuário", "Não foi possível cadastrar o usuário por um erro inesperado");
+				}
+			}catch(org.hibernate.exception.DataException ex){
+				ex.printStackTrace();
+				boolean cpfExists = pessoaService.cpfExists(((Fisica)p.getTipoPessoa()).getCpf());
+				boolean rgExists = pessoaService.cpfExists(((Fisica)p.getTipoPessoa()).getRg());
+				boolean emailExists = pessoaService.cpfExists(p.getEmail());
+				if (cpfExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("cpf");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("cpf");
+				}
+				if (rgExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("rg");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("rg");
+				}
+				if (emailExists){
+					if (personType == PersonType.Fisica) getComitenteDadosPessoaFisicaPanel().reportWarning("email");
+					else getComitenteDadosPessoaJuridicaPanel().reportWarning("email");
+				}
+				if (cpfExists || rgExists || emailExists){
+					getTabbedPane().setIconAt(1, warn);
+					AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+					AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuário!"+'\n'+"Verifique se já não existe alguém "+'\n'+"cadastrado com o mesmo cpf, rg ou email");
+					AdapitVirtualFrame.getInstance().showErrorDialog("Dados duplicados o usuário", "Não foi possível cadastrar o usuário pois já existem registros com os mesmos dados");
+				}else{
+					AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+					AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuário!"+'\n'+"Um erro inesperado ocorreu! Verifique com o desenvolvedor do sistema");
+					AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuário", "Não foi possível cadastrar o usuário por um erro inesperado");
+				}
+			}catch(org.hibernate.NonUniqueObjectException ex){
+				ex.printStackTrace();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}finally{
 			}
+							
+		} catch (Exception e) {				
+			e.printStackTrace();
+			AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
+			AdapitVirtualFrame.getInstance().setOperationMessage("Problemas ao cadastrar o usuário");
+			AdapitVirtualFrame.getInstance().showErrorDialog("Problema ao cadastrar o usuário", "Não foi possível cadastrar o usuário por um erro inesperado");
+		}
 	}
-
-	public void cadastrar() throws Exception {
+	
+	public void cadastrar() throws Exception{
 		AdapitVirtualFrame.getInstance().beginStatusBar("Verificando a corretude dos dados");
 		AdapitVirtualFrame.getInstance().cleanErrorMsg();
+		
 
 		getTabbedPane().setIconAt(2, null);
 		getTabbedPane().setIconAt(3, null);
 		getTabbedPane().setIconAt(1, null);
 		getTabbedPane().setIconAt(0, null);
-
+		
 		errorMsgs = null;
-
+		
 		Pessoa p = validatePessoaData();
 		Usuario user = validateUsuarioData();
 		Endereco ender = validateEnderecoData();
-
-		if (errorMsgs != null) {
+				
+		if (errorMsgs != null){
 			AdapitVirtualFrame.getInstance().endStatusBar("Verificando a corretude dos dados");
-			AdapitVirtualFrame.getInstance()
-					.setOperationMessage("Cadastro suspenso ... verifique a corretude dos dados");
+			AdapitVirtualFrame.getInstance().setOperationMessage("Cadastro suspenso ... verifique a corretude dos dados");
 			AdapitVirtualFrame.getInstance().showErrorCamposInvalidosWithinTabs();
-			throw new Exception("Erros de formulario");
-		} else {
-
+			throw new Exception("Erros de formulário");
+		}else{
+			
+			
 			AdapitVirtualFrame.getInstance().endStatusBar("Verificando a corretude dos dados");
-
-			AdapitVirtualFrame.getInstance().beginStatusBar("Salvando os dados do usuario");
-			user.setPassword(Usuario.encrypt(user.getPassword()));
+			
+			AdapitVirtualFrame.getInstance().beginStatusBar("Salvando os dados do usuário");
+			user.setPassword(Usuario.encript(user.getPassword()));
 			user.setPasswordConf(user.getPassword());
-
+			
 			p.setEndereco(ender);
 			ender.setPais(Pais.Brasil);
-
-			((PessoaEmDivulgacao) p).setLogotipo(getParticipante().getLogotipo());
-
+			
+			((PessoaEmDivulgacao)p).setLogotipo(getParticipante().getLogotipo());
+			
 			try {
-				AdapitVirtualFrame.getInstance().beginStatusBar("Salvando os dados do usuario");
-				saveData(user, p, ender);
-
-				AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuario");
+				AdapitVirtualFrame.getInstance().beginStatusBar("Salvando os dados do usuário");
+				saveData(user,p,ender);
+				
+				AdapitVirtualFrame.getInstance().endStatusBar("Salvando os dados do usuário");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-
+	
 	public void setUsuario(Usuario u) {
 		this.usuario = u;
 	}
-
-	public Participante getParticipante() {
-		if (comitente == null) {
-			if (personType == PersonType.Fisica) {
+	
+	public Participante getParticipante(){
+		if (comitente == null){
+			if (personType == PersonType.Fisica){
 				comitente = (Participante) getComitenteDadosPessoaFisicaPanel().getComitente();
-			} else {
+			}
+			else{
 				comitente = (Participante) getComitenteDadosPessoaJuridicaPanel().getComitente();
 			}
 		}
@@ -929,19 +887,20 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 	public PessoaEmDivulgacao getComitente() {
 		return comitente;
 	}
-
+	
 	@Override
 	public void userDataChanged() {
 		usuario = getAdminUserDataForm().getManutencaoDadosUsuarioDialog().getUsuario();
-		if (usuario.getActive()) {
+		if (usuario.getActive()){			
 			getDeactivateButton().setText("Desativar");
-			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png", 18, 18));
-		} else {
+			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_delete.png",18,18));
+		}else{
 			getDeactivateButton().setText("Ativar");
-			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png", 18, 18));
+			getDeactivateButton().setIcon(AdapitVirtualFrame.getIcon("/imgs/vcard_add.png",18,18));
 		}
 	}
-
+	
+	
 	protected JButton getBuscarImagemButton() {
 		if (buscarImagemButton == null) {
 			buscarImagemButton = new JButton(messages.getMessage("Buscar"));
@@ -952,12 +911,11 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 			buscarImagemButton.setIcon(getIcon("/imgs/folder_picture.png"));
 			buscarImagemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (getParticipante().getId() != 0) {
+					if (getParticipante().getId() != 0){
 						imageable.anexarImagem();
-					} else {
-						JOptionPane.showMessageDialog(AdapitVirtualFrame.getInstance(),
-								"Primeiro ï¿½ preciso cadastrar a pessoa!", "Adicionar imagem",
-								JOptionPane.WARNING_MESSAGE);
+					}
+					else{
+						JOptionPane.showMessageDialog(AdapitVirtualFrame.getInstance(), "Primeiro é preciso cadastrar a pessoa!","Adicionar imagem",JOptionPane.WARNING_MESSAGE);						
 					}
 				}
 
@@ -965,10 +923,9 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		}
 		return buscarImagemButton;
 	}
-
 	private Imageable imageable = new Imageable();
 
-	private class Imageable extends AbstractComitenteImage {
+	private class Imageable extends AbstractComitenteImage{
 
 		public Imageable() {
 			super(CadastrarParticipanteTabs.this, "Anexar no Participante");
@@ -998,6 +955,6 @@ public class CadastrarParticipanteTabs extends JPanel implements UserDataChangeL
 		public PessoaEmDivulgacao getPersonComitente() {
 			return getParticipante();
 		}
-
+		
 	}
-} // @jve:decl-index=0:visual-constraint="10,10"
+}  //  @jve:decl-index=0:visual-constraint="10,10"

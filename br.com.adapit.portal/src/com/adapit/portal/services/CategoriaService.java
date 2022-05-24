@@ -8,20 +8,20 @@ import com.adapit.portal.entidades.Categoria;
 
 public interface CategoriaService{
 	
-	// @SuppressWarnings("unchecked")
-	public List<String> listLikeName(String nome );
+	@SuppressWarnings("unchecked")
+	public List listLikeName(String nome );
 	
-	// @SuppressWarnings("unchecked")
-	public List<String> listLikeFromParentName(String joinCategoriaNome );
+	@SuppressWarnings("unchecked")
+	public List listLikeFromParentName(String joinCategoriaNome );
 	
-	// @SuppressWarnings("unchecked")
-	public List<Categoria> listSubCategoriasnotNull(Categoria subCategorias );
+	@SuppressWarnings("unchecked")
+	public List listSubCategoriasnotNull(Categoria subCategorias );
 	
-	// @SuppressWarnings("unchecked")
-	public List<Boolean> listCategoriasByNullParent(boolean eager);
+	@SuppressWarnings("unchecked")
+	public List listCategoriasByNullParent(boolean eager);
 	
-	// @SuppressWarnings("unchecked")
-	public List<?> listAll();
+	@SuppressWarnings("unchecked")
+	public List listAll();
 	
 	public Categoria saveOrUpdate(Categoria categoria ) throws Exception;
 	
@@ -37,8 +37,8 @@ public interface CategoriaService{
 	
 	public Categoria getCategoriaByName(String nome ) throws Exception;
 
-	// @SuppressWarnings("unchecked")
-	public List<Integer> listByParentId(int id) throws Exception;
+	@SuppressWarnings("unchecked")
+	public List listByParentId(int id) throws Exception;
 
 	public boolean merge(Categoria categoria) throws Exception;
 
