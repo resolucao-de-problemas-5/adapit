@@ -25,13 +25,13 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.springframework.dao.support.DataAccessUtils;
 
 /**
- * <p><b>Descriï¿½ï¿½o:</b> Classe que provem o mapeamento das classes persistentes anotadas,
- * alï¿½m disso disponibiliza o objeto Session do hibernate e possui alguns metodos que executam
- * operaï¿½ï¿½es atï¿½micas na base de dados.
- * OBS os mesmos nï¿½o devem ser chamados dentro de uma transaï¿½ï¿½o.</p>
+ * <p><b>Descrição:</b> Classe que provem o mapeamento das classes persistentes anotadas,
+ * além disso disponibiliza o objeto Session do hibernate e possui alguns metodos que executam
+ * operações atômicas na base de dados.
+ * OBS os mesmos não devem ser chamados dentro de uma transação.</p>
  * <p><b>Empresa..:</b> TargeTrust</p>
  * <p><b>Sistema..:</b> CursoHibernate</p>
- * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 13:30:32</p>
+ * <p><b>Criação..:</b> 07/12/2005 13:30:32</p>
  * @author juliocs
  * @version 1.0
  */
@@ -75,7 +75,7 @@ public class HibernateUtil {
     /**
      *
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 13:40:22</p>
+     * <p><b>Criação..:</b> 07/12/2005 13:40:22</p>
      * @return Session
      */
     public static Session getSession()throws HibernateException {
@@ -83,10 +83,10 @@ public class HibernateUtil {
     }
     
     /**
-     * Mï¿½todo responsï¿½vel por fazer a inclusï¿½o de um novo objeto na base, possui trasaï¿½ï¿½o interna por isso nï¿½o pode
-     * ser chamado dentro de outras transaï¿½ï¿½es.
+     * Método responsável por fazer a inclusão de um novo objeto na base, possui trasação interna por isso não pode
+     * ser chamado dentro de outras transações.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 13:50:02</p>
+     * <p><b>Criação..:</b> 07/12/2005 13:50:02</p>
      * @return void
      */
     public void persiste( Object objeto ){
@@ -109,10 +109,10 @@ public class HibernateUtil {
     }
     
     /**
-     * Mï¿½todo responsï¿½vel por fazer alteraï¿½ï¿½o do objeto recebido por parametro na base de dados, possui trasaï¿½ï¿½o interna por isso nï¿½o pode
-     * ser chamado dentro de outras transaï¿½ï¿½es.
+     * Método responsável por fazer alteração do objeto recebido por parametro na base de dados, possui trasação interna por isso não pode
+     * ser chamado dentro de outras transações.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 14:00:22</p>
+     * <p><b>Criação..:</b> 07/12/2005 14:00:22</p>
      * @return Object
      */
     public Object update( Object objeto ){
@@ -136,10 +136,10 @@ public class HibernateUtil {
     }
     
     /**
-     * Mï¿½todo resposï¿½vel por fazer a exclusï¿½o do objeto recebido por prametro na base de dados, possui trasaï¿½ï¿½o interna por isso nï¿½o pode
-     * ser chamado dentro de outras transaï¿½ï¿½es.
+     * Método resposável por fazer a exclusão do objeto recebido por prametro na base de dados, possui trasação interna por isso não pode
+     * ser chamado dentro de outras transações.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 14:10:00</p>
+     * <p><b>Criação..:</b> 07/12/2005 14:10:00</p>
      * @return boolean
      */
     public boolean delete( Object objeto ){
@@ -164,10 +164,10 @@ public class HibernateUtil {
     }
     
     /**
-     * Mï¿½todo responsï¿½vel por buscar o objeto correspondente a classe e id recebido por parametro na base de dados,
-     * possui trasaï¿½ï¿½o interna por isso nï¿½o pode ser chamado dentro de outras transaï¿½ï¿½es.
+     * Método responsável por buscar o objeto correspondente a classe e id recebido por parametro na base de dados,
+     * possui trasação interna por isso não pode ser chamado dentro de outras transações.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>Criaï¿½ï¿½o..:</b> 07/12/2005 14:15:12</p>
+     * <p><b>Criação..:</b> 07/12/2005 14:15:12</p>
      * @return Object
      */
     public Object load(Class classe, Serializable id ){
@@ -191,10 +191,10 @@ public class HibernateUtil {
     }
     
     /**
-     * MÃ©todo responsÃ¡vel por buscar um ColeÃ§Ã£o de objetos baseado na query recebida por parametro, possui trasaÃ§Ã£o interna por isso nÃ£o pode
-     * ser chamado dentro de outras transaÃ§Ãµes.
+     * Método responsável por buscar um Coleção de objetos baseado na query recebida por parametro, possui trasação interna por isso não pode
+     * ser chamado dentro de outras transações.
      * <p><b>Autor....:</b> juliocs</p>
-     * <p><b>CriaÃ§Ã£o..:</b> 07/12/2005 14:20:06</p>
+     * <p><b>Criação..:</b> 07/12/2005 14:20:06</p>
      * @return Collection
      */
     public Collection find(  String hql ){
