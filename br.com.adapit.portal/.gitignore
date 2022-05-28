@@ -1,8 +1,10 @@
 /bin
 /build.properties
+/infrastructure
 /infrastructure/com/workcase/hibernate/tools/PostgreeHibernateConnection.java
 /infrastructure/com/workcase/hibernate/tools/MySqlHibernateConnectionDB.java
 /infrastructure/com/workcase/hibernate/tools/Oracle10gConnectionDB.java
 /src/hibernateContext.xml
 /src/localServices.xml
 /web/WEB-INF/hibernateContext.xml
+/temp
