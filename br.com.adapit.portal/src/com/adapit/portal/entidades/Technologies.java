@@ -1,18 +1,18 @@
 package com.adapit.portal.entidades;
 
 public enum Technologies {
-	Linguagem_de_Programa��o_Java, 
-	Linguagem_de_Programa��o_Ponto_Net, 
-	Linguagem_de_Programa��o_PHP,
-	Linguagem_de_Programa��o_C_CPlus,
+	Linguagem_de_Programacao_Java, 
+	Linguagem_de_Programacao_Ponto_Net, 
+	Linguagem_de_Programacao_PHP,
+	Linguagem_de_Programacao_C_CPlus,
 	Framework_Ruby_On_Rails,
 	
 	Banco_de_Dados_Oracle,
 	Banco_de_Dados_PostgreSql,
 	
-	Linguagem_de_Marca��o,
+	Linguagem_de_Marcacao,
 	Desenvolvimento_de_Sistemas_Ajax,
-	Ferramentas_Produ��o_WEB,
+	Ferramentas_Producao_WEB,
 	
 	Modelagem_Analise_de_Banco_de_Dados,
 	Modelagem_Analise_de_Sistemas,
